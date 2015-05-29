@@ -18,6 +18,7 @@
         "src/BackgroundLayer.js",
         "src/AnimationLayer.js",
         "src/PlayScene.js",
+        "src/PlayScene2.js",
         "src/UserInterfaceLayer.js",
         "src/StatusLayer.js"
     ]

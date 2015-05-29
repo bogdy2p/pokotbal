@@ -62,7 +62,11 @@ var res = {
     Pedroanimation_png: "res/pedro/textures/pedroanim.png",
     Pedroanimation_plist: "res/pedro/textures/pedroanim.plist",
     
+    Players_png: "res/pedro/textures/players.png",
+    Players_plist: "res/pedro/textures/players.plist",
     
+    ThreePlayers_png: "res/pedro/textures/3players.png",
+    ThreePlayers_plist: "res/pedro/textures/3players.plist",
 };
 
 var g_resources = [];

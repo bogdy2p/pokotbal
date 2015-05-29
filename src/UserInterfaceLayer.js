@@ -106,6 +106,7 @@ var UserInterfaceLayer = cc.Layer.extend({
         a.setAnchorPoint(0, 0);
         a.setPosition(cc.p(1377 - a.width, 40));
         if (this.bottom_menu_opened) {
+//            cc.director.resume();
             var MiniGameBarRemoveAction = this.getChildByName("MiniGameMenuChild");
             MiniGameBarRemoveAction.runAction(
                     cc.CallFunc.create(this.removeChild, this, true));
@@ -180,7 +181,8 @@ var UserInterfaceLayer = cc.Layer.extend({
     updateTimerClock: function (seconds) {
         var minute = seconds / 60;
         var the_second = seconds % 60;
-        this.timerLabel.setString(parseInt(minute) + " min " + the_second +" sec");
+        this.timerLabel.setString(parseInt(minute) + " min " + the_second + " sec");
+
     }
 
 
