@@ -35,12 +35,10 @@ var AnimationLayer = cc.Layer.extend({
 
         this.scheduleUpdate();
 
-        this.spawnPlayer(2);
-        this.spawnPlayer(3);
+        this.spawnPlayer();
+        this.spawnPlayer();
         this.spawnPlayer(1);
 
-//        this.spawnPlayer();
-//        this.spawnPlayer();
     },
 //    spawnPlayers: function (howmany) {
 //
@@ -60,8 +58,6 @@ var AnimationLayer = cc.Layer.extend({
 //            var player_x = object.x;
 //            var player_y = object.y;
 //            var player_z = object.zIndex;
-//
-//
 //
 //
 //
@@ -127,9 +123,8 @@ var AnimationLayer = cc.Layer.extend({
 
         var str = "player" + player_no;
 
-        cc.log(player_no);
-
-        cc.log(str);
+//        cc.log(player_no);
+//        cc.log(str);
 
 //        var newPlayer = new cc.Sprite(res.Pedroanimation_plist);
 //        newPlayer.attr({x: player_x, y: player_y});
@@ -138,25 +133,32 @@ var AnimationLayer = cc.Layer.extend({
 
 
         cc.spriteFrameCache.addSpriteFrames(res.ThreePlayers_plist);
-        this.spriteSheet = new cc.SpriteBatchNode(res.ThreePlayers_png);
-        this.addChild(this.spriteSheet);
+        var thisplayer = this.spriteSheet = new cc.SpriteBatchNode(res.ThreePlayers_png);
+        this.addChild(this.spriteSheet, player_z);
         var animFrames = [];
         for (var i = 0; i < 10; i++) {
             var str = "player" + player_no + "_" + (i + 1) + ".png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
-            cc.log(frame);
+//            cc.log(frame);
             animFrames.push(frame);
         }
         var animation = new cc.Animation(animFrames, 0.3);
         this.spawnPlayerAction = new cc.repeatForever(new cc.Animate(animation));
         this.sprite = new cc.Sprite("#" + str);
-        cc.log(this.sprite);
+//        cc.log(this.sprite);
         this.sprite.attr({x: object.x, y: object.y});
         this.sprite.runAction(this.spawnPlayerAction);
-        this.spriteSheet.addChild(this.sprite, 2);
+        this.spriteSheet.addChild(this.sprite, player_z);
 
-
-
+        if (object.y > 500) {
+            var playerPopUp = new cc.Sprite(res.P_popupOverGrey);
+            playerPopUp.attr({x: object.x, y: object.y + 120});
+            thisplayer.addChild(playerPopUp, 4);
+        } else {
+            var playerPopUp = new cc.Sprite(res.P_popupUnderGrey);
+            playerPopUp.attr({x: object.x, y: object.y + 120});
+            thisplayer.addChild(playerPopUp, 4);
+        }
 
     },
     update: function (dt) {
@@ -171,7 +173,6 @@ var AnimationLayer = cc.Layer.extend({
 
 
         //RESET AND SWITCH TO SECOND ROUND ?
-
 //        if ((seconds > 0) && (seconds > 2700)) {
 //            cc.director.pause();
 //

@@ -106,7 +106,6 @@ var UserInterfaceLayer = cc.Layer.extend({
         a.setAnchorPoint(0, 0);
         a.setPosition(cc.p(1377 - a.width, 40));
         if (this.bottom_menu_opened) {
-//            cc.director.resume();
             var MiniGameBarRemoveAction = this.getChildByName("MiniGameMenuChild");
             MiniGameBarRemoveAction.runAction(
                     cc.CallFunc.create(this.removeChild, this, true));
