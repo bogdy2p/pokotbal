@@ -35,9 +35,11 @@ var AnimationLayer = cc.Layer.extend({
 
         this.scheduleUpdate();
 
-        this.spawnPlayer();
-        this.spawnPlayer();
-        this.spawnPlayer(1);
+//        this.spawnPlayer();
+//        this.spawnPlayer();
+        this.spawnPlayer(2, "VASILE", 100);
+
+        this.spawnPlayer(0, "IONUT", 1000);
 
     },
 //    spawnPlayers: function (howmany) {
@@ -53,13 +55,10 @@ var AnimationLayer = cc.Layer.extend({
 //        var unique_picked_numbers = _.uniq(picked_numbers);
 //
 //        for (i = 0; i < playerPositions.length; i++) {
-//
 //            var object = playerPositions[i];
 //            var player_x = object.x;
 //            var player_y = object.y;
 //            var player_z = object.zIndex;
-//
-//
 //
 //            switch (i) {
 //                case 0:
@@ -96,7 +95,6 @@ var AnimationLayer = cc.Layer.extend({
 //                    var newPlayer = new cc.Sprite(res.Player1);
 //                    break;
 //            }
-//
 //            newPlayer.attr({x: player_x, y: player_y});
 //
 //            for (j = 0; j < unique_picked_numbers.length; j++) {
@@ -107,14 +105,12 @@ var AnimationLayer = cc.Layer.extend({
 //        }
 //
 //    },
-    spawnPlayer: function (number) {
+    spawnPlayer: function (number, name, ammount) {
 
-        var player_no = this.currentPosition;
+        var player_no = number;
         var number = player_no;
-//        var number = number;
 
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-//        var object = playerPositions[this.currentPosition];
         var object = playerPositions[number];
 
         var player_x = object.x;
@@ -122,15 +118,7 @@ var AnimationLayer = cc.Layer.extend({
         var player_z = object.zIndex;
 
         var str = "player" + player_no;
-
-//        cc.log(player_no);
-//        cc.log(str);
-
-//        var newPlayer = new cc.Sprite(res.Pedroanimation_plist);
-//        newPlayer.attr({x: player_x, y: player_y});
-//        backgroundLayer.addChild(newPlayer, player_z);
-        this.currentPosition++;
-
+//        this.currentPosition++;
 
         cc.spriteFrameCache.addSpriteFrames(res.ThreePlayers_plist);
         var thisplayer = this.spriteSheet = new cc.SpriteBatchNode(res.ThreePlayers_png);
@@ -159,6 +147,33 @@ var AnimationLayer = cc.Layer.extend({
             playerPopUp.attr({x: object.x, y: object.y + 120});
             thisplayer.addChild(playerPopUp, 4);
         }
+
+
+        //Add the name on the popup of the player.
+        var nameLabel = new cc.LabelTTF(name, "Helvetica", 16);
+        nameLabel.setColor(cc.color(255, 255, 255));
+        nameLabel.setAnchorPoint(0, 0);
+//        cc.log(playerPopUp);
+
+        nameLabel.setPosition(cc.p(playerPopUp.x - nameLabel.width / 2, playerPopUp.y + nameLabel.height / 2.5));
+        this.addChild(nameLabel);
+
+        //=========================================
+
+
+        //Add the current player SUM on the popup of the player.
+        var playerAmmount = new cc.LabelTTF("£ " + ammount, "Helvetica", 16);
+        playerAmmount.setColor(cc.color(255, 255, 255));
+        playerAmmount.setAnchorPoint(0, 0);
+        playerAmmount.setPosition(cc.p(playerPopUp.x - playerAmmount.width / 2, playerPopUp.y - playerAmmount.height / 1.75));
+        this.addChild(playerAmmount);
+        //=========================================
+
+
+
+
+
+
 
     },
     update: function (dt) {

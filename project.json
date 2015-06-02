@@ -1,16 +1,13 @@
 {
     "project_type": "javascript",
-
-    "debugMode" : 1,
-    "showFPS" : false,
-    "frameRate" : 60,
-    "id" : "gameCanvas",
-    "renderMode" : 0,
-    "engineDir":"frameworks/cocos2d-html5",
-
-    "modules" : ["cocos2d"],
-
-    "jsList" : [
+    "debugMode": 1,
+    "showFPS": false,
+    "frameRate": 60,
+    "id": "gameCanvas",
+    "renderMode": 0,
+    "engineDir": "frameworks/cocos2d-html5",
+    "modules": ["cocos2d"],
+    "jsList": [
         "src/underscore.js",
         "src/global_data.js",
         "src/resource.js",
@@ -20,6 +17,9 @@
         "src/PlayScene.js",
         "src/PlayScene2.js",
         "src/UserInterfaceLayer.js",
-        "src/StatusLayer.js"
+        "src/StatusLayer.js",
+        "src/LastLayer.js",
+        "src/TopFeedLayer.js",
+        "src/BotFeedLayer.js"
     ]
 }

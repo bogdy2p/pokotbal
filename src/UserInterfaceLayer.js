@@ -45,7 +45,9 @@ var UserInterfaceLayer = cc.Layer.extend({
         var TopRightInformationBox = new cc.Sprite(res.UI_TopRight);
         TopRightInformationBox.setAnchorPoint(0, 0);
         TopRightInformationBox.setPosition(cc.p(winSize.width - TopRightInformationBox.width, winSize.height - TopRightInformationBox.height));
-        this.addChild(TopRightInformationBox);
+        this.addChild(TopRightInformationBox,0,"TopRightInformationBox");
+//        alert(TopRightInformationBox.width);
+//        alert(TopRightInformationBox.height);
         //============================================================
 
         //Add TimerClock Sprite

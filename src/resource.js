@@ -6,7 +6,6 @@ var res = {
     Background_none_png: "res/background/BackgroundNone.png",
     Football_Stripes: "res/background/FootballStripesTransp.png",
     Table_png: "res/background/Table.png",
-        
     //USER INTERFACE RESOURCES ================================================    
     UI_Marker: "res/userinterface/Marker.png",
     UI_BottomLeftInfo: "res/userinterface/BotLeftInfo.png",
@@ -23,23 +22,23 @@ var res = {
     UI_GameEventsBar: "res/userinterface/GameEvents.png",
     UI_MiniGameBar: "res/userinterface/MiniGameBar.png",
     UI_MiniGameBarClicked: "res/userinterface/MiniGameBarClicked.png",
-    UI_ChatBar:"res/userinterface/ChatBar.png",
-    UI_ChatBarClicked:"res/userinterface/ChatBarClicked.png",
+    UI_ChatBar: "res/userinterface/ChatBar.png",
+    UI_ChatBarClicked: "res/userinterface/ChatBarClicked.png",
     UI_Announcement: "res/userinterface/Announcement1.png",
     UI_TopLeftNormal: "res/userinterface/TopLeftNormal.png",
     UI_TopLeftPressed: "res/userinterface/TopLeftPressed.png",
     UI_Cash: "res/userinterface/CashNull.png",
     //=========================================================================
-    
+
     //Player Popups ===========================================================
     P_popupOverGrey: "res/userinterface/OverPopupGrey.png",
     P_popupOverGreen: "res/userinterface/OverPopupGreen.png",
     P_popupUnderGrey: "res/userinterface/UnderPopupGrey.png",
     P_popupUnderGreen: "res/userinterface/UnderPopupGreen.png",
     //=========================================================================
-    
-    
-    
+
+
+
     //Controls
 
     Start_s_png: "res/controls/start_s.png",
@@ -56,17 +55,19 @@ var res = {
     Player8: "res/pedro/player8.png",
     Player9: "res/pedro/player9.png",
     Player10: "res/pedro/player10.png",
-    
     //Pedro Animation
-    
+
     Pedroanimation_png: "res/pedro/textures/pedroanim.png",
     Pedroanimation_plist: "res/pedro/textures/pedroanim.plist",
-    
     Players_png: "res/pedro/textures/players.png",
     Players_plist: "res/pedro/textures/players.plist",
-    
     ThreePlayers_png: "res/pedro/textures/3players.png",
     ThreePlayers_plist: "res/pedro/textures/3players.plist",
+    Button1_png: "res/1.png",
+    Button2_png: "res/2.png",
+    Button3_png: "res/3.png",
+    Button4_png: "res/4.png",
+    Button5_png: "res/5.png",
 };
 
 var g_resources = [];

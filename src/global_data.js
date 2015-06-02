@@ -4,6 +4,7 @@ if (typeof TagOfLayer == "undefined") {
     TagOfLayer.Animation = 1;
     TagOfLayer.UserInterface = 2;
     TagOfLayer.Status = 3;
+    TagOfLayer.LastLayer = 4;
 }
 
 
