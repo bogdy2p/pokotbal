@@ -59,23 +59,15 @@ var TopFeedLayer = cc.Layer.extend({
     },
     addFeedUpdate: function (dt) {
 
-
         var second = Math.floor(dt);
         this.currentTime += second;
 
-
-
         var thefeed = randomizeText();
-
         var number = this.currentTime;
-
         var string = number.toString();
-//        cc.log();
 
         var randomValue = Math.floor((Math.random() * 10) + 1);
         var randomValue2 = Math.floor((Math.random() * 10) + 1);
-
-
 
         if (this.currentTime % randomValue == randomValue2) {
             if (this.displayed < 9) {
@@ -91,17 +83,13 @@ function randomizeText() {
     var text = "";
     var possibilities = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
 
-
     var randomnumber1 = Math.floor((Math.random() * 10) + 1);
 
     for (var i = 0; i < randomnumber1; i++) {
         text += possibilities.charAt(Math.floor(Math.random() * possibilities.length));
     }
-
     text += " ";
-
     var randomnumber2 = Math.floor((Math.random() * 10) + 1);
-
     for (var j = 0; j < randomnumber2; j++) {
         text += possibilities.charAt(Math.floor(Math.random() * possibilities.length));
     }

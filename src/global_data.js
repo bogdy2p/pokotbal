@@ -7,6 +7,20 @@ if (typeof TagOfLayer == "undefined") {
     TagOfLayer.LastLayer = 4;
 }
 
+if (typeof SpriteTag == "undefined") {
+    var SpriteTag = {};
+
+    SpriteTag.player1 = 0;
+    SpriteTag.player2 = 1;
+    SpriteTag.player3 = 2;
+    SpriteTag.player4 = 3;
+    SpriteTag.player5 = 4;
+    SpriteTag.player6 = 5;
+    SpriteTag.player7 = 6;
+    SpriteTag.player8 = 7;
+    SpriteTag.player9 = 8;
+    SpriteTag.player10 = 9;
+}
 
 
 

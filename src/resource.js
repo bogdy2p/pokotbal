@@ -56,6 +56,20 @@ var res = {
     Player9: "res/pedro/player9.png",
     Player10: "res/pedro/player10.png",
     //Pedro Animation
+    
+    
+    Losing_png: "res/pedro/textures/lose.png",
+    Losing_plist: "res/pedro/textures/lose.plist",
+    
+    Pedrofull_png: "res/animations/pedrofull.png",
+    Pedrofull_plist: "res/animations/pedrofull.plist",
+    
+    Pedrofull_red_png: "res/animations/pedrofull_red.png",
+    Pedrofull_red_plist: "res/animations/pedrofull_red.plist",
+    Pedrofull_pink_png: "res/animations/pedrofull_pink.png",
+    Pedrofull_pink_plist: "res/animations/pedrofull_pink.plist",
+    Pedrofull_sepia_png: "res/animations/pedrofull_sepia.png",
+    Pedrofull_sepia_plist: "res/animations/pedrofull_sepia.plist",
 
     Pedroanimation_png: "res/pedro/textures/pedroanim.png",
     Pedroanimation_plist: "res/pedro/textures/pedroanim.plist",

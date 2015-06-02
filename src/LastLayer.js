@@ -35,8 +35,8 @@ var LastLayer = cc.Layer.extend({
         button5.setPosition(cc.p(this.buttons_initialX + 4 * (button5.width + 1), winSize.height - button5.height));
         this.addChild(button5, 1, "Button5");
 
-
-    },
+    },   
+    
     spawnPlayer: function (number) {
 
     },
