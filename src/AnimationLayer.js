@@ -33,7 +33,13 @@ var AnimationLayer = cc.Layer.extend({
         this.sprite.runAction(this.pedroAnimationAction);
 //        this.spriteSheet.addChild(this.sprite, 2);
 
-        this.scheduleUpdate();
+
+
+        //Schedule the timer clock update to every second
+        this.schedule(this.updateGameClock, 1);
+        //===============================================
+
+//        this.scheduleUpdate();
 
 //        this.spawnPlayer();
 //        this.spawnPlayer();
@@ -176,15 +182,22 @@ var AnimationLayer = cc.Layer.extend({
 
 
     },
+    updateGameClock: function (dt) {
+        this.seconds += dt;
+        var seconds = Math.floor(this.seconds);
+        var UserInterfaceLayer = this.getParent().getChildByTag(TagOfLayer.UserInterface);
+        UserInterfaceLayer.updateTimerClock(seconds);
+        cc.log(this.seconds);
+    },
     update: function (dt) {
 
 //        this.seconds += dt * 220;
-        this.seconds += dt;
-        var seconds = Math.floor(this.seconds);
+//        this.seconds += dt;
+//        var seconds = Math.floor(this.seconds);
 
 //        cc.log(seconds);
-        var UserInterfaceLayer = this.getParent().getChildByTag(TagOfLayer.UserInterface);
-        UserInterfaceLayer.updateTimerClock(seconds);
+//        var UserInterfaceLayer = this.getParent().getChildByTag(TagOfLayer.UserInterface);
+//        UserInterfaceLayer.updateTimerClock(seconds);
 
 
         //RESET AND SWITCH TO SECOND ROUND ?
@@ -194,11 +207,6 @@ var AnimationLayer = cc.Layer.extend({
 //            cc.director.runScene(new PlayScene2(), this);
 //            cc.director.resume();
 //        }
-
-
-
-
-
     }
 
 });
