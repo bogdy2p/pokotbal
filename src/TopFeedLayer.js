@@ -19,8 +19,6 @@ var TopFeedLayer = cc.Layer.extend({
         this.topFeedHeight = 438;
         this.topFeedWidth = 329;
 
-
-
         this.schedule(this.addFeedUpdate, 1);
 
 
@@ -35,19 +33,15 @@ var TopFeedLayer = cc.Layer.extend({
         var userInterfaceLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.UserInterface);
         var TopFeedSprite = userInterfaceLayer.getChildByName("TopRightInformationBox");
         var TopFeedSpriteSize = TopFeedSprite.getContentSize();
-
         var timeLabel = new cc.LabelTTF(time, "Helvetica", 15);
         timeLabel.setColor(cc.color(255, 255, 255));
         timeLabel.setAnchorPoint(0, 0);
-
         timeLabel.setPosition(cc.p(this.winSize.width - TopFeedSpriteSize.width + 62, this.winSize.height - (TopFeedSpriteSize.height / 12) * (this.initialPosition + 1) - 50));
         this.addChild(timeLabel, 3, "timelabel");
-
         var feedLabel = new cc.LabelTTF(feedText, "Helvetica", 15);
         feedLabel.setColor(cc.color(255, 255, 255));
         feedLabel.setAnchorPoint(0, 0);
 //        cc.log(feedLabel);
-
 
         feedLabel.setPosition(cc.p(this.winSize.width - TopFeedSpriteSize.width + timeLabel.width + 75, this.winSize.height - (TopFeedSpriteSize.height / 12) * (this.initialPosition + 1) - 50));
         this.addChild(feedLabel);
@@ -59,7 +53,29 @@ var TopFeedLayer = cc.Layer.extend({
     },
     addFeedUpdate: function (dt) {
 
+
+
+//        var animLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.Animation);
+////        cc.log(animLayer);
+//        var players = animLayer.getChildren();
+////        var TopFeedSpriteSize = TopFeedSprite.getContentSize();
+////        cc.log(player);
+//        var player = players[0];
+////        cc.log(player);
+//        
+//        player.setAnchorPoint(cc.p(0.5,0.5));
+//        
+////        var sprite2 = sprite.getChildByName();
+////        cc.log(sprite2);
+//
+//
+////        cc.director.pause();
         var second = Math.floor(dt);
+
+
+
+
+
         this.currentTime += second;
 
         var thefeed = randomizeText();
@@ -72,6 +88,7 @@ var TopFeedLayer = cc.Layer.extend({
         if (this.currentTime % randomValue == randomValue2) {
             if (this.displayed < 9) {
                 this.addFeed(string.toMMSS(), thefeed);
+
                 this.displayed++;
             }
         }

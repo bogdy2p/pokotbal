@@ -20,6 +20,8 @@
         "src/StatusLayer.js",
         "src/LastLayer.js",
         "src/TopFeedLayer.js",
-        "src/BotFeedLayer.js"
+        "src/BotFeedLayer.js",
+        "src/PlayerLayer.js",
+        "src/Player.js"
     ]
 }
