@@ -74,6 +74,11 @@ var res = {
     Pedro90_png: "res/animations/pedro90.png",
     Pedro90_plist: "res/animations/pedro90.plist",
 
+
+    
+
+
+
     Pedroanimation_png: "res/pedro/textures/pedroanim.png",
     Pedroanimation_plist: "res/pedro/textures/pedroanim.plist",
     Players_png: "res/pedro/textures/players.png",

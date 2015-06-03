@@ -20,7 +20,7 @@ var BackgroundLayer = cc.Layer.extend({
         spriteTable.setOpacity(0);
         this.addChild(spriteTable, 1);
 
-        var fadeInTable = cc.FadeIn.create(0.2);
+        var fadeInTable = cc.FadeIn.create(2.2);
         spriteTable.runAction(fadeInTable);
 
         var spriteFootballStripes = new cc.Sprite(res.Football_Stripes);

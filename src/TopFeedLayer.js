@@ -21,8 +21,6 @@ var TopFeedLayer = cc.Layer.extend({
 
         this.schedule(this.addFeedUpdate, 1);
 
-
-
 //        this.scheduleUpdate();
 
 
@@ -52,32 +50,9 @@ var TopFeedLayer = cc.Layer.extend({
 
     },
     addFeedUpdate: function (dt) {
-
-
-
-//        var animLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.Animation);
-////        cc.log(animLayer);
-//        var players = animLayer.getChildren();
-////        var TopFeedSpriteSize = TopFeedSprite.getContentSize();
-////        cc.log(player);
-//        var player = players[0];
-////        cc.log(player);
-//        
-//        player.setAnchorPoint(cc.p(0.5,0.5));
-//        
-////        var sprite2 = sprite.getChildByName();
-////        cc.log(sprite2);
-//
-//
-////        cc.director.pause();
+ 
         var second = Math.floor(dt);
-
-
-
-
-
         this.currentTime += second;
-
         var thefeed = randomizeText();
         var number = this.currentTime;
         var string = number.toString();
@@ -88,7 +63,6 @@ var TopFeedLayer = cc.Layer.extend({
         if (this.currentTime % randomValue == randomValue2) {
             if (this.displayed < 9) {
                 this.addFeed(string.toMMSS(), thefeed);
-
                 this.displayed++;
             }
         }
@@ -99,9 +73,7 @@ var TopFeedLayer = cc.Layer.extend({
 function randomizeText() {
     var text = "";
     var possibilities = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-
     var randomnumber1 = Math.floor((Math.random() * 10) + 1);
-
     for (var i = 0; i < randomnumber1; i++) {
         text += possibilities.charAt(Math.floor(Math.random() * possibilities.length));
     }

@@ -1,18 +1,21 @@
-var Player = cc.Class.extend({
-    playerNumber:null,
+var Player = cc.Layer.extend({
+    playerNumber: null,
+    animateWinning: null,
+    animateLosing: null,
+    animateWaiting: null,
     sprite: null,
     ctor: function (spriteSheet, playerdata) {
 
 
         this.playerNumber = global_current_position;
         //Spawn player Animation 
-        var playerNoAnimation = cc.Sprite("win1.png");
-        
-        alert("Player " + this.playerNumber + " created");
-        
+//        var playerNoAnimation = cc.Sprite("res/win1.png");
+
+//        alert("Player " + this.playerNumber + " created");
+
         //======================================================================     
-        
-        
+
+
         //======================================================================   
         //Winning Animation 
         //======================================================================
@@ -49,25 +52,18 @@ var Player = cc.Class.extend({
         //======================================================================   
 
 
-
-
-
-
-
         var winLoseWait = cc.Sequence.create(animateWinning, animateLosing, animateWaiting);
-        this.sprite = new cc.Sprite("res/player1.png");
-
-
-
-
+        this.sprite = new cc.Sprite.create("#wait1.png");
 
         this.sprite.runAction(winLoseWait);
-
-
         this.sprite.setPosition(playerdata.x, playerdata.y);
         spriteSheet.addChild(this.sprite, playerdata.Zindex, playerdata.defaultName);
         this.sprite.runAction(new cc.MoveTo(cc.p(playerdata.x, playerdata.y)));
-        
         global_current_position++;
+    },
+    animate: function (animation_no) {
+
+        alert("YEEEY");
+
     },
 });
