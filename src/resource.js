@@ -70,6 +70,9 @@ var res = {
     Pedrofull_pink_plist: "res/animations/pedrofull_pink.plist",
     Pedrofull_sepia_png: "res/animations/pedrofull_sepia.png",
     Pedrofull_sepia_plist: "res/animations/pedrofull_sepia.plist",
+    
+    Pedro90_png: "res/animations/pedro90.png",
+    Pedro90_plist: "res/animations/pedro90.plist",
 
     Pedroanimation_png: "res/pedro/textures/pedroanim.png",
     Pedroanimation_plist: "res/pedro/textures/pedroanim.plist",

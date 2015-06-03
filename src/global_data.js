@@ -22,8 +22,6 @@ if (typeof SpriteTag == "undefined") {
     SpriteTag.player10 = 9;
 }
 
-
-
 //
 //
 //
