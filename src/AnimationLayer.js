@@ -33,7 +33,7 @@ var AnimationLayer = cc.Layer.extend({
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
-        cc.log("PlayerZ " + player_z);
+//        cc.log("PlayerZ " + player_z);
         cc.spriteFrameCache.addSpriteFrames(res.Pedro90_plist);
         var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Pedro90_png);
         var childname = "player_" + number;

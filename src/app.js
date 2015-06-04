@@ -32,7 +32,6 @@ var MenuLayer = cc.Layer.extend({
     //========================================================================
     //The OnPlay FUNCTION
     onPlay: function () {
-//        cc.log("Clicked On Play. Play Started");
         cc.director.runScene(new PlayScene());
     }
     //=========================================================================

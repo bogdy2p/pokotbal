@@ -62,11 +62,17 @@ var LastLayer = cc.Layer.extend({
 
 
     },
-    clickButton3: function () {
+    clickButton3: function ( data ) {
+//        cc.log(clickButton3);
+        console.log(data);
+        
+        
+        
         var number = 3;
         var AnimationLayer = this.getParent().getChildByTag(TagOfLayer.Animation);
+        var BackgroundLayer = this.getParent().getChildByTag(TagOfLayer.background);
         var childname = "player_" + number;
-        var PlayerSpawned = AnimationLayer.getChildByName(childname);
+        var PlayerSpawned = BackgroundLayer.getChildByName(childname);
         if (PlayerSpawned) {
             PlayerSpawned.removeFromParent(1);
         }
@@ -77,8 +83,9 @@ var LastLayer = cc.Layer.extend({
     clickButton4: function () {
         var number = 1;
         var AnimationLayer = this.getParent().getChildByTag(TagOfLayer.Animation);
+        var BackgroundLayer = this.getParent().getChildByTag(TagOfLayer.background);
         var childname = "player_" + number;
-        var PlayerSpawned = AnimationLayer.getChildByName(childname);
+        var PlayerSpawned = BackgroundLayer.getChildByName(childname);
         if (PlayerSpawned) {
             PlayerSpawned.removeFromParent(1);
         }
@@ -91,8 +98,9 @@ var LastLayer = cc.Layer.extend({
         if (this.buton5_clicked) {
 //            alert("You clicked button 5 again. The respective player should disappear");
             var AnimationLayer = this.getParent().getChildByTag(TagOfLayer.Animation);
+            var BackgroundLayer = this.getParent().getChildByTag(TagOfLayer.background);
             var childname = "player_" + number;
-            var PlayerSpawned = AnimationLayer.getChildByName(childname);
+            var PlayerSpawned = BackgroundLayer.getChildByName(childname);
             cc.log(PlayerSpawned);
             PlayerSpawned.removeFromParent(1);
             this.buton5_clicked = false;
