@@ -1,5 +1,4 @@
-var socket = io.connect('http://127.0.0.1:2000');
-
+var socket = io.connect('http://127.0.0.1:4000');
 
 var Player = cc.Layer.extend({
     debugPlayer: false,
@@ -33,6 +32,9 @@ var Player = cc.Layer.extend({
 
     },
     init: function () {
+        
+        
+        
         this.runRandomAnim();
 //        this.animateWinning();
 //        this.animateLosing();
