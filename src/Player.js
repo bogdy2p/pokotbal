@@ -15,7 +15,13 @@ var Player = cc.Layer.extend({
 
         this.sprite = new cc.Sprite.create("#wait1.png");
         this.sprite.setPosition(playerdata.x, playerdata.y);
+        this.sprite.setOpacity(0);
         spriteSheet.addChild(this.sprite, playerdata.Zindex, playerdata.defaultName);
+
+
+        var fadeInPlayer = cc.FadeIn.create(1);
+        this.sprite.runAction(fadeInPlayer);
+
         this.sprite.runAction(new cc.MoveTo(cc.p(playerdata.x, playerdata.y)));
         global_current_position++;
         this.init();
@@ -28,7 +34,7 @@ var Player = cc.Layer.extend({
 //        this.animateLosing();
     },
     animateWinning: function () {
-       cc.log("Player Will animate WIN");
+        cc.log("Player Will animate WIN");
         //======================================================================   
         //Winning Animation 
         //======================================================================
@@ -44,7 +50,7 @@ var Player = cc.Layer.extend({
 
     },
     animateLosing: function () {
-     cc.log("Player Will animate LOSE");
+        cc.log("Player Will animate LOSE");
         var animFramesLose = [];
         for (var i = 1; i < 6; i++) {
             var str = "lose" + i + ".png";
@@ -67,8 +73,12 @@ var Player = cc.Layer.extend({
         var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 2);
         this.sprite.runAction(animateWaiting, 1);
     },
+    animateFadeOut: function () {
+        var fadeOutPlayer = cc.FadeOut.create(1);
+        this.sprite.runAction(fadeOutPlayer);
+    },
     runRandomAnim: function () {
-        var randomNumber = Math.floor(Math.random() * 3) + 1;
+        var randomNumber = Math.floor(Math.random() * 4) + 1;
         console.log("Randomly picked number is : " + randomNumber);
         switch (randomNumber) {
             case 1:
@@ -80,10 +90,14 @@ var Player = cc.Layer.extend({
             case 3:
                 this.animateWinning();
                 break;
+            case 4:
+                this.animateFadeOut();
+                break
             default:
                 break;
         }
     }
+
 });
 
 
