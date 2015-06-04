@@ -1,4 +1,8 @@
+var socket = io.connect('http://127.0.0.1:2000');
+
+
 var Player = cc.Layer.extend({
+    debugPlayer: false,
     playerNumber: null,
     sprite: null,
     ctor: function (spriteSheet, playerdata) {
@@ -29,13 +33,15 @@ var Player = cc.Layer.extend({
 
     },
     init: function () {
-//        this.runRandomAnim();
+        this.runRandomAnim();
 //        this.animateWinning();
 //        this.animateLosing();
         this.animateFadeIn();
     },
     animateWinning: function () {
-        cc.log("Player Will animate WIN");
+        if (this.debugPlayer) {
+            cc.log("Player Will animate WIN");
+        }
         //======================================================================   
         //Winning Animation 
         //======================================================================
@@ -51,7 +57,9 @@ var Player = cc.Layer.extend({
 
     },
     animateLosing: function () {
-        cc.log("Player Will animate LOSE");
+        if (this.debugPlayer) {
+            cc.log("Player Will animate LOSE");
+        }
         var animFramesLose = [];
         for (var i = 1; i < 6; i++) {
             var str = "lose" + i + ".png";
@@ -63,7 +71,9 @@ var Player = cc.Layer.extend({
         this.sprite.runAction(animateLosing, 1);
     },
     animateWaiting: function () {
-        cc.log("Player Will animate WAIT");
+        if (this.debugPlayer) {
+            cc.log("Player Will animate WAIT");
+        }
         var animFramesWait = [];
         for (var i = 1; i < 6; i++) {
             var str = "wait" + i + ".png";
@@ -84,7 +94,9 @@ var Player = cc.Layer.extend({
     },
     runRandomAnim: function () {
         var randomNumber = Math.floor(Math.random() * 4) + 1;
-        console.log("Randomly picked number is : " + randomNumber);
+        if (this.debugPlayer) {
+            console.log("Randomly picked number is : " + randomNumber);
+        }
         switch (randomNumber) {
             case 1:
                 this.animateLosing();
