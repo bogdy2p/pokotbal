@@ -2,9 +2,9 @@ var res = {
     HelloWorld_png: "res/HelloWorld.png",
     CloseNormal_png: "res/CloseNormal.png",
     CloseSelected_png: "res/CloseSelected.png",
-    Background_full_png: "res/background/background.png",
+//    Background_full_png: "res/background/background.png",
     Background_none_png: "res/background/BackgroundNone.png",
-    Football_Stripes: "res/background/FootballStripesTransp.png",
+//    Football_Stripes: "res/background/FootballStripesTransp.png",
     Table_png: "res/background/Table.png",
     //USER INTERFACE RESOURCES ================================================    
     UI_Marker: "res/userinterface/Marker.png",
