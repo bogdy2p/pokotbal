@@ -19,8 +19,8 @@ var Player = cc.Layer.extend({
         spriteSheet.addChild(this.sprite, playerdata.Zindex, playerdata.defaultName);
 
 
-        var fadeInPlayer = cc.FadeIn.create(1);
-        this.sprite.runAction(fadeInPlayer);
+//        var fadeInPlayer = cc.FadeIn.create(1);
+//        this.sprite.runAction(fadeInPlayer);
 
         this.sprite.runAction(new cc.MoveTo(cc.p(playerdata.x, playerdata.y)));
         global_current_position++;
@@ -29,9 +29,10 @@ var Player = cc.Layer.extend({
 
     },
     init: function () {
-        this.runRandomAnim();
+//        this.runRandomAnim();
 //        this.animateWinning();
 //        this.animateLosing();
+        this.animateFadeIn();
     },
     animateWinning: function () {
         cc.log("Player Will animate WIN");
@@ -72,6 +73,10 @@ var Player = cc.Layer.extend({
         var animationWait = new cc.Animation(animFramesWait, 0.4);
         var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 2);
         this.sprite.runAction(animateWaiting, 1);
+    },
+    animateFadeIn: function () {
+        var fadeInPlayer = cc.FadeIn.create(2);
+        this.sprite.runAction(fadeInPlayer);
     },
     animateFadeOut: function () {
         var fadeOutPlayer = cc.FadeOut.create(1);

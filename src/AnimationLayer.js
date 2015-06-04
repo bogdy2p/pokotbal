@@ -20,8 +20,8 @@ var AnimationLayer = cc.Layer.extend({
         //===============================================
 
         this.spawnPlayer(0, "vasile", 1000);
-        this.spawnPlayer(6, "Player1", 10);
-        this.spawnPlayer(7, "asd", 10);
+        this.spawnPlayer(6, "ionut", 10);
+        this.spawnPlayer(7, "gheorghe", 10);
 
 
 
