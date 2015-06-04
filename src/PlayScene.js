@@ -9,9 +9,5 @@ var PlayScene = cc.Scene.extend({
         this.addChild(new LastLayer(), 4, TagOfLayer.LastLayer);
         this.addChild(new TopFeedLayer(), 5, TagOfLayer.TopFeed);
         this.addChild(new BotFeedLayer(), 6, TagOfLayer.BotFeed);
-//        this.addChild(new PlayerLayer(40,405), 0, TagOfLayer.Player);
-//        this.addChild(new Player());
-
-//        console.log(this.getChildren());
     },
 });

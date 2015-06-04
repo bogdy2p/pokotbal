@@ -15,7 +15,7 @@ var PlayerLayer = cc.Layer.extend({
         this.init();
 
 
-        cc.log(this);
+//        cc.log(this);
 
     },
     init: function () {

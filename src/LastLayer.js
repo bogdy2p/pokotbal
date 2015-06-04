@@ -63,11 +63,6 @@ var LastLayer = cc.Layer.extend({
 
     },
     clickButton3: function ( data ) {
-//        cc.log(clickButton3);
-        console.log(data);
-        
-        
-        
         var number = 3;
         var AnimationLayer = this.getParent().getChildByTag(TagOfLayer.Animation);
         var BackgroundLayer = this.getParent().getChildByTag(TagOfLayer.background);

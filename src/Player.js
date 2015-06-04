@@ -28,7 +28,7 @@ var Player = cc.Layer.extend({
 //        this.animateLosing();
     },
     animateWinning: function () {
-        alert("Player Will animate WIN");
+       cc.log("Player Will animate WIN");
         //======================================================================   
         //Winning Animation 
         //======================================================================
@@ -44,7 +44,7 @@ var Player = cc.Layer.extend({
 
     },
     animateLosing: function () {
-        alert("Player Will animate LOSE");
+     cc.log("Player Will animate LOSE");
         var animFramesLose = [];
         for (var i = 1; i < 6; i++) {
             var str = "lose" + i + ".png";
@@ -56,7 +56,7 @@ var Player = cc.Layer.extend({
         this.sprite.runAction(animateLosing, 1);
     },
     animateWaiting: function () {
-        alert("Player Will animate WAIT");
+        cc.log("Player Will animate WAIT");
         var animFramesWait = [];
         for (var i = 1; i < 6; i++) {
             var str = "wait" + i + ".png";
