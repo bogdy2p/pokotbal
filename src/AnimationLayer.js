@@ -20,7 +20,7 @@ var AnimationLayer = cc.Layer.extend({
         //===============================================
 
         var that = this;
-        var _listener1 = cc.EventListener.create({
+        var spawnPlayerEvent = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
             eventName: "spawn_player_event",
             callback: function (event) {
@@ -32,15 +32,72 @@ var AnimationLayer = cc.Layer.extend({
                 that.spawnPlayer(userdata.number, userdata.name, userdata.ammount);
             }
         });
-        cc.eventManager.addListener(_listener1, 1);
+        cc.eventManager.addListener(spawnPlayerEvent, 1);
+
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+
+        var winningListener = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_player_winning",
+            callback: function (event) {
+
+//                cc.log(event);
+
+//                cc.log(that);
+                var data = event.getUserData();
+
+                var playerNumber = data.playerNumber;
+                var positionX = data.positionX;
+                var positionY = data.positionY;
 
 
+                that.movePlayerTo(playerNumber, positionX, positionY);
 
-//
-//        this.spawnPlayer(0, "vasile", 1000);
-//        this.spawnPlayer(6, "ionut", 10);
-//        this.spawnPlayer(7, "gheorghe", 10);
+//                var childname = "player_" + playerNumber;
+//                var childname2 = "Player" + (playerNumber+1).toString();
+//                cc.log(childname + " + " + childname2);
+//                cc.log("Background Layer : ");
+//                cc.log(backgroundLayer);
+//                var PlayerLayer = backgroundLayer.getChildByName(childname);
+//                cc.log("Player Layer : ");
+//                cc.log(PlayerLayer);
+//                var player_zero = PlayerLayer.getChildByName(childname2);
+//                
+//                that.
+//                
+//                
+//                cc.log("Player ZERO : ");
+//                cc.log(player_zero);
+////                cc.log(player_zero._name);
+////                cc.log(player_zero.class());
+//                player_zero.animateWinning();
 
+
+            }
+        });
+        cc.eventManager.addListener(winningListener, 1);
+
+        var losingListener = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_player_losing",
+            callback: function (event) {
+                cc.log(event.getUserData());
+                var playerNumber = event.getUserData();
+                backgroundLayer.animateLosing(userdata.number);
+            }
+        });
+        cc.eventManager.addListener(losingListener, 1);
+
+        var waitingListener = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_player_waiting",
+            callback: function (event) {
+                cc.log(event.getUserData());
+                var playerNumber = event.getUserData();
+                backgroundLayer.animateWaiting(userdata.number);
+            }
+        });
+        cc.eventManager.addListener(waitingListener, 1);
 
 
 
@@ -59,6 +116,37 @@ var AnimationLayer = cc.Layer.extend({
         backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
 
     },
+    movePlayerTo: function (number, pozx, pozy) {
+
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var childname = "player_" + number;
+        var sprite = backgroundLayer.getChildByName(childname);
+
+        var aaa = sprite._children[0];
+        cc.log("Player " + aaa._name + " is currently @ " + aaa.getPositionX() + " & " + aaa.getPositionY());
+//        aaa.runAction(moveTo(4,5));
+        aaa.setPositionX(pozx);
+        aaa.setPositionY(pozy);
+
+//        aaa.animateWinning();
+//        cc.log(aaa);
+        cc.log("Player " + aaa._name + " is currently @ " + aaa.getPositionX() + " & " + aaa.getPositionY());
+
+        var animFramesWin = [];
+        for (var i = 1; i < 6; i++) {
+            var str = "win" + i + ".png";
+            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+            animFramesWin.push(frame);
+        }
+        var animationWin = new cc.Animation(animFramesWin, 0.4);
+        var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
+        aaa.runAction(animateWinning, 1);
+
+
+//        sprite.runAction(new Player.animateWinning);
+//        cc.log(childname);
+
+    },
     updateGameClock: function (dt) {
         this.seconds += dt;
         var seconds = Math.floor(this.seconds);
@@ -69,29 +157,10 @@ var AnimationLayer = cc.Layer.extend({
     },
     rand1: function (dt) {
 
-
-//        this.playerWin(1, "asd", 10);
-//        cc.log(dt);
     },
     update: function (dt) {
 
 
-//        this.playerLose(1, "asd", 10);
-//        this.playerWin(3, "WONN", 10);
-//        this.playerWait(7, "IONUT", 1000);
-//        this.seconds += dt * 220;
-//        this.seconds += dt;
-//        var seconds = Math.floor(this.seconds);
-//        cc.log(seconds);
-//        var UserInterfaceLayer = this.getParent().getChildByTag(TagOfLayer.UserInterface);
-//        UserInterfaceLayer.updateTimerClock(seconds);
-        //RESET AND SWITCH TO SECOND ROUND ?
-//        if ((seconds > 0) && (seconds > 2700)) {
-//            cc.director.pause();
-//
-//            cc.director.runScene(new PlayScene2(), this);
-//            cc.director.resume();
-//        }
     }
 
 });

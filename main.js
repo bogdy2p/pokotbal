@@ -84,37 +84,74 @@ var mygame = {
         event.setUserData(playerdata);
         cc.eventManager.dispatchEvent(event);
     },
-    animatePlayer: function (number) {
-        var event = new cc.EventCustom("game_custom_event1");
+    animatePlayerWin: function (number) {
+        var event = new cc.EventCustom("event_player_winning");
+        event.setUserData(number);
+        cc.eventManager.dispatchEvent(event);
+    },
+    animatePlayerLose: function (number) {
+        var event = new cc.EventCustom("event_player_losing");
+        event.setUserData(number);
+        cc.eventManager.dispatchEvent(event);
+    },
+    animatePlayerWait: function (number) {
+        var event = new cc.EventCustom("event_player_waiting");
         event.setUserData(number);
         cc.eventManager.dispatchEvent(event);
     }
 }
 
+var player1 = {
+    number: 0,
+    name: "vasile",
+    ammount: 400
+}
+
+var player7 = {
+    number: 6,
+    name: "player7",
+    ammount: 100
+}
+
+var player9 = {
+    number: 8,
+    name: "player9",
+    ammount: 50
+}
+
+var moved = {
+    playerNumber: 0,
+    positionX: 200,
+    positionY: 800,
+}
+var moved2 = {
+    playerNumber: 0,
+    positionX: 1200,
+    positionY: 800,
+}
 
 mygame.start();
 setTimeout(function () {
 //    mygame.animatePlayer(1);
 
-    var player1 = {
-        number: 0,
-        name: "vasile",
-        ammount: 400
-    }
-
-    var player7 = {
-        number: 6,
-        name: "player7",
-        ammount: 100
-    }
-
     mygame.spawnPlayer(player1);
-    
-    setTimeout(function() {
+    setTimeout(function () {
         mygame.spawnPlayer(player7);
-    },1000);
+    }, 500);
+    setTimeout(function () {
+        mygame.spawnPlayer(player9);
+    }, 1000);
+
+    setTimeout(function () {
+        mygame.animatePlayerWin(moved);
+//        console.log(mygame);
+    }, 2000);
     
-    
-    
-//    mygame.animatePlayer(2);
-}, 4000);
+      setTimeout(function () {
+        mygame.animatePlayerWin(moved2);
+//        console.log(mygame);
+    }, 4600);
+
+
+
+}, 3000);
