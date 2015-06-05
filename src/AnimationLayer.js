@@ -19,9 +19,27 @@ var AnimationLayer = cc.Layer.extend({
         this.schedule(this.updateGameClock, 1);
         //===============================================
 
-        this.spawnPlayer(0, "vasile", 1000);
-        this.spawnPlayer(6, "ionut", 10);
-        this.spawnPlayer(7, "gheorghe", 10);
+        var that = this;
+        var _listener1 = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "spawn_player_event",
+            callback: function (event) {
+
+//               statusLabel.setString("Customevent 1 received", + event.getUserData() + " times");
+                cc.log(event.getUserData());
+                var userdata = event.getUserData();
+
+                that.spawnPlayer(userdata.number, userdata.name, userdata.ammount);
+            }
+        });
+        cc.eventManager.addListener(_listener1, 1);
+
+
+
+//
+//        this.spawnPlayer(0, "vasile", 1000);
+//        this.spawnPlayer(6, "ionut", 10);
+//        this.spawnPlayer(7, "gheorghe", 10);
 
 
 
@@ -38,7 +56,7 @@ var AnimationLayer = cc.Layer.extend({
         var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Pedro90_png);
         var childname = "player_" + number;
         var asd = new Player(thisplayer, object);
-        backgroundLayer.addChild(this.loseSpriteSheet, player_z , childname);
+        backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
 
     },
     updateGameClock: function (dt) {
@@ -46,7 +64,7 @@ var AnimationLayer = cc.Layer.extend({
         var seconds = Math.floor(this.seconds);
         var UserInterfaceLayer = this.getParent().getChildByTag(TagOfLayer.UserInterface);
         UserInterfaceLayer.updateTimerClock(seconds);
-        
+
 
     },
     rand1: function (dt) {

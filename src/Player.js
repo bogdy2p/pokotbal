@@ -32,14 +32,18 @@ var Player = cc.Layer.extend({
 
     },
     init: function () {
-
+        var that = this;
         var _listener1 = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
             eventName: "game_custom_event1",
             callback: function (event) {
 
+
+                
+
 //               statusLabel.setString("Customevent 1 received", + event.getUserData() + " times");
                 cc.log(event.getUserData());
+                that.animateWinning();
             }
         });
         cc.eventManager.addListener(_listener1, 1);

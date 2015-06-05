@@ -47,26 +47,74 @@
  *
  */
 
-cc.game.onStart = function () {
-    if (!cc.sys.isNative && document.getElementById("cocosLoading")) //If referenced loading.js, please remove it
-        document.body.removeChild(document.getElementById("cocosLoading"));
 
-    // Pass true to enable retina display, disabled by default to improve performance
-    cc.view.enableRetina(true);
-    // Adjust viewport meta
-    cc.view.adjustViewPort(true);
-    // Setup the resolution policy and design resolution size
-    cc.view.setDesignResolutionSize(1694, 1024, cc.ResolutionPolicy.SHOW_ALL);
-    // The game will be resized when browser size change
-    cc.view.resizeWithBrowserSize(true);
-    //load resources
-    cc.LoaderScene.preload(g_resources, function () {
-        cc.director.runScene(new MenuScene());
-    }, this);
-    var event = new cc.EventCustom("game_custom_event1");
-    event.setUserData("VAAAAASILEUSERDATA");
-    cc.eventManager.dispatchEvent(event);
-
-};
-cc.game.run();
+//setTimeout(function () {
+//    var event = new cc.EventCustom("game_custom_event1");
+//    event.setUserData("VAAAAASILEUSERDATA");
+//    cc.eventManager.dispatchEvent(event);
+//}, 5000);
 //
+
+
+
+var mygame = {
+    start: function () {
+        cc.game.onStart = function () {
+            if (!cc.sys.isNative && document.getElementById("cocosLoading")) //If referenced loading.js, please remove it
+                document.body.removeChild(document.getElementById("cocosLoading"));
+
+            // Pass true to enable retina display, disabled by default to improve performance
+            cc.view.enableRetina(true);
+            // Adjust viewport meta
+            cc.view.adjustViewPort(true);
+            // Setup the resolution policy and design resolution size
+            cc.view.setDesignResolutionSize(1694, 1024, cc.ResolutionPolicy.SHOW_ALL);
+            // The game will be resized when browser size change
+            cc.view.resizeWithBrowserSize(true);
+            //load resources
+            cc.LoaderScene.preload(g_resources, function () {
+                cc.director.runScene(new MenuScene());
+            }, this);
+
+        };
+        cc.game.run();
+    },
+    spawnPlayer: function (playerdata) {
+        var event = new cc.EventCustom("spawn_player_event");
+        event.setUserData(playerdata);
+        cc.eventManager.dispatchEvent(event);
+    },
+    animatePlayer: function (number) {
+        var event = new cc.EventCustom("game_custom_event1");
+        event.setUserData(number);
+        cc.eventManager.dispatchEvent(event);
+    }
+}
+
+
+mygame.start();
+setTimeout(function () {
+//    mygame.animatePlayer(1);
+
+    var player1 = {
+        number: 0,
+        name: "vasile",
+        ammount: 400
+    }
+
+    var player7 = {
+        number: 6,
+        name: "player7",
+        ammount: 100
+    }
+
+    mygame.spawnPlayer(player1);
+    
+    setTimeout(function() {
+        mygame.spawnPlayer(player7);
+    },1000);
+    
+    
+    
+//    mygame.animatePlayer(2);
+}, 4000);
