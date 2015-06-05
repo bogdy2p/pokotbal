@@ -11,3 +11,7 @@ var PlayScene = cc.Scene.extend({
         this.addChild(new BotFeedLayer(), 6, TagOfLayer.BotFeed);
     },
 });
+
+var event = new cc.EventCustom("game_custom_event1");
+event.setUserData("VAAAAASILEUSERDATA");
+cc.eventManager.dispatchEvent(event);

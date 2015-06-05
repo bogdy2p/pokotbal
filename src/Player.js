@@ -1,4 +1,4 @@
-var socket = io.connect('http://127.0.0.1:4000');
+//...//var socket = io.connect('http://127.0.0.1:4000');
 
 var Player = cc.Layer.extend({
     debugPlayer: false,
@@ -32,9 +32,19 @@ var Player = cc.Layer.extend({
 
     },
     init: function () {
-        
-        
-        
+
+        var _listener1 = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "game_custom_event1",
+            callback: function (event) {
+
+//               statusLabel.setString("Customevent 1 received", + event.getUserData() + " times");
+                cc.log(event.getUserData());
+            }
+        });
+        cc.eventManager.addListener(_listener1, 1);
+
+
         this.runRandomAnim();
 //        this.animateWinning();
 //        this.animateLosing();
