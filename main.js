@@ -1,3 +1,119 @@
+var playerInformations = [
+    {
+        x: 470,
+        y: 720,
+        zIndex: 0,
+        playerNumber: 1,
+        defaultName: "Player1",
+        popUpTop: true,
+        popUpX: 470,
+        popUpY: 850,
+        popUpZ: 0,
+    },
+    {
+        x: 620,
+        y: 720,
+        zIndex: 0,
+        playerNumber: 2,
+        defaultName: "Player2",
+        popUpTop: true,
+        popUpX: 620,
+        popUpY: 850,
+        popUpZ: 0,
+    },
+    {
+        x: 770,
+        y: 720,
+        zIndex: 0,
+        playerNumber: 3,
+        defaultName: "Player3",
+        popUpTop: true,
+        popUpX: 770,
+        popUpY: 850,
+        popUpZ: 0,
+    },
+    {
+        x: 920,
+        y: 720,
+        zIndex: 0,
+        playerNumber: 4,
+        defaultName: "Player4",
+        popUpTop: true,
+        popUpX: 920,
+        popUpY: 850,
+        popUpZ: 0,
+    },
+    //Right One
+    {
+        x: 1050,
+        y: 530,
+        zIndex: 2,
+        playerNumber: 5,
+        defaultName: "Player5",
+        popUpTop: true,
+        popUpX: 1050,
+        popUpY: 650,
+        popUpZ: 0,
+    },
+//    Next three bottom
+    {
+        x: 920,
+        y: 400,
+        zIndex: 2,
+        playerNumber: 6,
+        defaultName: "Player6",
+        popUpTop: false,
+        popUpX: 920,
+        popUpY: 270,
+        popUpZ: 0,
+    },
+    {
+        x: 770,
+        y: 400,
+        zIndex: 2,
+        playerNumber: 7,
+        defaultName: "Player7",
+        popUpTop: false,
+        popUpX: 770,
+        popUpY: 270,
+        popUpZ: 0,
+    },
+    {
+        x: 620,
+        y: 400,
+        zIndex: 2,
+        playerNumber: 8,
+        defaultName: "Player8",
+        popUpTop: false,
+        popUpX: 620,
+        popUpY: 270,
+        popUpZ: 0, },
+    {
+        x: 470,
+        y: 400,
+        zIndex: 2,
+        playerNumber: 9,
+        defaultName: "Player9",
+        popUpTop: false,
+        popUpX: 470,
+        popUpY: 270,
+        popUpZ: 0,
+    },
+    //Next  clockwise
+    {
+        x: 340,
+        y: 530,
+        zIndex: 2,
+        playerNumber: 10,
+        defaultName: "Player10",
+        popUpTop: true,
+        popUpX: 340,
+        popUpY: 650,
+        popUpZ: 0,
+    },
+];
+
+
 /**
  * A brief explanation for "project.json":
  * Here is the content of project.json file, this is the global configuration for your game, you can modify it to customize some behavior.
@@ -59,7 +175,7 @@
 
 var mygame = {
     start: function () {
-        cc.game.onStart = function () {
+         cc.game.onStart = function () {
             if (!cc.sys.isNative && document.getElementById("cocosLoading")) //If referenced loading.js, please remove it
                 document.body.removeChild(document.getElementById("cocosLoading"));
 
@@ -101,57 +217,95 @@ var mygame = {
     }
 }
 
+
 var player1 = {
     number: 0,
+    playerNumber: 0,
     name: "vasile",
     ammount: 400
 }
-
-var player7 = {
-    number: 6,
-    name: "player7",
+var player2 = {
+    playerNumber: 1,
+    number: 1,
+    name: "player2",
+    ammount: 100
+}
+var player3 = {
+    playerNumber: 2,
+    number: 2,
+    name: "player3",
+    ammount: 100
+}
+var player4 = {
+    playerNumber: 3,
+    number: 3,
+    name: "player4",
+    ammount: 100
+}
+var player5 = {
+    playerNumber: 4,
+    number: 4,
+    name: "player5",
+    ammount: 100
+}
+var player6 = {
+    playerNumber: 5,
+    number: 5,
+    name: "player6",
     ammount: 100
 }
 
-var player9 = {
-    number: 8,
-    name: "player9",
-    ammount: 50
+
+
+var players = [];
+for (i = 0; i < 10; i++) {
+    var thename = "player" + i;
+    players[i] = {
+        playerNumber: i,
+        number: i,
+        name: thename,
+        ammount: 100
+    };
 }
 
-var moved = {
-    playerNumber: 0,
-    positionX: 200,
-    positionY: 800,
-}
-var moved2 = {
-    playerNumber: 0,
-    positionX: 1200,
-    positionY: 800,
-}
-
+//  ACTUALLY START THE GAME HERE !
+//  ACTUALLY START THE GAME HERE !
+//  ACTUALLY START THE GAME HERE !
 mygame.start();
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+cc.log(mygame.players);
+
+
+
 setTimeout(function () {
 //    mygame.animatePlayer(1);
-
-    mygame.spawnPlayer(player1);
-    setTimeout(function () {
-        mygame.spawnPlayer(player7);
-    }, 500);
-    setTimeout(function () {
-        mygame.spawnPlayer(player9);
-    }, 1000);
-
-    setTimeout(function () {
-        mygame.animatePlayerWin(moved);
-//        console.log(mygame);
-    }, 2000);
     
-      setTimeout(function () {
-        mygame.animatePlayerWin(moved2);
-//        console.log(mygame);
-    }, 4600);
+    mygame.spawnPlayer(players[1]);
+    mygame.spawnPlayer(players[2]);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[7]);
+    }, 2500);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[4]);
+    }, 2500);
+    
+    setTimeout(function () {
+        mygame.spawnPlayer(players[9]);
+    }, 4000);
+
+    setTimeout(function () {
+        mygame.animatePlayerWin(players[1]);
+    }, 7000);
 
 
+    setTimeout(function () {
+        mygame.animatePlayerLose(players[7]);
+    }, 8600);
+
+    setTimeout(function () {
+        mygame.animatePlayerWait(players[1]);
+    }, 10000);
 
 }, 3000);

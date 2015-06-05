@@ -9,13 +9,7 @@ var PlayScene = cc.Scene.extend({
         this.addChild(new LastLayer(), 4, TagOfLayer.LastLayer);
         this.addChild(new TopFeedLayer(), 5, TagOfLayer.TopFeed);
         this.addChild(new BotFeedLayer(), 6, TagOfLayer.BotFeed);
-
-
-      
-
+        
+        
     },
 });
-//
-//var event = new cc.EventCustom("game_custom_event1");
-//event.setUserData("VAAAAASILEUSERDATA");
-//cc.eventManager.dispatchEvent(event);

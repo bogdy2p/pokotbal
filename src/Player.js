@@ -3,7 +3,6 @@
 var Player = cc.Layer.extend({
     debugPlayer: false,
     playerNumber: null,
-    animateWinning:null,
     sprite: null,
     ctor: function (spriteSheet, playerdata) {
 
@@ -21,11 +20,6 @@ var Player = cc.Layer.extend({
         this.sprite.setPosition(playerdata.x, playerdata.y);
         this.sprite.setOpacity(0);
         spriteSheet.addChild(this.sprite, playerdata.Zindex, playerdata.defaultName);
-
-
-//        var fadeInPlayer = cc.FadeIn.create(1);
-//        this.sprite.runAction(fadeInPlayer);
-
         this.sprite.runAction(new cc.MoveTo(cc.p(playerdata.x, playerdata.y)));
         global_current_position++;
         this.init();
@@ -34,8 +28,6 @@ var Player = cc.Layer.extend({
     },
     init: function () {
         var that = this;
-        
-        
         
 //        var _listener1 = cc.EventListener.create({
 //            event: cc.EventListener.CUSTOM,
@@ -48,10 +40,6 @@ var Player = cc.Layer.extend({
 //            }
 //        });
 //        cc.eventManager.addListener(_listener1, 1);
-
-
-      
-
 //        this.runRandomAnim();
 //        this.animateWinning();
 //        this.animateLosing();
