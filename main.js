@@ -267,6 +267,15 @@ var firstsetofdata2 = {
     repeatTimes: 1,
 };
 
+var disconnected3 = {
+    markerImage: "testImage",
+    markerMessage: "Player 3 has been disconnected.",
+    fadeInSec: 1,
+    timeToShow: 1,
+    fadeOutSec: 1,
+    repeatTimes: 1,
+};
+
 var betz = [];
 
 for (k = 0; k < 10; k++) {
@@ -450,4 +459,6 @@ setTimeout(function () {
 
 setTimeout(function () {
     mygame.removePlayer(players[3]);
+    mygame.display_game_marker(disconnected3);
 }, 26000);
+
