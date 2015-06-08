@@ -128,10 +128,12 @@ var AnimationLayer = cc.Layer.extend({
         backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
 
     },
-    removePlayer: function (number) {
+    removePlayer: function (data) {
+        
+        cc.log("ACCESSED REMOVE PLAYER");
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var object = playerInformations[number];
-
+        
         //FUNCTIONALITY TO BE ABLE TO REMOVE A PLAYER FROM THE BOARD
         //
         //
@@ -142,6 +144,28 @@ var AnimationLayer = cc.Layer.extend({
         //
         //
         //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

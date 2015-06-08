@@ -45,7 +45,7 @@ var UserInterfaceLayer = cc.Layer.extend({
         var TopRightInformationBox = new cc.Sprite(res.UI_TopRight);
         TopRightInformationBox.setAnchorPoint(0, 0);
         TopRightInformationBox.setPosition(cc.p(winSize.width - TopRightInformationBox.width, winSize.height - TopRightInformationBox.height));
-        this.addChild(TopRightInformationBox,0,"TopRightInformationBox");
+        this.addChild(TopRightInformationBox, 0, "TopRightInformationBox");
 //        alert(TopRightInformationBox.width);
 //        alert(TopRightInformationBox.height);
         //============================================================
@@ -59,7 +59,7 @@ var UserInterfaceLayer = cc.Layer.extend({
 
 
         //Add Default TimerLabel Label
-        this.timerLabel = new cc.LabelTTF("HH:MM:SS", "Helvetica", 30);
+        this.timerLabel = new cc.LabelTTF("00:00:00", "MontserratBold", 26);
         this.timerLabel.setColor(cc.color(255, 255, 255));
         this.timerLabel.setAnchorPoint(0, 0);
         this.timerLabel.setPosition(cc.p(winSize.width - 265 + TimerClockSprite.width + 5, winSize.height - TimerClockSprite.height - 18));
@@ -180,19 +180,20 @@ var UserInterfaceLayer = cc.Layer.extend({
     }
     ,
     updateTimerClock: function (seconds) {
+
+//In order to speed up
+//        seconds = seconds * 15;
+
         var minute = seconds / 60;
+        if (minute < 10) {
+            minute = "0" + Math.floor(minute);
+        }
         var the_second = seconds % 60;
-        this.timerLabel.setString(parseInt(minute) + " min " + the_second + " sec");
+        if (the_second < 10) {
+            the_second = "0" + Math.floor(seconds % 60);
+        }
 
+        this.timerLabel.setString("00:" + minute + ":" + the_second + "");
     }
-
-
-
-
-
-
-
-
-
 
 });

@@ -226,7 +226,7 @@ var mygame = {
         cc.eventManager.dispatchEvent(event);
     },
     animateBet: function (data) {
-        cc.log("entered animateBet");
+//        cc.log("entered animateBet");
         var event = new cc.EventCustom("event_animate_betting");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
@@ -449,8 +449,8 @@ betz.forEach(dosomethingspecial);
 function dosomethingspecial(element, index, array) {
 
 
-    cc.log(element);
-    cc.log(index);
+//    cc.log(element);
+//    cc.log(index);
     setTimeout(function () {
         mygame.animateBet(element);
     }, 11000);
