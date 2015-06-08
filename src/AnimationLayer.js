@@ -252,7 +252,7 @@ var AnimationLayer = cc.Layer.extend({
         markerMessageLabel.setPosition(cc.p(informationMarker.x / 2 - markerMessageLabel.width / 2, informationMarker.y / 2 - markerMessageLabel.height));
         informationMarker.addChild(markerMessageLabel, 500, "leftLabel");
 
-        var fadeInMessage = cc.FadeIn.create(data.fadeInSec - 0.5);
+        var fadeInMessage = cc.FadeIn.create(data.fadeInSec + 0.5);
         var fadeOutMessage = cc.FadeOut.create(data.fadeInSec - 0.5);
         var markerMessageSequence = cc.Sequence.create(fadeInMessage, delay, fadeOutMessage);
 
