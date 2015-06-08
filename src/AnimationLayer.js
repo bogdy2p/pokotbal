@@ -3,6 +3,7 @@ var AnimationLayer = cc.Layer.extend({
     currentPosition: 0,
     spriteSheet: null,
     loseSpriteSheet: null,
+    cashSpriteSheet: null,
     pedroAnimationAction: null,
     spawnPlayerAction: null,
     seconds: null,
@@ -101,6 +102,17 @@ var AnimationLayer = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(GameMarkerListener, 1);
+
+        var BettingListener = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_animate_betting",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.animateBetting(data);
+            }
+        });
+        cc.eventManager.addListener(BettingListener, 1);
+
 
     },
     spawnPlayer: function (number, name, ammount) {
@@ -248,17 +260,52 @@ var AnimationLayer = cc.Layer.extend({
         var markerMessageLabel = new cc.LabelTTF(data.markerMessage, "MontserratRegular", 20);
         markerMessageLabel.setColor(cc.color(30, 30, 30));
         markerMessageLabel.setAnchorPoint(0, 0);
-//        markerMessageLabel.setOpacity(0);
+        markerMessageLabel.setOpacity(0);
         markerMessageLabel.setPosition(cc.p(informationMarker.x / 2 - markerMessageLabel.width / 2, informationMarker.y / 2 - markerMessageLabel.height));
         informationMarker.addChild(markerMessageLabel, 500, "leftLabel");
-
-        var fadeInMessage = cc.FadeIn.create(data.fadeInSec + 0.5);
+        var fadeInMessage = cc.FadeIn.create(data.fadeInSec);
         var fadeOutMessage = cc.FadeOut.create(data.fadeInSec - 0.5);
         var markerMessageSequence = cc.Sequence.create(fadeInMessage, delay, fadeOutMessage);
-
         informationMarker.runAction(repeatMarkerSequence);
         markerMessageLabel.runAction(markerMessageSequence);
 
+        cc.log(informationMarker);
+    },
+    animateBetting: function (data) {
+        var backgroundLayer = this.backgroundLayer;
+        cc.log("inside AnimateBetting !!!");
+        var object = playerInformations[data.playerNumber];
+        var player_x = object.x;
+        var player_y = object.y;
+        var player_z = object.zIndex;
+        //res.UI_Cash
+//        cc.spriteFrameCache.addSpriteFrames(res.Pedro90_plist);
+        var cashSprite = new cc.SpriteBatchNode(res.UI_Cash);
+        var cashSpriteName = "bet_player_" + data.playerNumber;
+
+
+        this.cashSpriteSheet = new cc.Sprite.create(res.UI_Cash);
+        this.cashSpriteSheet.setPosition(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y);
+//        this.cashSpriteSheet.setPosition(700,580);
+//        this.cashSpriteSheet.setOpacity(100);
+        backgroundLayer.addChild(this.cashSpriteSheet, playerInformations[data.playerNumber].Zindex + 500, playerInformations[data.playerNumber].defaultName);
+        //this.sprite.runAction(new cc.MoveTo(cc.p(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y)));
+
+        var moveToCenter = new cc.MoveTo.create(1.5,cc.p(700, 580));
+//        var moveToCenterSequence = cc.Sequence.create(moveToCenter);
+        this.cashSpriteSheet.runAction(moveToCenter, 1);
+
+
+//        backgroundLayer.addChild(this.loseSpriteSheet, player_z, cashSpriteName);
+
+        //Spawn money over the player
+        //Move money to the middle of the game.
+        //Fade money out in the table.
+
+
+
+//data.playerNumber
+//data.ammount
 
     }
 });

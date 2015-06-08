@@ -224,8 +224,13 @@ var mygame = {
         var event = new cc.EventCustom("event_display_game_marker_bar_and_info");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
+    },
+    animateBet: function(data) {
+        cc.log("entered animateBet");
+        var event = new cc.EventCustom("event_animate_betting");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
     }
-
 }
 
 
@@ -303,6 +308,21 @@ var firstsetofdata2 = {
     fadeOutSec: 1,
     repeatTimes: 1,
 };
+
+
+var betTest = {
+    playerNumber: 2,
+    ammount: 100,
+};
+var betTest2 = {
+    playerNumber: 7,
+    ammount: 100,
+};
+var betTest3 = {
+    playerNumber: 4,
+    ammount: 100,
+};
+
 //  ACTUALLY START THE GAME HERE !
 //  ACTUALLY START THE GAME HERE !
 //  ACTUALLY START THE GAME HERE !
@@ -405,3 +425,16 @@ setTimeout(function () {
     mygame.display_game_marker(firstsetofdata2);
 
 }, 9000);
+
+
+
+setTimeout(function () {
+    mygame.animateBet(betTest);
+}, 10000);
+setTimeout(function () {
+    mygame.animateBet(betTest2);
+}, 12000);
+
+setTimeout(function () {
+    mygame.animateBet(betTest3);
+}, 13000);
