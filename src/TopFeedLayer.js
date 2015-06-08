@@ -15,15 +15,12 @@ var TopFeedLayer = cc.Layer.extend({
 
         this._super();
         this.winSize = cc.director.getWinSize();
-
         this.topFeedHeight = 438;
         this.topFeedWidth = 329;
-
         this.schedule(this.addFeedUpdate, 1);
 
     },
     addFeed: function (time, feedText) {
-
 
         var userInterfaceLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.UserInterface);
         var TopFeedSprite = userInterfaceLayer.getChildByName("TopRightInformationBox");

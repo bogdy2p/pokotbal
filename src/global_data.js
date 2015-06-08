@@ -74,7 +74,7 @@ var playerInformations = [
     {
         x: 1050,
         y: 530,
-        zIndex: 2,
+        zIndex: 0,
         playerNumber: 5,
         defaultName: "Player5",
         popUpTop: true,
@@ -130,7 +130,7 @@ var playerInformations = [
     {
         x: 340,
         y: 530,
-        zIndex: 2,
+        zIndex: 0,
         playerNumber: 10,
         defaultName: "Player10",
         popUpTop: true,

@@ -131,9 +131,12 @@ var AnimationLayer = cc.Layer.extend({
     removePlayer: function (data) {
         
         cc.log("ACCESSED REMOVE PLAYER");
+        cc.log(data);
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var object = playerInformations[number];
+        var object = playerInformations[data.number];
         
+        
+        cc.log(object);
         //FUNCTIONALITY TO BE ABLE TO REMOVE A PLAYER FROM THE BOARD
         //
         //

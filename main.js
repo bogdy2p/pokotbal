@@ -164,13 +164,6 @@ var playerInformations = [
  */
 
 
-//setTimeout(function () {
-//    var event = new cc.EventCustom("game_custom_event1");
-//    event.setUserData("VAAAAASILEUSERDATA");
-//    cc.eventManager.dispatchEvent(event);
-//}, 5000);
-//
-
 
 
 var mygame = {
@@ -197,6 +190,11 @@ var mygame = {
     },
     spawnPlayer: function (playerdata) {
         var event = new cc.EventCustom("spawn_player_event");
+        event.setUserData(playerdata);
+        cc.eventManager.dispatchEvent(event);
+    },
+    removePlayer: function (playerdata) {
+        var event = new cc.EventCustom("remove_player_event");
         event.setUserData(playerdata);
         cc.eventManager.dispatchEvent(event);
     },
@@ -234,42 +232,42 @@ var mygame = {
 }
 
 
-var player1 = {
-    number: 0,
-    playerNumber: 0,
-    name: "vasile",
-    ammount: 400
-}
-var player2 = {
-    playerNumber: 1,
-    number: 1,
-    name: "player2",
-    ammount: 100
-}
-var player3 = {
-    playerNumber: 2,
-    number: 2,
-    name: "player3",
-    ammount: 100
-}
-var player4 = {
-    playerNumber: 3,
-    number: 3,
-    name: "player4",
-    ammount: 100
-}
-var player5 = {
-    playerNumber: 4,
-    number: 4,
-    name: "player5",
-    ammount: 100
-}
-var player6 = {
-    playerNumber: 5,
-    number: 5,
-    name: "player6",
-    ammount: 100
-}
+//var player1 = {
+//    number: 0,
+//    playerNumber: 0,
+//    name: "vasile",
+//    ammount: 400
+//}
+//var player2 = {
+//    playerNumber: 1,
+//    number: 1,
+//    name: "player2",
+//    ammount: 100
+//}
+//var player3 = {
+//    playerNumber: 2,
+//    number: 2,
+//    name: "player3",
+//    ammount: 100
+//}
+//var player4 = {
+//    playerNumber: 3,
+//    number: 3,
+//    name: "player4",
+//    ammount: 100
+//}
+//var player5 = {
+//    playerNumber: 4,
+//    number: 4,
+//    name: "player5",
+//    ammount: 100
+//}
+//var player6 = {
+//    playerNumber: 5,
+//    number: 5,
+//    name: "player6",
+//    ammount: 100
+//}
 
 
 
@@ -293,7 +291,7 @@ var gameInformation = {
 
 var firstsetofdata = {
     markerImage: "testImage",
-    markerMessage: "The message to be displayer",
+    markerMessage: "The message to be displayed",
     fadeInSec: 1,
     timeToShow: 4,
     fadeOutSec: 1,
@@ -302,7 +300,7 @@ var firstsetofdata = {
 
 var firstsetofdata2 = {
     markerImage: "testImage",
-    markerMessage: "The SECOND MESSSAJGE",
+    markerMessage: "The SECOND MESSAGE",
     fadeInSec: 1,
     timeToShow: 4,
     fadeOutSec: 1,
@@ -352,34 +350,34 @@ mygame.start();
 ///////////////////////////////////////////////
 setTimeout(function () {
     setTimeout(function () {
-        mygame.spawnPlayer(players[1]);
+        mygame.spawnPlayer(players[0]);
     }, 100);
     setTimeout(function () {
-        mygame.spawnPlayer(players[2]);
+        mygame.spawnPlayer(players[1]);
     }, 1000);
     setTimeout(function () {
-        mygame.spawnPlayer(players[3]);
+        mygame.spawnPlayer(players[2]);
     }, 2000);
     setTimeout(function () {
-        mygame.spawnPlayer(players[4]);
+        mygame.spawnPlayer(players[3]);
     }, 3000);
     setTimeout(function () {
-        mygame.spawnPlayer(players[5]);
+        mygame.spawnPlayer(players[4]);
     }, 4000);
     setTimeout(function () {
-        mygame.spawnPlayer(players[6]);
+        mygame.spawnPlayer(players[5]);
     }, 5000);
     setTimeout(function () {
-        mygame.spawnPlayer(players[7]);
+        mygame.spawnPlayer(players[6]);
     }, 6000);
     setTimeout(function () {
-        mygame.spawnPlayer(players[8]);
+        mygame.spawnPlayer(players[7]);
     }, 7000);
     setTimeout(function () {
-        mygame.spawnPlayer(players[9]);
+        mygame.spawnPlayer(players[8]);
     }, 8000);
     setTimeout(function () {
-        mygame.spawnPlayer(players[0]);
+        mygame.spawnPlayer(players[9]);
     }, 9000);
 //END OF SPAWNING
 //END OF SPAWNING
@@ -389,7 +387,7 @@ setTimeout(function () {
         for (i = 0; i < 10; i++) {
             mygame.animatePlayerLose(players[i]);
         }
-    }, 10000);
+    }, 11000);
 
 //Make all the players run a specific animation [WAIT].
 
@@ -399,7 +397,7 @@ setTimeout(function () {
                 mygame.animatePlayerWait(players[i]);
             }
         }
-    }, 12000);
+    }, 13000);
 
 
     setTimeout(function () {
@@ -409,7 +407,7 @@ setTimeout(function () {
                 mygame.animatePlayerWin(players[i]);
             }
         }
-    }, 13000);
+    }, 14000);
 
 
 
@@ -420,7 +418,7 @@ setTimeout(function () {
                 mygame.animatePlayerLose(players[i]);
             }
         }
-    }, 15000);
+    }, 16000);
 }, 3000);
 
 setTimeout(function () {
@@ -453,31 +451,11 @@ function dosomethingspecial(element, index, array) {
 //    cc.log(index);
     setTimeout(function () {
         mygame.animateBet(element);
-    }, 11000);
+    }, 16000);
 
 }
 
 
-setTimeout(function () {
-    mygame.animateBet(betTest);
-}, 10000);
-setTimeout(function () {
-    mygame.animateBet(betTest2);
-}, 12000);
-
-setTimeout(function () {
-    mygame.animateBet(betTest3);
-}, 13000);
-setTimeout(function () {
-    mygame.animateBet(betTest);
-}, 14000);
-setTimeout(function () {
-    mygame.animateBet(betTest2);
-}, 15000);
-
-setTimeout(function () {
-    mygame.animateBet(betTest3);
-}, 16000);
 setTimeout(function () {
     mygame.animateBet(betTest);
 }, 17000);
@@ -487,4 +465,29 @@ setTimeout(function () {
 
 setTimeout(function () {
     mygame.animateBet(betTest3);
-}, 18000);
+}, 19000);
+setTimeout(function () {
+    mygame.animateBet(betTest);
+}, 20000);
+setTimeout(function () {
+    mygame.animateBet(betTest2);
+}, 21000);
+
+setTimeout(function () {
+    mygame.animateBet(betTest3);
+}, 22000);
+setTimeout(function () {
+    mygame.animateBet(betTest);
+}, 23000);
+setTimeout(function () {
+    mygame.animateBet(betTest2);
+}, 24000);
+
+setTimeout(function () {
+    mygame.animateBet(betTest3);
+}, 24000);
+
+
+setTimeout(function () {
+    mygame.removePlayer(players[3]);
+}, 26000);

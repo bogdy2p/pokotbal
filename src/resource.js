@@ -64,21 +64,17 @@ var res = {
     Pedrofull_png: "res/animations/pedrofull.png",
     Pedrofull_plist: "res/animations/pedrofull.plist",
     
-    Pedrofull_red_png: "res/animations/pedrofull_red.png",
-    Pedrofull_red_plist: "res/animations/pedrofull_red.plist",
-    Pedrofull_pink_png: "res/animations/pedrofull_pink.png",
-    Pedrofull_pink_plist: "res/animations/pedrofull_pink.plist",
-    Pedrofull_sepia_png: "res/animations/pedrofull_sepia.png",
-    Pedrofull_sepia_plist: "res/animations/pedrofull_sepia.plist",
+//    Pedrofull_red_png: "res/animations/pedrofull_red.png",
+//    Pedrofull_red_plist: "res/animations/pedrofull_red.plist",
+//    Pedrofull_pink_png: "res/animations/pedrofull_pink.png",
+//    Pedrofull_pink_plist: "res/animations/pedrofull_pink.plist",
+//    Pedrofull_sepia_png: "res/animations/pedrofull_sepia.png",
+//    Pedrofull_sepia_plist: "res/animations/pedrofull_sepia.plist",
     
     Pedro90_png: "res/animations/pedro90.png",
     Pedro90_plist: "res/animations/pedro90.plist",
 
 
-    
-
-
-    
     Pedroanimation_png: "res/pedro/textures/pedroanim.png",
     Pedroanimation_plist: "res/pedro/textures/pedroanim.plist",
     Players_png: "res/pedro/textures/players.png",
@@ -93,7 +89,6 @@ var res = {
     
     
     ///////////FONTS
-    
     MontserratReg: "res/fonts/MontserratRegular.ttf",
     MontserratBold: "res/fonts/MontserratBold.ttf",
     
