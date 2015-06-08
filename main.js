@@ -175,7 +175,7 @@ var playerInformations = [
 
 var mygame = {
     start: function () {
-         cc.game.onStart = function () {
+        cc.game.onStart = function () {
             if (!cc.sys.isNative && document.getElementById("cocosLoading")) //If referenced loading.js, please remove it
                 document.body.removeChild(document.getElementById("cocosLoading"));
 
@@ -275,37 +275,88 @@ mygame.start();
 //////////////////////////////////
 //////////////////////////////////
 //////////////////////////////////
-cc.log(mygame.players);
 
 
 
+///////////////////////////////////////////////
+//Spawn all players during the first 10 seconds
+///////////////////////////////////////////////
 setTimeout(function () {
-//    mygame.animatePlayer(1);
-    
-    mygame.spawnPlayer(players[1]);
-    mygame.spawnPlayer(players[2]);
     setTimeout(function () {
-        mygame.spawnPlayer(players[7]);
-    }, 2500);
+        mygame.spawnPlayer(players[1]);
+    }, 500);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[2]);
+    }, 1000);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[3]);
+    }, 2000);
     setTimeout(function () {
         mygame.spawnPlayer(players[4]);
-    }, 2500);
-    
+    }, 3000);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[5]);
+    }, 4000);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[6]);
+    }, 5000);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[7]);
+    }, 6000);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[8]);
+    }, 7000);
     setTimeout(function () {
         mygame.spawnPlayer(players[9]);
-    }, 4000);
-
+    }, 8000);
     setTimeout(function () {
-        mygame.animatePlayerWin(players[1]);
-    }, 7000);
-
-
-    setTimeout(function () {
-        mygame.animatePlayerLose(players[7]);
-    }, 8600);
-
-    setTimeout(function () {
-        mygame.animatePlayerWait(players[1]);
+        mygame.spawnPlayer(players[0]);
     }, 10000);
+//END OF SPAWNING
+//END OF SPAWNING
+
+//Make all the players run a specific animation [LOSE].
+    setTimeout(function () {
+        for (i = 0; i < 10; i++) {
+            mygame.animatePlayerLose(players[i]);
+        }
+    }, 11000);
+
+//Make all the players run a specific animation [WAIT].
+
+    setTimeout(function () {
+        for (i = 0; i < 10; i++) {
+            if (i % 2 == 0) {
+                mygame.animatePlayerWait(players[i]);
+            }
+        }
+    }, 13000);
+    
+    
+     setTimeout(function () {
+        for (i = 0; i < 10; i++) {
+
+            if (i % 2 == 1) {
+                mygame.animatePlayerWin(players[i]);
+            }
+        }
+    }, 13000);
+
+
+//
+//
+//
+//    setTimeout(function () {
+//        mygame.animatePlayerWin(players[1]);
+//    }, 5000);
+//
+//
+//    setTimeout(function () {
+//        mygame.animatePlayerLose(players[7]);
+//    }, 600);
+//
+//    setTimeout(function () {
+//        mygame.animatePlayerWait(players[1]);
+//    }, 10000);
 
 }, 3000);
