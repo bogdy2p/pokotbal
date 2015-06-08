@@ -21,9 +21,6 @@ var TopFeedLayer = cc.Layer.extend({
 
         this.schedule(this.addFeedUpdate, 1);
 
-//        this.scheduleUpdate();
-
-
     },
     addFeed: function (time, feedText) {
 
@@ -39,8 +36,6 @@ var TopFeedLayer = cc.Layer.extend({
         var feedLabel = new cc.LabelTTF(feedText, "Helvetica", 15);
         feedLabel.setColor(cc.color(255, 255, 255));
         feedLabel.setAnchorPoint(0, 0);
-//        cc.log(feedLabel);
-
         feedLabel.setPosition(cc.p(this.winSize.width - TopFeedSpriteSize.width + timeLabel.width + 75, this.winSize.height - (TopFeedSpriteSize.height / 12) * (this.initialPosition + 1) - 50));
         this.addChild(feedLabel);
 

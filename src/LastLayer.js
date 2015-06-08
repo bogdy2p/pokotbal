@@ -33,7 +33,7 @@ var LastLayer = cc.Layer.extend({
 
         var button3 = new cc.Menu.create(button3Button);
         button3.setAnchorPoint(0.5, 0.5);
-        button3.setPosition(cc.p(760, winSize.height - button3Button.height / 2));
+        button3.setPosition(cc.p(1300, winSize.height - button3Button.height / 2));
         this.addChild(button3);
 
 

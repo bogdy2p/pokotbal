@@ -214,6 +214,11 @@ var mygame = {
         var event = new cc.EventCustom("event_player_waiting");
         event.setUserData(number);
         cc.eventManager.dispatchEvent(event);
+    },
+    setGameTitleBar: function (userdata) {
+        var event = new cc.EventCustom("event_set_game_title_bar");
+        event.setUserData(userdata);
+        cc.eventManager.dispatchEvent(event);
     }
 }
 
@@ -267,6 +272,15 @@ for (i = 0; i < 10; i++) {
         ammount: 100
     };
 }
+
+ var gameInformation = {
+        topInfo: "name of stadiaum here",
+        leftInfo: "fc barcelone",
+        rightInfo: "bayern munich",
+        bottomInfo: "Champions League - live!"
+    };
+
+
 
 //  ACTUALLY START THE GAME HERE !
 //  ACTUALLY START THE GAME HERE !
@@ -342,7 +356,7 @@ setTimeout(function () {
         }
     }, 13000);
 
-    
+
 
     setTimeout(function () {
         for (i = 0; i < 10; i++) {
@@ -352,21 +366,8 @@ setTimeout(function () {
             }
         }
     }, 15000);
-
-//
-//
-//
-//    setTimeout(function () {
-//        mygame.animatePlayerWin(players[1]);
-//    }, 5000);
-//
-//
-//    setTimeout(function () {
-//        mygame.animatePlayerLose(players[7]);
-//    }, 600);
-//
-//    setTimeout(function () {
-//        mygame.animatePlayerWait(players[1]);
-//    }, 10000);
-
 }, 3000);
+
+setTimeout(function () {
+    mygame.setGameTitleBar(gameInformation);
+}, 1250);
