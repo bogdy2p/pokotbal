@@ -269,11 +269,11 @@ var AnimationLayer = cc.Layer.extend({
         informationMarker.runAction(repeatMarkerSequence);
         markerMessageLabel.runAction(markerMessageSequence);
 
-        cc.log(informationMarker);
+//        cc.log(informationMarker);
     },
     animateBetting: function (data) {
         var backgroundLayer = this.backgroundLayer;
-        cc.log("inside AnimateBetting !!!");
+//        cc.log("inside AnimateBetting !!!");
         var object = playerInformations[data.playerNumber];
         var player_x = object.x;
         var player_y = object.y;

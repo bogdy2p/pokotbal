@@ -225,7 +225,7 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-    animateBet: function(data) {
+    animateBet: function (data) {
         cc.log("entered animateBet");
         var event = new cc.EventCustom("event_animate_betting");
         event.setUserData(data);
@@ -295,7 +295,7 @@ var firstsetofdata = {
     markerImage: "testImage",
     markerMessage: "The message to be displayer",
     fadeInSec: 1,
-    timeToShow:4,
+    timeToShow: 4,
     fadeOutSec: 1,
     repeatTimes: 1,
 };
@@ -304,10 +304,24 @@ var firstsetofdata2 = {
     markerImage: "testImage",
     markerMessage: "The SECOND MESSSAJGE",
     fadeInSec: 1,
-    timeToShow:4,
+    timeToShow: 4,
     fadeOutSec: 1,
     repeatTimes: 1,
 };
+
+var betz = [];
+
+for (k = 0; k < 10; k++) {
+    betz[k] = {
+        playerNumber: k,
+        ammmount: (k + 1) * 50,
+    }
+
+}
+
+//
+//cc.log(betz);
+//console.log(betz);
 
 
 var betTest = {
@@ -428,6 +442,22 @@ setTimeout(function () {
 
 
 
+
+
+betz.forEach(dosomethingspecial);
+
+function dosomethingspecial(element, index, array) {
+
+
+    cc.log(element);
+    cc.log(index);
+    setTimeout(function () {
+        mygame.animateBet(element);
+    }, 11000);
+
+}
+
+
 setTimeout(function () {
     mygame.animateBet(betTest);
 }, 10000);
@@ -438,3 +468,23 @@ setTimeout(function () {
 setTimeout(function () {
     mygame.animateBet(betTest3);
 }, 13000);
+setTimeout(function () {
+    mygame.animateBet(betTest);
+}, 14000);
+setTimeout(function () {
+    mygame.animateBet(betTest2);
+}, 15000);
+
+setTimeout(function () {
+    mygame.animateBet(betTest3);
+}, 16000);
+setTimeout(function () {
+    mygame.animateBet(betTest);
+}, 17000);
+setTimeout(function () {
+    mygame.animateBet(betTest2);
+}, 18000);
+
+setTimeout(function () {
+    mygame.animateBet(betTest3);
+}, 18000);
