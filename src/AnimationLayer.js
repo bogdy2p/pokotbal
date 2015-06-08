@@ -25,10 +25,7 @@ var AnimationLayer = cc.Layer.extend({
             eventName: "spawn_player_event",
             callback: function (event) {
 
-//               statusLabel.setString("Customevent 1 received", + event.getUserData() + " times");
-//                cc.log(event.getUserData());
                 var userdata = event.getUserData();
-
                 that.spawnPlayer(userdata.number, userdata.name, userdata.ammount);
             }
         });
@@ -46,7 +43,6 @@ var AnimationLayer = cc.Layer.extend({
                 var positionX = data.positionX;
                 var positionY = data.positionY;
                 that.animatePlayerWin(playerNumber, positionX, positionY);
-
             }
         });
         cc.eventManager.addListener(winningListener, 1);
@@ -56,13 +52,7 @@ var AnimationLayer = cc.Layer.extend({
             eventName: "event_player_losing",
             callback: function (event) {
                 var data = event.getUserData();
-                var playerNumber = data.playerNumber;
-                var positionX = data.positionX;
-                var positionY = data.positionY;
-                that.animatePlayerLose(playerNumber, positionX, positionY);
-//                cc.log(event.getUserData());
-//                var playerNumber = event.getUserData();
-//                backgroundLayer.animateLosing(userdata.number);
+                that.animatePlayerLose(data.playerNumber, data.positionX, data.positionY);
             }
         });
         cc.eventManager.addListener(losingListener, 1);
@@ -72,15 +62,10 @@ var AnimationLayer = cc.Layer.extend({
             eventName: "event_player_waiting",
             callback: function (event) {
                 var data = event.getUserData();
-                var playerNumber = data.playerNumber;
-                var positionX = data.positionX;
-                var positionY = data.positionY;
-                that.animatePlayerWait(playerNumber, positionX, positionY);
+                that.animatePlayerWait(data.playerNumber, data.positionX, data.positionY);
             }
         });
         cc.eventManager.addListener(waitingListener, 1);
-
-
 
     },
     spawnPlayer: function (number, name, ammount) {
@@ -89,7 +74,6 @@ var AnimationLayer = cc.Layer.extend({
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
-//        cc.log("PlayerZ " + player_z);
         cc.spriteFrameCache.addSpriteFrames(res.Pedro90_plist);
         var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Pedro90_png);
         var childname = "player_" + number;
@@ -98,11 +82,9 @@ var AnimationLayer = cc.Layer.extend({
 
     },
     animatePlayerWin: function (number, pozx, pozy) {
-
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var childname = "player_" + number;
         var sprite = backgroundLayer.getChildByName(childname);
-
         var thesprite = sprite._children[0];
         var animFramesWin = [];
         for (var i = 1; i < 6; i++) {
@@ -113,13 +95,11 @@ var AnimationLayer = cc.Layer.extend({
         var animationWin = new cc.Animation(animFramesWin, 0.4);
         var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
         thesprite.runAction(animateWinning, 1);
-
     },
     animatePlayerLose: function (number, pozx, pozy) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var childname = "player_" + number;
         var sprite = backgroundLayer.getChildByName(childname);
-
         var thesprite = sprite._children[0];
         var animFramesLose = [];
         for (var i = 1; i < 6; i++) {
@@ -135,7 +115,6 @@ var AnimationLayer = cc.Layer.extend({
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var childname = "player_" + number;
         var sprite = backgroundLayer.getChildByName(childname);
-
         var thesprite = sprite._children[0];
         var animFramesWait = [];
         for (var i = 1; i < 6; i++) {
@@ -153,9 +132,6 @@ var AnimationLayer = cc.Layer.extend({
         var UserInterfaceLayer = this.getParent().getChildByTag(TagOfLayer.UserInterface);
         UserInterfaceLayer.updateTimerClock(seconds);
 
-
-    },
-    rand1: function (dt) {
 
     },
     update: function (dt) {

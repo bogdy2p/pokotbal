@@ -45,52 +45,52 @@ var Player = cc.Layer.extend({
 //        this.animateLosing();
         this.animateFadeIn();
     },
-    animateWinning: function () {
-        if (this.debugPlayer) {
-            cc.log("Player Will animate WIN");
-        }
-        //======================================================================   
-        //Winning Animation 
-        //======================================================================
-        var animFramesWin = [];
-        for (var i = 1; i < 6; i++) {
-            var str = "win" + i + ".png";
-            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-            animFramesWin.push(frame);
-        }
-        var animationWin = new cc.Animation(animFramesWin, 0.4);
-        var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
-        this.sprite.runAction(animateWinning, 1);
-
-    },
-    animateLosing: function () {
-        if (this.debugPlayer) {
-            cc.log("Player Will animate LOSE");
-        }
-        var animFramesLose = [];
-        for (var i = 1; i < 6; i++) {
-            var str = "lose" + i + ".png";
-            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-            animFramesLose.push(frame);
-        }
-        var animationLose = new cc.Animation(animFramesLose, 0.4);
-        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 2);
-        this.sprite.runAction(animateLosing, 1);
-    },
-    animateWaiting: function () {
-        if (this.debugPlayer) {
-            cc.log("Player Will animate WAIT");
-        }
-        var animFramesWait = [];
-        for (var i = 1; i < 6; i++) {
-            var str = "wait" + i + ".png";
-            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-            animFramesWait.push(frame);
-        }
-        var animationWait = new cc.Animation(animFramesWait, 0.4);
-        var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 2);
-        this.sprite.runAction(animateWaiting, 1);
-    },
+//    animateWinning: function () {
+//        if (this.debugPlayer) {
+//            cc.log("Player Will animate WIN");
+//        }
+//        //======================================================================   
+//        //Winning Animation 
+//        //======================================================================
+//        var animFramesWin = [];
+//        for (var i = 1; i < 6; i++) {
+//            var str = "win" + i + ".png";
+//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+//            animFramesWin.push(frame);
+//        }
+//        var animationWin = new cc.Animation(animFramesWin, 0.4);
+//        var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
+//        this.sprite.runAction(animateWinning, 1);
+//
+//    },
+//    animateLosing: function () {
+//        if (this.debugPlayer) {
+//            cc.log("Player Will animate LOSE");
+//        }
+//        var animFramesLose = [];
+//        for (var i = 1; i < 6; i++) {
+//            var str = "lose" + i + ".png";
+//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+//            animFramesLose.push(frame);
+//        }
+//        var animationLose = new cc.Animation(animFramesLose, 0.4);
+//        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 2);
+//        this.sprite.runAction(animateLosing, 1);
+//    },
+//    animateWaiting: function () {
+//        if (this.debugPlayer) {
+//            cc.log("Player Will animate WAIT");
+//        }
+//        var animFramesWait = [];
+//        for (var i = 1; i < 6; i++) {
+//            var str = "wait" + i + ".png";
+//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+//            animFramesWait.push(frame);
+//        }
+//        var animationWait = new cc.Animation(animFramesWait, 0.4);
+//        var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 2);
+//        this.sprite.runAction(animateWaiting, 1);
+//    },
     animateFadeIn: function () {
         var fadeInPlayer = cc.FadeIn.create(2);
         this.sprite.runAction(fadeInPlayer);

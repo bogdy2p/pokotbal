@@ -284,7 +284,7 @@ mygame.start();
 setTimeout(function () {
     setTimeout(function () {
         mygame.spawnPlayer(players[1]);
-    }, 500);
+    }, 100);
     setTimeout(function () {
         mygame.spawnPlayer(players[2]);
     }, 1000);
@@ -311,7 +311,7 @@ setTimeout(function () {
     }, 8000);
     setTimeout(function () {
         mygame.spawnPlayer(players[0]);
-    }, 10000);
+    }, 9000);
 //END OF SPAWNING
 //END OF SPAWNING
 
@@ -320,7 +320,7 @@ setTimeout(function () {
         for (i = 0; i < 10; i++) {
             mygame.animatePlayerLose(players[i]);
         }
-    }, 11000);
+    }, 10000);
 
 //Make all the players run a specific animation [WAIT].
 
@@ -330,10 +330,10 @@ setTimeout(function () {
                 mygame.animatePlayerWait(players[i]);
             }
         }
-    }, 13000);
-    
-    
-     setTimeout(function () {
+    }, 12000);
+
+
+    setTimeout(function () {
         for (i = 0; i < 10; i++) {
 
             if (i % 2 == 1) {
@@ -342,6 +342,16 @@ setTimeout(function () {
         }
     }, 13000);
 
+    
+
+    setTimeout(function () {
+        for (i = 0; i < 10; i++) {
+
+            if (i % 3 == 2) {
+                mygame.animatePlayerLose(players[i]);
+            }
+        }
+    }, 15000);
 
 //
 //
