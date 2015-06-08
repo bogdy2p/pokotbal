@@ -31,6 +31,21 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(spawnPlayerEvent, 1);
 
+        var removePlayerEvent = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "remove_player_event",
+            callback: function (event) {
+
+                var data = event.getUserData();
+                that.removePlayer(data.number);
+            }
+        });
+        cc.eventManager.addListener(removePlayerEvent, 1);
+
+
+
+
+
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
 
         var winningListener = cc.EventListener.create({
@@ -77,6 +92,15 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(GameTitleBoxListener, 1);
 
+        var GameMarkerListener = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_display_game_marker_bar_and_info",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.animateMarkerWithMessage(data);
+            }
+        });
+        cc.eventManager.addListener(GameMarkerListener, 1);
 
     },
     spawnPlayer: function (number, name, ammount) {
@@ -90,6 +114,31 @@ var AnimationLayer = cc.Layer.extend({
         var childname = "player_" + number;
         var asd = new Player(thisplayer, object);
         backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
+
+    },
+    removePlayer: function (number) {
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var object = playerInformations[number];
+
+        //FUNCTIONALITY TO BE ABLE TO REMOVE A PLAYER FROM THE BOARD
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+
+
+
+
+//        cc.spriteFrameCache.addSpriteFrames(res.Pedro90_plist);
+//        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Pedro90_png);
+//        var childname = "player_" + number;
+//        var asd = new Player(thisplayer, object);
+//        backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
 
     },
     animatePlayerWin: function (number, pozx, pozy) {
@@ -147,69 +196,69 @@ var AnimationLayer = cc.Layer.extend({
     },
     animateGameTitle: function (data) {
         var backgroundLayer = this.backgroundLayer;
-        var position = null;
-
-//        cc.log("ASD");
-//        cc.log(data);
-//        cc.log(backgroundLayer);
         var GameTitle = backgroundLayer.getChildByName("GameTitleBox");
         var GameTitleX = GameTitle.getPosition().x;
         var GameTitleY = GameTitle.getPosition().y;
-
-
         var topLabel = new cc.LabelTTF.create(data.topInfo.toUpperCase(), "MontserratRegular", 14);
         topLabel.setColor(cc.color(255, 255, 255));
-
         topLabel.setAnchorPoint(0.5, 0.5);
         topLabel.setPosition(cc.p(GameTitleX - 10, GameTitleY + 38));
-        topLabel.retain();
         backgroundLayer.addChild(topLabel, 500, "topLabel");
-
         var versusLabel = new cc.LabelTTF("vs".toUpperCase(), "MontserratRegular", 16);
         versusLabel.setColor(cc.color(255, 255, 255));
         versusLabel.setAnchorPoint(0.5, 0.5);
         versusLabel.setPosition(cc.p(GameTitleX - versusLabel.width / 4, GameTitleY - versusLabel.height / 4));
-
         backgroundLayer.addChild(versusLabel, 500, "leftLabel");
-
         var leftLabel = new cc.LabelTTF(data.leftInfo.toUpperCase(), "MontserratBold", 30);
         leftLabel.setColor(cc.color(255, 255, 255));
         leftLabel.setAnchorPoint(0.5, 0.5);
         leftLabel.setPosition(cc.p(GameTitleX - leftLabel.width / 2 - versusLabel.width, GameTitleY));
         backgroundLayer.addChild(leftLabel, 500, "leftLabel");
-
-
-
-
-
         var rightLabel = new cc.LabelTTF(data.rightInfo.toUpperCase(), "MontserratBold", 30);
         rightLabel.setColor(cc.color(255, 255, 255));
         rightLabel.setAnchorPoint(0.5, 0.5);
         rightLabel.setPosition(cc.p(GameTitleX + leftLabel.width / 2 + versusLabel.width, GameTitleY));
         backgroundLayer.addChild(rightLabel, 500, "leftLabel");
-
         var bottomLabel = new cc.LabelTTF(data.bottomInfo.toUpperCase(), "MontserratRegular", 16);
         bottomLabel.setColor(cc.color(255, 255, 255));
         bottomLabel.setAnchorPoint(0.5, 0.5);
         bottomLabel.setPosition(cc.p(GameTitleX, GameTitleY - 30));
         backgroundLayer.addChild(bottomLabel, 500, "topLabel");
-
-
-
-//       
-//        var TopFeedSprite = userInterfaceLayer.getChildByName("TopRightInformationBox");
-//        var TopFeedSpriteSize = TopFeedSprite.getContentSize();
-//        var timeLabel = new cc.LabelTTF(time, "Helvetica", 15);
-//        timeLabel.setColor(cc.color(255, 255, 255));
-//        timeLabel.setAnchorPoint(0, 0);
-//        timeLabel.setPosition(cc.p(this.winSize.width - TopFeedSpriteSize.width + 62, this.winSize.height - (TopFeedSpriteSize.height / 12) * (this.initialPosition + 1) - 50));
-//        this.addChild(timeLabel, 3, "timelabel");
-//        var feedLabel = new cc.LabelTTF(feedText, "Helvetica", 15);
-//        feedLabel.setColor(cc.color(255, 255, 255));
-//        feedLabel.setAnchorPoint(0, 0);
-//        feedLabel.setPosition(cc.p(this.winSize.width - TopFeedSpriteSize.width + timeLabel.width + 75, this.winSize.height - (TopFeedSpriteSize.height / 12) * (this.initialPosition + 1) - 50));
-//        this.addChild(feedLabel);
-//        
-
     },
+    animateMarkerWithMessage: function (data) {
+        var backgroundLayer = this.backgroundLayer;
+
+        //============================================================
+        //Add The Game Marker Box.
+        var informationMarker = new cc.Sprite(res.UI_Marker);
+        informationMarker.setAnchorPoint(0.5, 0.5);
+        informationMarker.setPosition(cc.p(backgroundLayer.width / 2 - 130, 160));
+        informationMarker.setOpacity(0);
+        backgroundLayer.addChild(informationMarker);
+//        //============================================================
+//        //
+//        //Create the animation sequence for the marker
+        var fadeIn = cc.FadeIn.create(data.fadeInSec);
+        var delay = cc.delayTime(data.timeToShow);
+        var fadeOut = cc.FadeOut.create(data.fadeOutSec);
+        var markerSequence = cc.Sequence.create(fadeIn, delay, fadeOut);
+        var repeatMarkerSequence = cc.Repeat.create(markerSequence, data.repeatTimes);
+        //======================================================================
+
+        var markerMessageLabel = new cc.LabelTTF(data.markerMessage, "MontserratRegular", 20);
+        markerMessageLabel.setColor(cc.color(30, 30, 30));
+        markerMessageLabel.setAnchorPoint(0, 0);
+//        markerMessageLabel.setOpacity(0);
+        markerMessageLabel.setPosition(cc.p(informationMarker.x / 2 - markerMessageLabel.width / 2, informationMarker.y / 2 - markerMessageLabel.height));
+        informationMarker.addChild(markerMessageLabel, 500, "leftLabel");
+
+        var fadeInMessage = cc.FadeIn.create(data.fadeInSec - 0.5);
+        var fadeOutMessage = cc.FadeOut.create(data.fadeInSec - 0.5);
+        var markerMessageSequence = cc.Sequence.create(fadeInMessage, delay, fadeOutMessage);
+
+        informationMarker.runAction(repeatMarkerSequence);
+        markerMessageLabel.runAction(markerMessageSequence);
+
+
+    }
 });

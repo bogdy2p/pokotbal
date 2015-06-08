@@ -215,11 +215,17 @@ var mygame = {
         event.setUserData(number);
         cc.eventManager.dispatchEvent(event);
     },
-    setGameTitleBar: function (userdata) {
+    setGameTitleBar: function (data) {
         var event = new cc.EventCustom("event_set_game_title_bar");
-        event.setUserData(userdata);
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
+    },
+    display_game_marker: function (data) {
+        var event = new cc.EventCustom("event_display_game_marker_bar_and_info");
+        event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     }
+
 }
 
 
@@ -273,15 +279,30 @@ for (i = 0; i < 10; i++) {
     };
 }
 
- var gameInformation = {
-        topInfo: "bernabeu madridistas",
-        leftInfo: "fc barcelone",
-        rightInfo: "bayern munich",
-        bottomInfo: "Champions League - live!"
-    };
+var gameInformation = {
+    topInfo: "bernabeu madridistas",
+    leftInfo: "fc barcelone",
+    rightInfo: "bayern munich",
+    bottomInfo: "Champions League - live!"
+};
 
+var firstsetofdata = {
+    markerImage: "testImage",
+    markerMessage: "The message to be displayer",
+    fadeInSec: 1,
+    timeToShow:4,
+    fadeOutSec: 1,
+    repeatTimes: 1,
+};
 
-
+var firstsetofdata2 = {
+    markerImage: "testImage",
+    markerMessage: "The SECOND MESSSAJGE",
+    fadeInSec: 1,
+    timeToShow:4,
+    fadeOutSec: 1,
+    repeatTimes: 1,
+};
 //  ACTUALLY START THE GAME HERE !
 //  ACTUALLY START THE GAME HERE !
 //  ACTUALLY START THE GAME HERE !
@@ -371,3 +392,16 @@ setTimeout(function () {
 setTimeout(function () {
     mygame.setGameTitleBar(gameInformation);
 }, 1250);
+
+
+setTimeout(function () {
+
+    mygame.display_game_marker(firstsetofdata);
+
+
+}, 2000);
+setTimeout(function () {
+
+    mygame.display_game_marker(firstsetofdata2);
+
+}, 9000);
