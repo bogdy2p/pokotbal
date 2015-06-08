@@ -274,7 +274,7 @@ for (i = 0; i < 10; i++) {
 }
 
  var gameInformation = {
-        topInfo: "name of stadiaum here",
+        topInfo: "bernabeu madridistas",
         leftInfo: "fc barcelone",
         rightInfo: "bayern munich",
         bottomInfo: "Champions League - live!"

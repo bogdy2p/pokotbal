@@ -78,7 +78,7 @@ var res = {
     
 
 
-
+    
     Pedroanimation_png: "res/pedro/textures/pedroanim.png",
     Pedroanimation_plist: "res/pedro/textures/pedroanim.plist",
     Players_png: "res/pedro/textures/players.png",
@@ -90,6 +90,17 @@ var res = {
     Button3_png: "res/3.png",
     Button4_png: "res/4.png",
     Button5_png: "res/5.png",
+    
+    
+    ///////////FONTS
+    
+    MontserratReg: "res/fonts/MontserratRegular.ttf",
+    MontserratBold: "res/fonts/MontserratBold.ttf",
+    
+    
+    
+    
+    
 };
 
 var g_resources = [];

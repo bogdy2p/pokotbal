@@ -157,23 +157,22 @@ var AnimationLayer = cc.Layer.extend({
         var GameTitleY = GameTitle.getPosition().y;
 
 
-        var topLabel = new cc.LabelTTF(data.topInfo.toUpperCase(), "Helvetica", 16 , cc.size(245,32));
+        var topLabel = new cc.LabelTTF.create(data.topInfo.toUpperCase(), "MontserratRegular", 14);
         topLabel.setColor(cc.color(255, 255, 255));
-        
+
         topLabel.setAnchorPoint(0.5, 0.5);
         topLabel.setPosition(cc.p(GameTitleX - 10, GameTitleY + 38));
+        topLabel.retain();
         backgroundLayer.addChild(topLabel, 500, "topLabel");
-//        backgroundLayer.addChild(createStroke(topLabel, 0.4, topLabel.getColor(),255) );
-        
-        
 
-        var versusLabel = new cc.LabelTTF("vs".toUpperCase(), "Helvetica", 16);
+        var versusLabel = new cc.LabelTTF("vs".toUpperCase(), "MontserratRegular", 16);
         versusLabel.setColor(cc.color(255, 255, 255));
         versusLabel.setAnchorPoint(0.5, 0.5);
-        versusLabel.setPosition(cc.p(GameTitleX, GameTitleY));
+        versusLabel.setPosition(cc.p(GameTitleX - versusLabel.width / 4, GameTitleY - versusLabel.height / 4));
+
         backgroundLayer.addChild(versusLabel, 500, "leftLabel");
 
-        var leftLabel = new cc.LabelTTF(data.leftInfo.toUpperCase(), "Helvetica", 28);
+        var leftLabel = new cc.LabelTTF(data.leftInfo.toUpperCase(), "MontserratBold", 30);
         leftLabel.setColor(cc.color(255, 255, 255));
         leftLabel.setAnchorPoint(0.5, 0.5);
         leftLabel.setPosition(cc.p(GameTitleX - leftLabel.width / 2 - versusLabel.width, GameTitleY));
@@ -183,13 +182,13 @@ var AnimationLayer = cc.Layer.extend({
 
 
 
-        var rightLabel = new cc.LabelTTF(data.rightInfo.toUpperCase(), "Helvetica", 28);
+        var rightLabel = new cc.LabelTTF(data.rightInfo.toUpperCase(), "MontserratBold", 30);
         rightLabel.setColor(cc.color(255, 255, 255));
         rightLabel.setAnchorPoint(0.5, 0.5);
         rightLabel.setPosition(cc.p(GameTitleX + leftLabel.width / 2 + versusLabel.width, GameTitleY));
         backgroundLayer.addChild(rightLabel, 500, "leftLabel");
 
-        var bottomLabel = new cc.LabelTTF(data.bottomInfo.toUpperCase(), "Helvetica", 16);
+        var bottomLabel = new cc.LabelTTF(data.bottomInfo.toUpperCase(), "MontserratRegular", 16);
         bottomLabel.setColor(cc.color(255, 255, 255));
         bottomLabel.setAnchorPoint(0.5, 0.5);
         bottomLabel.setPosition(cc.p(GameTitleX, GameTitleY - 30));
