@@ -231,46 +231,6 @@ var mygame = {
     }
 }
 
-
-//var player1 = {
-//    number: 0,
-//    playerNumber: 0,
-//    name: "vasile",
-//    ammount: 400
-//}
-//var player2 = {
-//    playerNumber: 1,
-//    number: 1,
-//    name: "player2",
-//    ammount: 100
-//}
-//var player3 = {
-//    playerNumber: 2,
-//    number: 2,
-//    name: "player3",
-//    ammount: 100
-//}
-//var player4 = {
-//    playerNumber: 3,
-//    number: 3,
-//    name: "player4",
-//    ammount: 100
-//}
-//var player5 = {
-//    playerNumber: 4,
-//    number: 4,
-//    name: "player5",
-//    ammount: 100
-//}
-//var player6 = {
-//    playerNumber: 5,
-//    number: 5,
-//    name: "player6",
-//    ammount: 100
-//}
-
-
-
 var players = [];
 for (i = 0; i < 10; i++) {
     var thename = "player" + i;

@@ -38,7 +38,7 @@ var AnimationLayer = cc.Layer.extend({
             callback: function (event) {
 
                 var data = event.getUserData();
-                that.removePlayer(data.number);
+                that.removePlayer(data);
             }
         });
         cc.eventManager.addListener(removePlayerEvent, 1);
@@ -129,49 +129,18 @@ var AnimationLayer = cc.Layer.extend({
 
     },
     removePlayer: function (data) {
-        
-        cc.log("ACCESSED REMOVE PLAYER");
-        cc.log(data);
+
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var object = playerInformations[data.number];
-        
-        
-        cc.log(object);
-        //FUNCTIONALITY TO BE ABLE TO REMOVE A PLAYER FROM THE BOARD
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
+        var object = playerInformations[data.number - 1];
+        var childname = "player_" + (data.number - 1);
+        cc.log(backgroundLayer);
+        var ThePlayer = backgroundLayer.getChildByName(childname);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if (ThePlayer) {
+            ThePlayer.removeFromParent(1);
+        } else {
+            cc.log("Some strange error when trying to remove player " + (data.number - 1));
+        }
 
 //        cc.spriteFrameCache.addSpriteFrames(res.Pedro90_plist);
 //        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Pedro90_png);
@@ -318,7 +287,7 @@ var AnimationLayer = cc.Layer.extend({
         backgroundLayer.addChild(this.cashSpriteSheet, playerInformations[data.playerNumber].Zindex + 500, playerInformations[data.playerNumber].defaultName);
         //this.sprite.runAction(new cc.MoveTo(cc.p(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y)));
 
-        var moveToCenter = new cc.MoveTo.create(1.5,cc.p(700, 580));
+        var moveToCenter = new cc.MoveTo.create(1.5, cc.p(700, 580));
 //        var moveToCenterSequence = cc.Sequence.create(moveToCenter);
         this.cashSpriteSheet.runAction(moveToCenter, 1);
 

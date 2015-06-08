@@ -2,9 +2,7 @@ var res = {
     HelloWorld_png: "res/HelloWorld.png",
     CloseNormal_png: "res/CloseNormal.png",
     CloseSelected_png: "res/CloseSelected.png",
-//    Background_full_png: "res/background/background.png",
     Background_none_png: "res/background/BackgroundNone.png",
-//    Football_Stripes: "res/background/FootballStripesTransp.png",
     Table_png: "res/background/Table.png",
     //USER INTERFACE RESOURCES ================================================    
     UI_Marker: "res/userinterface/Marker.png",
@@ -37,8 +35,6 @@ var res = {
     P_popupUnderGreen: "res/userinterface/UnderPopupGreen.png",
     //=========================================================================
 
-
-
     //Controls
 
     Start_s_png: "res/controls/start_s.png",
@@ -56,25 +52,14 @@ var res = {
     Player9: "res/pedro/player9.png",
     Player10: "res/pedro/player10.png",
     //Pedro Animation
-    
-    
+
+
     Losing_png: "res/pedro/textures/lose.png",
     Losing_plist: "res/pedro/textures/lose.plist",
-    
     Pedrofull_png: "res/animations/pedrofull.png",
     Pedrofull_plist: "res/animations/pedrofull.plist",
-    
-//    Pedrofull_red_png: "res/animations/pedrofull_red.png",
-//    Pedrofull_red_plist: "res/animations/pedrofull_red.plist",
-//    Pedrofull_pink_png: "res/animations/pedrofull_pink.png",
-//    Pedrofull_pink_plist: "res/animations/pedrofull_pink.plist",
-//    Pedrofull_sepia_png: "res/animations/pedrofull_sepia.png",
-//    Pedrofull_sepia_plist: "res/animations/pedrofull_sepia.plist",
-    
     Pedro90_png: "res/animations/pedro90.png",
     Pedro90_plist: "res/animations/pedro90.plist",
-
-
     Pedroanimation_png: "res/pedro/textures/pedroanim.png",
     Pedroanimation_plist: "res/pedro/textures/pedroanim.plist",
     Players_png: "res/pedro/textures/players.png",
@@ -86,16 +71,9 @@ var res = {
     Button3_png: "res/3.png",
     Button4_png: "res/4.png",
     Button5_png: "res/5.png",
-    
-    
     ///////////FONTS
     MontserratReg: "res/fonts/MontserratRegular.ttf",
     MontserratBold: "res/fonts/MontserratBold.ttf",
-    
-    
-    
-    
-    
 };
 
 var g_resources = [];
