@@ -356,7 +356,7 @@ var AnimationLayer = cc.Layer.extend({
             var randomFades = []
             for (i = 0; i < this.current_bets; i++) {
                 var randTime = Math.floor(Math.random() * 3) + 1;
-                var randFadeTime = Math.floor(Math.random() * 5) + 1;
+                var randFadeTime = Math.floor(Math.random() * 2) + 1;
                 randomMoves[i] = new cc.MoveTo.create(randTime, cc.p(object.x + randX, object.y - randX));
                 randomFades[i] = new cc.FadeOut(randFadeTime);
             }
@@ -369,91 +369,23 @@ var AnimationLayer = cc.Layer.extend({
             var current_bets = this.current_bets;
             setTimeout(function () {
                 for (i = 0; i < current_bets; i++) {
-//                var parent = allbets[i].getParent();
-//                cc.log("Parent:");
-//                cc.log(parent);
-//                cc.log(allbets[i].instanceId);
-
-//                var instance_id = allbets[i]._instanceId;
-//                cc.log(instance_id);
                     allbets[i].removeFromParent(1);
-
-
-//                cc.log(backgroundLayer);
                 }
-            }, 2000);
+            }, 3500);
             this.current_bets = 0;
             //Reset CurrentBets TO 0 !!!
-            setTimeout(function () {
-                cc.log(backgroundLayer);
-            }, 2600);
+//            setTimeout(function () {
+//                cc.log(backgroundLayer);
+//            }, 2600);
 
 
         } else {
             cc.log("THERE WERE NO BETS ON THE TABLE!");
         }
-//
-//        allbets[0].runAction(moveToPlayer, 1);
-//        allbets[1].runAction(moveToPlayer, 1);
-//        allbets[2].runAction(moveToPlayer, 1);
-//        allbets[3].runAction(moveToPlayer, 1);
-//        allbets[4].runAction(moveToPlayer, 1);
-//        allbets[5].runAction(moveToPlayer, 1);
-//        allbets[6].runAction(moveToPlayer, 1);
-//        allbets[7].runAction(moveToPlayer, 1);
-//        allbets[8].runAction(moveToPlayer, 1);
-//        allbets[9].runAction(moveToPlayer, 1);
-//        allbets[10].runAction(moveToPlayer, 1);
-//        allbets[11].runAction(moveToPlayer, 1);
-//        allbets[12].runAction(moveToPlayer, 1);
-//        allbets[13].runAction(moveToPlayer, 1);
-//        allbets[14].runAction(moveToPlayer, 1);
-//        allbets[15].runAction(moveToPlayer, 1);
-//        allbets[16].runAction(moveToPlayer, 1);
-//        allbets[17].runAction(moveToPlayer, 1);
-//        allbets[18].runAction(moveToPlayer, 1);
-//        
-//        cc.log(data);
-//        
-//        cc.log("inside AnimateGettingAllBets !!!");
-
-//        //res.UI_Cash
-//        cc.log(object);
-//        
-//        cc.log(backgroundLayer);
-////        cc.spriteFrameCache.addSpriteFrames(res.Pedro90_plist);
-//        var cashSprite = new cc.SpriteBatchNode(res.UI_Cash);
-//        var cashSpriteName = "bet_player_" + data.playerNumber;
-
-
-//        this.cashSpriteSheet = new cc.Sprite.create(res.UI_Cash);
-//        this.cashSpriteSheet.setPosition(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y);
-//        this.cashSpriteSheet.setPosition(700,580);
-//        this.cashSpriteSheet.setOpacity(100);
-        // backgroundLayer.addChild(this.cashSpriteSheet, playerInformations[data.playerNumber].Zindex + 500, playerInformations[data.playerNumber].defaultName);
-        //this.sprite.runAction(new cc.MoveTo(cc.p(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y)));
-
-        //  var moveToCenter = new cc.MoveTo.create(1.5, cc.p(700, 580));
-//        var moveToCenterSequence = cc.Sequence.create(moveToCenter);
-        //  this.cashSpriteSheet.runAction(moveToCenter, 1);
-
-
-//        backgroundLayer.addChild(this.loseSpriteSheet, player_z, cashSpriteName);
-
-        //Spawn money over the player
-        //Move money to the middle of the game.
-        //Fade money out in the table.
-
-
-
-//data.playerNumber
-//data.ammount
-
     },
     animateYouWin: function (data) {
         var backgroundLayer = this.backgroundLayer;
         //Should add the whole screen sprite
-//        cc.log(data);
         //Also play an animation to the bottom left of the screen after the whole screen exits.
         var youWinLabel = new cc.LabelTTF("YOU WIN", "MontserratBold", 28);
         youWinLabel.setColor(cc.color(180, 180, 0));

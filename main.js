@@ -303,6 +303,33 @@ var disconnected5 = {
     repeatTimes: 1,
 };
 
+var disconnected = [];
+for (i = 0; i < 10; i++) {
+    disconnected[i] = {
+        markerImage: "imageforplayer" + i,
+        markerMessage: "Player " + i + " has been disconnected",
+        fadeInSec: 1,
+        timeToShow: 1,
+        fadeOutSec: 1,
+        repeatTimes: 1,
+    };
+}
+
+
+var joined = [];
+for (i = 0; i < 10; i++) {
+    joined[i] = {
+        markerImage: "imageforplayer" + i,
+        markerMessage: "Player " + i + " has rejoined the match.",
+        fadeInSec: 1,
+        timeToShow: 1,
+        fadeOutSec: 1,
+        repeatTimes: 1,
+    };
+}
+
+
+
 var betz = [];
 
 for (k = 0; k < 10; k++) {
@@ -482,7 +509,7 @@ setTimeout(function () {
 
 setTimeout(function () {
     mygame.removePlayer(players[3]);
-    mygame.display_game_marker(disconnected3);
+    mygame.display_game_marker(disconnected[3]);
 }, 26000 / GGS);
 
 
@@ -564,30 +591,67 @@ var bet7 = {
 };
 setTimeout(function () {
     mygame.animateBet(bet1);
-}, 29000 / GGS);
-setTimeout(function () {
-    mygame.animateBet(bet2);
-}, 29500 / GGS);
-setTimeout(function () {
-    mygame.animateBet(bet3);
 }, 30000 / GGS);
 setTimeout(function () {
-    mygame.animateBet(bet4);
+    mygame.animateBet(bet2);
 }, 30500 / GGS);
 setTimeout(function () {
-    mygame.animateBet(bet5);
+    mygame.animateBet(bet3);
 }, 31000 / GGS);
 setTimeout(function () {
-    mygame.animateBet(bet6);
+    mygame.animateBet(bet4);
 }, 31500 / GGS);
 setTimeout(function () {
-    mygame.animateBet(bet7);
+    mygame.animateBet(bet5);
 }, 32000 / GGS);
 setTimeout(function () {
+    mygame.animateBet(bet6);
+}, 32500 / GGS);
+setTimeout(function () {
+    mygame.animateBet(bet7);
+}, 33000 / GGS);
+setTimeout(function () {
     mygame.removePlayer(players[5]);
-    mygame.display_game_marker(disconnected5);
-}, 35000 / GGS);
+    mygame.display_game_marker(disconnected[5]);
+}, 35500 / GGS);
 
 setTimeout(function () {
     mygame.animatePlayerReceiveBet(players[1]);
-}, 36500);
+}, 38500);
+
+
+
+var joined5 = {
+    markerImage: "testImage",
+    markerMessage: "Player 5 has rejoined the match.",
+    fadeInSec: 1,
+    timeToShow: 1,
+    fadeOutSec: 1,
+    repeatTimes: 1,
+};
+var joined4 = {
+    markerImage: "testImage",
+    markerMessage: "Player 4 has rejoined the match.",
+    fadeInSec: 1,
+    timeToShow: 1,
+    fadeOutSec: 1,
+    repeatTimes: 1,
+};
+
+setTimeout(function () {
+
+    mygame.spawnPlayer(players[4]);
+    mygame.display_game_marker(joined[5]);
+
+
+}, 41000);
+
+setTimeout(function () {
+    mygame.spawnPlayer(players[2]);
+    mygame.display_game_marker(joined[3]);
+
+}, 44000);
+
+setTimeout(function () {
+    mygame.animatePlayerReceiveBet(players[2]);
+}, 47500);
