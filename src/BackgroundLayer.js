@@ -1,7 +1,8 @@
 var BackgroundLayer = cc.Layer.extend({
-    current_cash_sprites:null,
+    current_bet_number:null,
     ctor: function () {
         this._super();
+        this.current_bet_number = 0;
         this.init();
     },
     init: function () {
@@ -28,6 +29,12 @@ var BackgroundLayer = cc.Layer.extend({
         spriteFootballStripes.setPosition(centerPos);
         this.addChild(spriteFootballStripes, 0, "FootballStripes");
 
+    },
+    increaseBetNumber: function () {
+        this.current_bet_number++;
+    },
+    getBetNumber: function(){
+        this.current_bet_number;
     }
 
 

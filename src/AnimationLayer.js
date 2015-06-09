@@ -3,6 +3,7 @@ var AnimationLayer = cc.Layer.extend({
     currentPosition: 0,
     spriteSheet: null,
     loseSpriteSheet: null,
+    current_bets: null,
     cashSpriteSheet: null,
     pedroAnimationAction: null,
     spawnPlayerAction: null,
@@ -17,6 +18,7 @@ var AnimationLayer = cc.Layer.extend({
         this._super();
         this.backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         //Schedule the timer clock update to every second
+        this.current_bets = 0;
         this.schedule(this.updateGameClock, 1);
         //===============================================
 
@@ -133,7 +135,7 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(BalanceDisplayListener, 1);
 
-          var GettingAllBetsListener = cc.EventListener.create({
+        var GettingAllBetsListener = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
             eventName: "event_animate_player_receiving_bets",
             callback: function (event) {
@@ -298,6 +300,11 @@ var AnimationLayer = cc.Layer.extend({
     },
     animateBetting: function (data) {
         var backgroundLayer = this.backgroundLayer;
+
+        var bet_number = this.current_bets;
+        cc.log(bet_number);
+//        cc.log(backgroulndLayer);
+
 //        cc.log("inside AnimateBetting !!!");
         var object = playerInformations[data.playerNumber];
         var player_x = object.x;
@@ -313,7 +320,8 @@ var AnimationLayer = cc.Layer.extend({
         this.cashSpriteSheet.setPosition(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y);
 //        this.cashSpriteSheet.setPosition(700,580);
 //        this.cashSpriteSheet.setOpacity(100);
-        backgroundLayer.addChild(this.cashSpriteSheet, playerInformations[data.playerNumber].Zindex + 500, "bet"+ data.playerNumber);
+        backgroundLayer.addChild(this.cashSpriteSheet, playerInformations[data.playerNumber].Zindex + 500, "bet" + this.current_bets);
+        this.current_bets++;
         //this.sprite.runAction(new cc.MoveTo(cc.p(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y)));
 
         var moveToCenter = new cc.MoveTo.create(1.5, cc.p(700, 580));
@@ -334,51 +342,72 @@ var AnimationLayer = cc.Layer.extend({
 
     }, animateGettingAllBets: function (data) {
         var backgroundLayer = this.backgroundLayer;
-        
+
+
+//        cc.log(this.current_bets);
         var allbets = [];
-        
+
         var object = playerInformations[data.playerNumber];
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
-        
-        for (i = 0;i<10;i++){
-            
-            var bet = backgroundLayer.getChildByName("bet"+i);
-            
-            if (bet) allbets.push(bet);
-            
+
+        for (i = 0; i < this.current_bets; i++) {
+
+            var bet = backgroundLayer.getChildByName("bet" + i);
+
+            if (bet)
+                allbets.push(bet);
+
         }
-        
-        cc.log(allbets);
-        
+
+//        cc.log(allbets);
+
 //        cc.log(allbets[0]);
+        var randX = Math.floor(Math.random() * 3) + 1;
+        cc.log(randX);
         
-        var moveToPlayer = new cc.MoveTo.create(1.5, cc.p(object.x, object.y));
-        var moveToPlayerSequence = cc.Sequence.create(moveToPlayer);
-        
-        
-        
-        allbets[0].runAction(moveToPlayer, 1);
-        allbets[1].runAction(moveToPlayer, 1);
-        allbets[2].runAction(moveToPlayer, 1);
-        allbets[3].runAction(moveToPlayer, 1);
-        allbets[4].runAction(moveToPlayer, 1);
-        allbets[5].runAction(moveToPlayer, 1);
-        allbets[6].runAction(moveToPlayer, 1);
-        allbets[7].runAction(moveToPlayer, 1);
-        allbets[8].runAction(moveToPlayer, 1);
-        allbets[9].runAction(moveToPlayer, 1);
+        var randomMoves = [];
+        for (i = 0;i<this.current_bets; i++){
+            var randTime = Math.floor(Math.random() * 3) + 1;
+            cc.log(randTime);
+            randomMoves[i] = new cc.MoveTo.create(randTime, cc.p(object.x + randX, object.y -randX));
+        }
+//        var moveToPlayer = new cc.MoveTo.create(1.5, cc.p(object.x + randX, object.y -randX));
+//        var moveToPlayerSequence = cc.Sequence.create(moveToPlayer);
+
+        for (i = 0;i<this.current_bets; i++){
+            allbets[i].runAction(randomMoves[i],1);
+        }
+//
+//        allbets[0].runAction(moveToPlayer, 1);
+//        allbets[1].runAction(moveToPlayer, 1);
+//        allbets[2].runAction(moveToPlayer, 1);
+//        allbets[3].runAction(moveToPlayer, 1);
+//        allbets[4].runAction(moveToPlayer, 1);
+//        allbets[5].runAction(moveToPlayer, 1);
+//        allbets[6].runAction(moveToPlayer, 1);
+//        allbets[7].runAction(moveToPlayer, 1);
+//        allbets[8].runAction(moveToPlayer, 1);
+//        allbets[9].runAction(moveToPlayer, 1);
 //        allbets[10].runAction(moveToPlayer, 1);
+//        allbets[11].runAction(moveToPlayer, 1);
+//        allbets[12].runAction(moveToPlayer, 1);
+//        allbets[13].runAction(moveToPlayer, 1);
+//        allbets[14].runAction(moveToPlayer, 1);
+//        allbets[15].runAction(moveToPlayer, 1);
+//        allbets[16].runAction(moveToPlayer, 1);
+//        allbets[17].runAction(moveToPlayer, 1);
+//        allbets[18].runAction(moveToPlayer, 1);
 //        
 //        cc.log(data);
 //        
 //        cc.log("inside AnimateGettingAllBets !!!");
-        
+
 //        //res.UI_Cash
 //        cc.log(object);
 //        
-        cc.log(backgroundLayer);
+//        cc.log(backgroundLayer);
 ////        cc.spriteFrameCache.addSpriteFrames(res.Pedro90_plist);
 //        var cashSprite = new cc.SpriteBatchNode(res.UI_Cash);
 //        var cashSpriteName = "bet_player_" + data.playerNumber;
@@ -388,12 +417,12 @@ var AnimationLayer = cc.Layer.extend({
 //        this.cashSpriteSheet.setPosition(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y);
 //        this.cashSpriteSheet.setPosition(700,580);
 //        this.cashSpriteSheet.setOpacity(100);
-       // backgroundLayer.addChild(this.cashSpriteSheet, playerInformations[data.playerNumber].Zindex + 500, playerInformations[data.playerNumber].defaultName);
+        // backgroundLayer.addChild(this.cashSpriteSheet, playerInformations[data.playerNumber].Zindex + 500, playerInformations[data.playerNumber].defaultName);
         //this.sprite.runAction(new cc.MoveTo(cc.p(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y)));
 
-      //  var moveToCenter = new cc.MoveTo.create(1.5, cc.p(700, 580));
+        //  var moveToCenter = new cc.MoveTo.create(1.5, cc.p(700, 580));
 //        var moveToCenterSequence = cc.Sequence.create(moveToCenter);
-      //  this.cashSpriteSheet.runAction(moveToCenter, 1);
+        //  this.cashSpriteSheet.runAction(moveToCenter, 1);
 
 
 //        backgroundLayer.addChild(this.loseSpriteSheet, player_z, cashSpriteName);
@@ -408,7 +437,6 @@ var AnimationLayer = cc.Layer.extend({
 //data.ammount
 
     },
-    
     animateYouWin: function (data) {
         var backgroundLayer = this.backgroundLayer;
         //Should add the whole screen sprite
