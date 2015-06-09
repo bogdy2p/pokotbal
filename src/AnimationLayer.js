@@ -145,6 +145,16 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(GettingAllBetsListener, 1);
 
+        var tintOtherPlayersListener = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_tint_other_players",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.tintOtherPlayers(data);
+            }
+        });
+        cc.eventManager.addListener(tintOtherPlayersListener, 1);
+
     },
     spawnPlayer: function (number, name, ammount) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -438,6 +448,43 @@ var AnimationLayer = cc.Layer.extend({
 //        var yourBalanceAmmountSequence = cc.Sequence.create(fadeInMessageAmmount, delayAmmount, fadeOutMessageAmmount);
 //        var yourBalanceAmmountSequence = cc.Sequence.create(fadeInMessageAmmount, delayAmmount, fadeOutMessageAmmount);
         yourBalanceAmmountLabel.runAction(fadeInMessageAmmount);
+
+    },
+    tintOtherPlayers: function (data) {
+        cc.log(data);
+        cc.log("AAAAAAAAAAAAAAAAA");
+//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+//        var object = playerInformations[data.number - 1];
+
+//        var childname = "player_" + (data.number - 1);
+//        cc.log(childname);
+//
+//        var existingPlayers = [];
+//
+//        for (i=1;i<10;i++){
+//            var child = "player_" + i;
+//            var player = backgroundLayer.getChildByName(child);
+//            if (player){
+//                existingPlayers.push(player);
+//            }
+//            
+//        }
+//
+//        cc.log(existingPlayers);
+//        var TheActivePlayer = backgroundLayer.getChildByName(childname);
+//        cc.log (TheActivePlayer);
+//
+//        if (TheActivePlayer) {
+//            // TheActivePlayer.removeFromParent(1);
+//        } else {
+//            cc.log("Some strange error when trying to remove player " + (data.number - 1));
+//        }
+
+//        cc.spriteFrameCache.addSpriteFrames(res.Pedro90_plist);
+//        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Pedro90_png);
+//        var childname = "player_" + number;
+//        var asd = new Player(thisplayer, object);
+//        backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
 
     }
 

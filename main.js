@@ -246,8 +246,12 @@ var mygame = {
         var event = new cc.EventCustom("event_animate_player_receiving_bets");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
-    }
-
+    },
+    animateTintOtherPlayers: function (data) {
+        var event = new cc.EventCustom("event_tint_other_players");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
+    },
 }
 
 var players = [];
@@ -368,6 +372,14 @@ mygame.start();
 ///////////////////////////////////////////////
 //Spawn all players during the first 10 seconds
 ///////////////////////////////////////////////
+
+
+
+setTimeout(function () {
+    mygame.animateTintOtherPlayers(players[4]);
+}, 4500);
+
+
 setTimeout(function () {
     setTimeout(function () {
         mygame.spawnPlayer(players[0]);
@@ -446,6 +458,9 @@ setTimeout(function () {
 }, 2250 / GGS);
 
 
+
+
+
 setTimeout(function () {
 
     mygame.display_game_marker(firstsetofdata);
@@ -474,6 +489,7 @@ function dosomethingspecial(element, index, array) {
 
 setTimeout(function () {
     mygame.animateBet(betTest);
+
 }, 17000 / GGS);
 setTimeout(function () {
     mygame.animateBet(betTest2);
@@ -641,6 +657,7 @@ var joined4 = {
 setTimeout(function () {
 
     mygame.spawnPlayer(players[4]);
+
     mygame.display_game_marker(joined[5]);
 
 

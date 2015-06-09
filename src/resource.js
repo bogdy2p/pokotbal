@@ -42,16 +42,16 @@ var res = {
     Start_n_png: "res/controls/start_n.png",
     //Players :
 
-    Player1: "res/pedro/player1.png",
-    Player2: "res/pedro/player2.png",
-    Player3: "res/pedro/player3.png",
-    Player4: "res/pedro/player4.png",
-    Player5: "res/pedro/player5.png",
-    Player6: "res/pedro/player6.png",
-    Player7: "res/pedro/player7.png",
-    Player8: "res/pedro/player8.png",
-    Player9: "res/pedro/player9.png",
-    Player10: "res/pedro/player10.png",
+//    Player1: "res/pedro/player1.png",
+//    Player2: "res/pedro/player2.png",
+//    Player3: "res/pedro/player3.png",
+//    Player4: "res/pedro/player4.png",
+//    Player5: "res/pedro/player5.png",
+//    Player6: "res/pedro/player6.png",
+//    Player7: "res/pedro/player7.png",
+//    Player8: "res/pedro/player8.png",
+//    Player9: "res/pedro/player9.png",
+//    Player10: "res/pedro/player10.png",
     //Pedro Animation
 
 
