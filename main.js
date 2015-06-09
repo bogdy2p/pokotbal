@@ -377,7 +377,7 @@ mygame.start();
 
 setTimeout(function () {
     mygame.animateTintOtherPlayers(players[4]);
-}, 4500);
+}, 24500);
 
 
 setTimeout(function () {

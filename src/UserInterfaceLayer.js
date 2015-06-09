@@ -185,19 +185,19 @@ var UserInterfaceLayer = cc.Layer.extend({
     updateTimerClock: function (seconds) {
 
 //In order to speed up
-      seconds = seconds * 47;
+      seconds = seconds * GGS;
       
-        cc.log(seconds);
+//        cc.log(seconds);
         var minute = Math.floor(seconds / 60);
         if (minute < 10) {
             minute = "0" + Math.floor(minute);
         }
-        cc.log(minute);
+//        cc.log(minute);
         var the_second = seconds % 60;
         if (the_second < 10) {
             the_second = "0" + Math.floor(seconds % 60);
         }
-        cc.log(the_second);
+//        cc.log(the_second);
 
         this.timerLabel.setString("00:" + minute + ":" + the_second + "");
     }

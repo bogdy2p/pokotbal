@@ -451,26 +451,22 @@ var AnimationLayer = cc.Layer.extend({
 
     },
     tintOtherPlayers: function (data) {
-        cc.log(data);
-        cc.log("AAAAAAAAAAAAAAAAA");
-//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-//        var object = playerInformations[data.number - 1];
-
+//        cc.log(data);
+//        cc.log("AAAAAAAAAAAAAAAAA");
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var object = playerInformations[data.number - 1];
 //        var childname = "player_" + (data.number - 1);
 //        cc.log(childname);
+        var existingPlayers = [];
+        for (i=1;i<10;i++){
+            var child = "player_" + i;
+            var player = backgroundLayer.getChildByName(child);
+            if (player){
+                existingPlayers.push(player);
+            }
+        }
 //
-//        var existingPlayers = [];
-//
-//        for (i=1;i<10;i++){
-//            var child = "player_" + i;
-//            var player = backgroundLayer.getChildByName(child);
-//            if (player){
-//                existingPlayers.push(player);
-//            }
-//            
-//        }
-//
-//        cc.log(existingPlayers);
+        cc.log(existingPlayers);
 //        var TheActivePlayer = backgroundLayer.getChildByName(childname);
 //        cc.log (TheActivePlayer);
 //
