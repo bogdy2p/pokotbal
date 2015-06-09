@@ -440,6 +440,7 @@ setTimeout(function () {
 }, 17000);
 setTimeout(function () {
     mygame.animateBet(betTest2);
+    mygame.animateYouWin(youwin2);
 }, 18000);
 
 setTimeout(function () {
@@ -447,6 +448,7 @@ setTimeout(function () {
 }, 19000);
 setTimeout(function () {
     mygame.animateBet(betTest);
+    mygame.animateYouWin(youwin3);
 }, 20000);
 setTimeout(function () {
     mygame.animateBet(betTest2);
@@ -457,6 +459,7 @@ setTimeout(function () {
 }, 22000);
 setTimeout(function () {
     mygame.animateBet(betTest);
+    mygame.animateYouWin(youwin4);
 }, 23000);
 setTimeout(function () {
     mygame.animateBet(betTest2);
@@ -475,20 +478,32 @@ setTimeout(function () {
 
 var youwin = {
     player: 1,
-    balance: 400,
+    balance: 490,
     ammount: 50,
 };
 
+var youwin2 = {
+    ammount: 400,
+}
+
+var youwin3 = {
+    ammount: 120,
+}
+
+var youwin4 = {
+    ammount: 840,
+}
 
 setTimeout(function () {
 
     mygame.animateYouWin(youwin);
 
 
-}, 6000);
+}, 7000);
 
 
 setTimeout(function () {
     mygame.animateBalanceDisplayChange(youwin);
 }
-, 7000);
+, 6000);
+

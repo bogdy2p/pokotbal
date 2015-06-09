@@ -6,7 +6,8 @@ var res = {
     Table_png: "res/background/Table.png",
     //USER INTERFACE RESOURCES ================================================    
     UI_Marker: "res/userinterface/Marker.png",
-    UI_BottomLeftInfo: "res/userinterface/BotLeftInfo.png",
+    UI_BottomLeftInfo: "res/userinterface/BotLeftInfoNone.png",
+    //UI_BottomLeftInfo: "res/userinterface/BotLeftInfo.png",
     UI_BottomMenu: "res/userinterface/BottomMenu.png",
     UI_BottomMenuClicked: "res/userinterface/BottomMenuClicked.png",
     UI_BottomMenuOpened: "res/userinterface/BottomMenuOpened.png",
