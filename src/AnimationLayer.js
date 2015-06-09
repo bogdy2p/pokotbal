@@ -113,6 +113,25 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(BettingListener, 1);
 
+        var WinningListener = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_animate_you_win",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.animateYouWin(data);
+            }
+        });
+        cc.eventManager.addListener(WinningListener, 1);
+
+        var BalanceDisplayListener = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_animate_balance_change",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.animateDisplayBalanceChange(data);
+            }
+        });
+        cc.eventManager.addListener(BalanceDisplayListener, 1);
 
     },
     spawnPlayer: function (number, name, ammount) {
@@ -303,5 +322,66 @@ var AnimationLayer = cc.Layer.extend({
 //data.playerNumber
 //data.ammount
 
+    },
+    animateYouWin: function (data) {
+        var backgroundLayer = this.backgroundLayer;
+        //Should add the whole screen sprite
+//        cc.log(data);
+        //Also play an animation to the bottom left of the screen after the whole screen exits.
+
+        var youWinLabel = new cc.LabelTTF("YOU WIN", "MontserratBold", 28);
+        youWinLabel.setColor(cc.color(255, 30, 244));
+        youWinLabel.setAnchorPoint(0, 0);
+        youWinLabel.setOpacity(100);
+        youWinLabel.setPosition(cc.p(58, 12));
+        backgroundLayer.addChild(youWinLabel, 1500, "youWinLabel");
+        var fadeInMessage = cc.FadeIn.create(1);
+        var delay = cc.delayTime(3);
+        var fadeOutMessage = cc.FadeOut.create(0.5);
+        var youWinMessageSequence = cc.Sequence.create(fadeInMessage, delay, fadeOutMessage);
+        youWinLabel.runAction(youWinMessageSequence);
+
+        var youWinAmmountLabel = new cc.LabelTTF("£" + data.ammount, "MontserratBold", 36);
+        youWinAmmountLabel.setColor(cc.color(255, 255, 255));
+        youWinAmmountLabel.setAnchorPoint(0, 0);
+        youWinAmmountLabel.setOpacity(100);
+        youWinAmmountLabel.setPosition(cc.p(210, 10));
+        backgroundLayer.addChild(youWinAmmountLabel, 1500, "youWinAmmountLabel");
+        var fadeInMessageAmmount = cc.FadeIn.create(1);
+        var delayAmmount = cc.delayTime(3);
+        var fadeOutMessageAmmount = cc.FadeOut.create(0.5);
+        var youWinAmmountSequence = cc.Sequence.create(fadeInMessageAmmount, delayAmmount, fadeOutMessageAmmount);
+        youWinAmmountLabel.runAction(youWinAmmountSequence);
+
+    },
+    animateDisplayBalanceChange: function (data) {
+        var backgroundLayer = this.backgroundLayer;
+
+        var yourBalanceLabel = new cc.LabelTTF("BALANCE", "MontserratBold", 28);
+        yourBalanceLabel.setColor(cc.color(255, 255, 255));
+        yourBalanceLabel.setAnchorPoint(0, 0);
+        yourBalanceLabel.setOpacity(100);
+        yourBalanceLabel.setPosition(cc.p(50, 50));
+        backgroundLayer.addChild(yourBalanceLabel, 1500, "yourBalance");
+        var fadeInMessage = cc.FadeIn.create(1);
+        var delay = cc.delayTime(3);
+//        var fadeOutMessage = cc.FadeOut.create(0.5);
+//        var yourBalanceSequence = cc.Sequence.create(fadeInMessage, delay, fadeOutMessage);
+        var yourBalanceSequence = cc.Sequence.create(fadeInMessage, delay);
+        yourBalanceLabel.runAction(yourBalanceSequence);
+
+        var yourBalanceAmmountLabel = new cc.LabelTTF("£" + data.ammount, "MontserratBold", 36);
+        yourBalanceAmmountLabel.setColor(cc.color(255, 255, 255));
+        yourBalanceAmmountLabel.setAnchorPoint(0, 0);
+        yourBalanceAmmountLabel.setOpacity(100);
+        yourBalanceAmmountLabel.setPosition(cc.p(210, 50));
+        backgroundLayer.addChild(yourBalanceAmmountLabel, 1500, "yourBalanceAmmountLabel");
+        var fadeInMessageAmmount = cc.FadeIn.create(1);
+        var delayAmmount = cc.delayTime(3);
+        var fadeOutMessageAmmount = cc.FadeOut.create(0.5);
+        var yourBalanceAmmountSequence = cc.Sequence.create(fadeInMessageAmmount, delayAmmount, fadeOutMessageAmmount);
+        yourBalanceAmmountLabel.runAction(yourBalanceAmmountSequence);
+
     }
+
 });

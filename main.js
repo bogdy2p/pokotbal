@@ -228,6 +228,16 @@ var mygame = {
         var event = new cc.EventCustom("event_animate_betting");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
+    },
+    animateYouWin: function (data) {
+        var event = new cc.EventCustom("event_animate_you_win");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
+    },
+    animateBalanceDisplayChange: function (data) {
+        var event = new cc.EventCustom("event_animate_balance_change");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
     }
 }
 
@@ -392,7 +402,7 @@ setTimeout(function () {
 
 setTimeout(function () {
     mygame.setGameTitleBar(gameInformation);
-}, 1250);
+}, 2250);
 
 
 setTimeout(function () {
@@ -462,3 +472,23 @@ setTimeout(function () {
     mygame.display_game_marker(disconnected3);
 }, 26000);
 
+
+var youwin = {
+    player: 1,
+    balance: 400,
+    ammount: 50,
+};
+
+
+setTimeout(function () {
+
+    mygame.animateYouWin(youwin);
+
+
+}, 6000);
+
+
+setTimeout(function () {
+    mygame.animateBalanceDisplayChange(youwin);
+}
+, 7000);

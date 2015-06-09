@@ -1,5 +1,6 @@
 
 var UserInterfaceLayer = cc.Layer.extend({
+    backgroundLayer: null,
     gameRound: 1,
     bottom_menu_opened: false,
     chat_bar_opened: false,
@@ -8,12 +9,14 @@ var UserInterfaceLayer = cc.Layer.extend({
     startTime: 0,
     ctor: function () {
         this._super();
+        this.backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         this.bottom_menu_opened = false;
         this.chat_bar_opened = false;
         this.settings_menu_opened = false;
         this.init();
     },
     init: function () {
+        var backgroundLayer = this.backgroundLayer;
         this._super();
 
         var winSize = cc.director.getWinSize();
@@ -27,7 +30,7 @@ var UserInterfaceLayer = cc.Layer.extend({
         spriteBotLeftInfo.setOpacity(0);
 
         //THIS IS THE FIRST CHILD OF THE INTERFACE LAYER
-        this.addChild(spriteBotLeftInfo);
+        backgroundLayer.addChild(spriteBotLeftInfo);
         var fadeInBot = cc.FadeIn.create(5);
         spriteBotLeftInfo.runAction(fadeInBot);
         //============================================================
