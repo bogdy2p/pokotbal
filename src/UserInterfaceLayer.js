@@ -185,18 +185,40 @@ var UserInterfaceLayer = cc.Layer.extend({
     updateTimerClock: function (seconds) {
 
 //In order to speed up
-      seconds = seconds * GGS;
-
-        var minute = seconds / 60;
+      seconds = seconds * 47;
+      
+        cc.log(seconds);
+        var minute = Math.floor(seconds / 60);
         if (minute < 10) {
             minute = "0" + Math.floor(minute);
         }
+        cc.log(minute);
         var the_second = seconds % 60;
         if (the_second < 10) {
             the_second = "0" + Math.floor(seconds % 60);
         }
+        cc.log(the_second);
 
         this.timerLabel.setString("00:" + minute + ":" + the_second + "");
     }
 
 });
+
+//
+//String.prototype.toMMSS = function () {
+//    var sec_num = parseInt(this, 10);
+//    var hours = Math.floor(sec_num / 3600);
+//    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+//    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+//    if (hours < 10) {
+//        hours = "0" + hours;
+//    }
+//    if (minutes < 10) {
+//        minutes = "0" + minutes;
+//    }
+//    if (seconds < 10) {
+//        seconds = "0" + seconds;
+//    }
+//    var time = minutes + "' " + seconds + "\"";
+//    return time;
+//}
