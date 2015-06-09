@@ -29,11 +29,11 @@ var Player = cc.Layer.extend({
         this.animateFadeIn();
     },
     animateFadeIn: function () {
-        var fadeInPlayer = cc.FadeIn.create(2);
+        var fadeInPlayer = cc.FadeIn.create(2 / GGS);
         this.sprite.runAction(fadeInPlayer);
     },
     animateFadeOut: function () {
-        var fadeOutPlayer = cc.FadeOut.create(1);
+        var fadeOutPlayer = cc.FadeOut.create(1 / GGS);
         this.sprite.runAction(fadeOutPlayer);
     },
 });

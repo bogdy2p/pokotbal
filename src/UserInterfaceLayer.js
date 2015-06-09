@@ -31,7 +31,7 @@ var UserInterfaceLayer = cc.Layer.extend({
 
         //THIS IS THE FIRST CHILD OF THE INTERFACE LAYER
         backgroundLayer.addChild(spriteBotLeftInfo);
-        var fadeInBot = cc.FadeIn.create(5);
+        var fadeInBot = cc.FadeIn.create(5 / GGS);
         spriteBotLeftInfo.runAction(fadeInBot);
         //============================================================
 
@@ -41,7 +41,7 @@ var UserInterfaceLayer = cc.Layer.extend({
         BottomRightInformationBox.setPosition(cc.p(winSize.width - BottomRightInformationBox.width, 00));
         BottomRightInformationBox.setOpacity(0);
         this.addChild(BottomRightInformationBox);
-        BottomRightInformationBox.runAction(cc.FadeIn.create(4));
+        BottomRightInformationBox.runAction(cc.FadeIn.create(4 / GGS));
         //============================================================
 
         //Add TopRight Information Box
@@ -185,7 +185,7 @@ var UserInterfaceLayer = cc.Layer.extend({
     updateTimerClock: function (seconds) {
 
 //In order to speed up
-//        seconds = seconds * 15;
+      seconds = seconds * GGS;
 
         var minute = seconds / 60;
         if (minute < 10) {

@@ -1,3 +1,4 @@
+
 if (typeof TagOfLayer == "undefined") {
     var TagOfLayer = {};
     TagOfLayer.background = 0;

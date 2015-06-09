@@ -302,7 +302,7 @@ var AnimationLayer = cc.Layer.extend({
         var backgroundLayer = this.backgroundLayer;
 
         var bet_number = this.current_bets;
-        cc.log(bet_number);
+//        cc.log(bet_number);
 //        cc.log(backgroulndLayer);
 
 //        cc.log("inside AnimateBetting !!!");
@@ -327,57 +327,70 @@ var AnimationLayer = cc.Layer.extend({
         var moveToCenter = new cc.MoveTo.create(1.5, cc.p(700, 580));
 //        var moveToCenterSequence = cc.Sequence.create(moveToCenter);
         this.cashSpriteSheet.runAction(moveToCenter, 1);
-
-
 //        backgroundLayer.addChild(this.loseSpriteSheet, player_z, cashSpriteName);
-
         //Spawn money over the player
         //Move money to the middle of the game.
         //Fade money out in the table.
-
-
-
 //data.playerNumber
 //data.ammount
 
     }, animateGettingAllBets: function (data) {
         var backgroundLayer = this.backgroundLayer;
 
+        if (this.current_bets > 0) {
 
-//        cc.log(this.current_bets);
-        var allbets = [];
 
-        var object = playerInformations[data.playerNumber];
-        var player_x = object.x;
-        var player_y = object.y;
-        var player_z = object.zIndex;
+            var allbets = [];
+            var object = playerInformations[data.playerNumber];
+            var player_x = object.x;
+            var player_y = object.y;
+            var player_z = object.zIndex;
 
-        for (i = 0; i < this.current_bets; i++) {
+            for (i = 0; i < this.current_bets; i++) {
+                var bet = backgroundLayer.getChildByName("bet" + i);
+                if (bet)
+                    allbets.push(bet);
+            }
+            var randX = Math.floor(Math.random() * 3) + 1;
+            var randomMoves = [];
+            var randomFades = []
+            for (i = 0; i < this.current_bets; i++) {
+                var randTime = Math.floor(Math.random() * 3) + 1;
+                var randFadeTime = Math.floor(Math.random() * 5) + 1;
+                randomMoves[i] = new cc.MoveTo.create(randTime, cc.p(object.x + randX, object.y - randX));
+                randomFades[i] = new cc.FadeOut(randFadeTime);
+            }
+            var theBigSequences = [];
+            for (i = 0; i < this.current_bets; i++) {
+                theBigSequences[i] = cc.Sequence.create(randomMoves[i], randomFades[i]);
+                allbets[i].runAction(theBigSequences[i], 1);
+            }
 
-            var bet = backgroundLayer.getChildByName("bet" + i);
+            var current_bets = this.current_bets;
+            setTimeout(function () {
+                for (i = 0; i < current_bets; i++) {
+//                var parent = allbets[i].getParent();
+//                cc.log("Parent:");
+//                cc.log(parent);
+//                cc.log(allbets[i].instanceId);
 
-            if (bet)
-                allbets.push(bet);
+//                var instance_id = allbets[i]._instanceId;
+//                cc.log(instance_id);
+                    allbets[i].removeFromParent(1);
 
-        }
 
-//        cc.log(allbets);
+//                cc.log(backgroundLayer);
+                }
+            }, 2000);
+            this.current_bets = 0;
+            //Reset CurrentBets TO 0 !!!
+            setTimeout(function () {
+                cc.log(backgroundLayer);
+            }, 2600);
 
-//        cc.log(allbets[0]);
-        var randX = Math.floor(Math.random() * 3) + 1;
-        cc.log(randX);
-        
-        var randomMoves = [];
-        for (i = 0;i<this.current_bets; i++){
-            var randTime = Math.floor(Math.random() * 3) + 1;
-            cc.log(randTime);
-            randomMoves[i] = new cc.MoveTo.create(randTime, cc.p(object.x + randX, object.y -randX));
-        }
-//        var moveToPlayer = new cc.MoveTo.create(1.5, cc.p(object.x + randX, object.y -randX));
-//        var moveToPlayerSequence = cc.Sequence.create(moveToPlayer);
 
-        for (i = 0;i<this.current_bets; i++){
-            allbets[i].runAction(randomMoves[i],1);
+        } else {
+            cc.log("THERE WERE NO BETS ON THE TABLE!");
         }
 //
 //        allbets[0].runAction(moveToPlayer, 1);

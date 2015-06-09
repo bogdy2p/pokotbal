@@ -1,3 +1,6 @@
+//Global game speed,  increase to run faster for testing  [up-to 4 for a ok result]
+var GGS = 1;
+
 var playerInformations = [
     {
         x: 470,
@@ -291,6 +294,14 @@ var disconnected3 = {
     fadeOutSec: 1,
     repeatTimes: 1,
 };
+var disconnected5 = {
+    markerImage: "testImage",
+    markerMessage: "Player 5 has been disconnected.",
+    fadeInSec: 1,
+    timeToShow: 1,
+    fadeOutSec: 1,
+    repeatTimes: 1,
+};
 
 var betz = [];
 
@@ -302,9 +313,6 @@ for (k = 0; k < 10; k++) {
 
 }
 
-//
-//cc.log(betz);
-//console.log(betz);
 
 
 var betTest = {
@@ -336,34 +344,34 @@ mygame.start();
 setTimeout(function () {
     setTimeout(function () {
         mygame.spawnPlayer(players[0]);
-    }, 100);
+    }, 1000 / GGS);
     setTimeout(function () {
         mygame.spawnPlayer(players[1]);
-    }, 1000);
+    }, 1000 / GGS);
     setTimeout(function () {
         mygame.spawnPlayer(players[2]);
-    }, 2000);
+    }, 2000 / GGS);
     setTimeout(function () {
         mygame.spawnPlayer(players[3]);
-    }, 3000);
+    }, 3000 / GGS);
     setTimeout(function () {
         mygame.spawnPlayer(players[4]);
-    }, 4000);
+    }, 4000 / GGS);
     setTimeout(function () {
         mygame.spawnPlayer(players[5]);
-    }, 5000);
+    }, 5000 / GGS);
     setTimeout(function () {
         mygame.spawnPlayer(players[6]);
-    }, 6000);
+    }, 6000 / GGS);
     setTimeout(function () {
         mygame.spawnPlayer(players[7]);
-    }, 7000);
+    }, 7000 / GGS);
     setTimeout(function () {
         mygame.spawnPlayer(players[8]);
-    }, 8000);
+    }, 8000 / GGS);
     setTimeout(function () {
         mygame.spawnPlayer(players[9]);
-    }, 9000);
+    }, 9000 / GGS);
 //END OF SPAWNING
 //END OF SPAWNING
 
@@ -372,7 +380,7 @@ setTimeout(function () {
         for (i = 0; i < 10; i++) {
             mygame.animatePlayerLose(players[i]);
         }
-    }, 11000);
+    }, 11000 / GGS);
 
 //Make all the players run a specific animation [WAIT].
 
@@ -382,7 +390,7 @@ setTimeout(function () {
                 mygame.animatePlayerWait(players[i]);
             }
         }
-    }, 13000);
+    }, 13000 / GGS);
 
 
     setTimeout(function () {
@@ -392,7 +400,7 @@ setTimeout(function () {
                 mygame.animatePlayerWin(players[i]);
             }
         }
-    }, 14000);
+    }, 14000 / GGS);
 
 
 
@@ -403,12 +411,12 @@ setTimeout(function () {
                 mygame.animatePlayerLose(players[i]);
             }
         }
-    }, 16000);
-}, 3000);
+    }, 16000 / GGS);
+}, 3000 / GGS);
 
 setTimeout(function () {
     mygame.setGameTitleBar(gameInformation);
-}, 2250);
+}, 2250 / GGS);
 
 
 setTimeout(function () {
@@ -416,70 +424,66 @@ setTimeout(function () {
     mygame.display_game_marker(firstsetofdata);
 
 
-}, 2000);
+}, 2000 / GGS);
 setTimeout(function () {
 
     mygame.display_game_marker(firstsetofdata2);
 
-}, 9000);
+}, 9000 / GGS);
 
 
 
 
 
 betz.forEach(dosomethingspecial);
-
 function dosomethingspecial(element, index, array) {
 
-
-//    cc.log(element);
-//    cc.log(index);
     setTimeout(function () {
         mygame.animateBet(element);
-    }, 16000);
+    }, 16000 / GGS);
 
 }
 
 
 setTimeout(function () {
     mygame.animateBet(betTest);
-}, 17000);
+}, 17000 / GGS);
 setTimeout(function () {
     mygame.animateBet(betTest2);
     mygame.animateYouWin(youwin2);
-}, 18000);
+}, 18000 / GGS);
 
 setTimeout(function () {
     mygame.animateBet(betTest3);
-}, 19000);
+}, 19000 / GGS);
 setTimeout(function () {
     mygame.animateBet(betTest);
     mygame.animateYouWin(youwin3);
-}, 20000);
+}, 20000 / GGS);
 setTimeout(function () {
     mygame.animateBet(betTest2);
-}, 21000);
+}, 21000 / GGS);
 
 setTimeout(function () {
     mygame.animateBet(betTest3);
-}, 22000);
+}, 22000 / GGS);
 setTimeout(function () {
     mygame.animateBet(betTest);
     mygame.animateYouWin(youwin4);
-}, 23000);
+}, 23000 / GGS);
 setTimeout(function () {
     mygame.animateBet(betTest2);
-}, 24000);
+}, 24000 / GGS);
 
 setTimeout(function () {
     mygame.animateBet(betTest3);
-}, 24000);
+}, 24000 / GGS);
 
 
 setTimeout(function () {
     mygame.removePlayer(players[3]);
     mygame.display_game_marker(disconnected3);
-}, 26000);
+}, 26000 / GGS);
 
 
 var youwin = {
@@ -505,19 +509,85 @@ setTimeout(function () {
     mygame.animateYouWin(youwin);
 
 
-}, 7000);
+}, 7000 / GGS);
 
 
 setTimeout(function () {
     mygame.animateBalanceDisplayChange(youwin);
 }
-, 6000);
+, 6000 / GGS);
 
 
+setTimeout(function () {
 
-
-
+}, 27500);
 
 setTimeout(function () {
     mygame.animatePlayerReceiveBet(players[5]);
 }, 28000);
+
+
+
+setTimeout(function () {
+//    mygame.animatePlayerReceiveBet(players[1]);
+}, 29000);
+
+
+
+var bet1 = {
+    playerNumber: 2,
+    ammount: 100,
+};
+var bet2 = {
+    playerNumber: 7,
+    ammount: 100,
+};
+var bet3 = {
+    playerNumber: 4,
+    ammount: 100,
+};
+var bet4 = {
+    playerNumber: 9,
+    ammount: 100,
+};
+var bet5 = {
+    playerNumber: 3,
+    ammount: 100,
+};
+var bet6 = {
+    playerNumber: 8,
+    ammount: 100,
+};
+var bet7 = {
+    playerNumber: 5,
+    ammount: 100,
+};
+setTimeout(function () {
+    mygame.animateBet(bet1);
+}, 29000 / GGS);
+setTimeout(function () {
+    mygame.animateBet(bet2);
+}, 29500 / GGS);
+setTimeout(function () {
+    mygame.animateBet(bet3);
+}, 30000 / GGS);
+setTimeout(function () {
+    mygame.animateBet(bet4);
+}, 30500 / GGS);
+setTimeout(function () {
+    mygame.animateBet(bet5);
+}, 31000 / GGS);
+setTimeout(function () {
+    mygame.animateBet(bet6);
+}, 31500 / GGS);
+setTimeout(function () {
+    mygame.animateBet(bet7);
+}, 32000 / GGS);
+setTimeout(function () {
+    mygame.removePlayer(players[5]);
+    mygame.display_game_marker(disconnected5);
+}, 35000 / GGS);
+
+setTimeout(function () {
+    mygame.animatePlayerReceiveBet(players[1]);
+}, 36500);
