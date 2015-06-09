@@ -1,4 +1,5 @@
 var BackgroundLayer = cc.Layer.extend({
+    current_cash_sprites:null,
     ctor: function () {
         this._super();
         this.init();

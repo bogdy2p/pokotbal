@@ -238,7 +238,13 @@ var mygame = {
         var event = new cc.EventCustom("event_animate_balance_change");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
+    },
+    animatePlayerReceiveBet: function (data) {
+        var event = new cc.EventCustom("event_animate_player_receiving_bets");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
     }
+
 }
 
 var players = [];
@@ -507,3 +513,11 @@ setTimeout(function () {
 }
 , 6000);
 
+
+
+
+
+
+setTimeout(function () {
+    mygame.animatePlayerReceiveBet(players[5]);
+}, 28000);
