@@ -317,7 +317,6 @@ for (i = 0; i < 10; i++) {
     };
 }
 
-
 var joined = [];
 for (i = 0; i < 10; i++) {
     joined[i] = {
@@ -330,8 +329,6 @@ for (i = 0; i < 10; i++) {
     };
 }
 
-
-
 var betz = [];
 
 for (k = 0; k < 10; k++) {
@@ -341,7 +338,6 @@ for (k = 0; k < 10; k++) {
     }
 
 }
-
 
 var round1bet1 = {
     playerNumber: 1,
@@ -355,9 +351,6 @@ var round1bet3 = {
     playerNumber: 3,
     ammount: 100,
 };
-
-
-
 
 var betTest = {
     playerNumber: 2,
