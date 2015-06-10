@@ -310,39 +310,24 @@ var AnimationLayer = cc.Layer.extend({
     },
     animateBetting: function (data) {
         var backgroundLayer = this.backgroundLayer;
-
         var bet_number = this.current_bets;
-//        cc.log(bet_number);
-//        cc.log(backgroulndLayer);
 
-//        cc.log("inside AnimateBetting !!!");
         var object = playerInformations[data.playerNumber];
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
-        //res.UI_Cash
-//        cc.spriteFrameCache.addSpriteFrames(res.Pedro90_plist);
         var cashSprite = new cc.SpriteBatchNode(res.UI_Cash);
         var cashSpriteName = "bet_player_" + data.playerNumber;
-
-
         this.cashSpriteSheet = new cc.Sprite.create(res.UI_Cash);
         this.cashSpriteSheet.setPosition(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y);
-//        this.cashSpriteSheet.setPosition(700,580);
-//        this.cashSpriteSheet.setOpacity(100);
         backgroundLayer.addChild(this.cashSpriteSheet, playerInformations[data.playerNumber].Zindex + 500, "bet" + this.current_bets);
         this.current_bets++;
-        //this.sprite.runAction(new cc.MoveTo(cc.p(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y)));
 
         var moveToCenter = new cc.MoveTo.create(1.5, cc.p(700, 580));
-//        var moveToCenterSequence = cc.Sequence.create(moveToCenter);
         this.cashSpriteSheet.runAction(moveToCenter, 1);
-//        backgroundLayer.addChild(this.loseSpriteSheet, player_z, cashSpriteName);
         //Spawn money over the player
         //Move money to the middle of the game.
         //Fade money out in the table.
-//data.playerNumber
-//data.ammount
 
     }, animateGettingAllBets: function (data) {
         var backgroundLayer = this.backgroundLayer;
@@ -469,7 +454,7 @@ var AnimationLayer = cc.Layer.extend({
                 }
             } else {
 
-                cc.log(data.playerNumber);
+//                cc.log(data.playerNumber);
                 var childE = "player_" + i;
                 var player = backgroundLayer.getChildByName(childE);
                 if (player) {
@@ -480,18 +465,18 @@ var AnimationLayer = cc.Layer.extend({
 
         existingSpecifiedPlayer.forEach(dosomethingspecial1);
         function dosomethingspecial1(element, index, array) {
-            cc.log("Element");
-            cc.log(element);
-            cc.log("Index");
-            cc.log(index);
-            cc.log("Array");
-            cc.log(array);
-            
-            
+//            cc.log("Element");
+//            cc.log(element);
+//            cc.log("Index");
+//            cc.log(index);
+//            cc.log("Array");
+//            cc.log(array);
+
+
             var unTint = new cc.TintTo.create(0, 250, 250, 250);
             child = element._children[0];
-            cc.log("Children[0]");
-            cc.log(child);
+//            cc.log("Children[0]");
+//            cc.log(child);
             child.runAction(unTint);
 
 //            cc.director.pause();
