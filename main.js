@@ -227,7 +227,6 @@ var mygame = {
         cc.eventManager.dispatchEvent(event);
     },
     animateBet: function (data) {
-//        cc.log("entered animateBet");
         var event = new cc.EventCustom("event_animate_betting");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
@@ -376,8 +375,8 @@ mygame.start();
 
 
 setTimeout(function () {
-    mygame.animateTintOtherPlayers(players[4]);
-}, 24500);
+//    mygame.animateTintOtherPlayers(players[4]);
+}, 18000);
 
 
 setTimeout(function () {
@@ -481,7 +480,8 @@ betz.forEach(dosomethingspecial);
 function dosomethingspecial(element, index, array) {
 
     setTimeout(function () {
-        mygame.animateBet(element);
+//        mygame.animateBet(element);
+
     }, 16000 / GGS);
 
 }
@@ -489,44 +489,54 @@ function dosomethingspecial(element, index, array) {
 
 setTimeout(function () {
     mygame.animateBet(betTest);
+    mygame.animateTintOtherPlayers(betTest);
 
 }, 17000 / GGS);
 setTimeout(function () {
     mygame.animateBet(betTest2);
     mygame.animateYouWin(youwin2);
-}, 18000 / GGS);
-
-setTimeout(function () {
-    mygame.animateBet(betTest3);
-}, 19000 / GGS);
-setTimeout(function () {
-    mygame.animateBet(betTest);
-    mygame.animateYouWin(youwin3);
-}, 20000 / GGS);
-setTimeout(function () {
-    mygame.animateBet(betTest2);
+    mygame.animateTintOtherPlayers(betTest2);
 }, 21000 / GGS);
 
 setTimeout(function () {
     mygame.animateBet(betTest3);
-}, 22000 / GGS);
-setTimeout(function () {
-    mygame.animateBet(betTest);
-    mygame.animateYouWin(youwin4);
+    mygame.animateTintOtherPlayers(betTest3);
 }, 23000 / GGS);
 setTimeout(function () {
+    mygame.animateBet(betTest);
+    mygame.animateYouWin(youwin3);
+    mygame.animateTintOtherPlayers(betTest);
+}, 25000 / GGS);
+setTimeout(function () {
     mygame.animateBet(betTest2);
-}, 24000 / GGS);
+    mygame.animateTintOtherPlayers(betTest2);
+
+}, 27000 / GGS);
 
 setTimeout(function () {
     mygame.animateBet(betTest3);
-}, 24000 / GGS);
+    mygame.animateTintOtherPlayers(betTest3);
+}, 29000 / GGS);
+setTimeout(function () {
+    mygame.animateBet(betTest);
+    mygame.animateTintOtherPlayers(betTest);
+    mygame.animateYouWin(youwin4);
+}, 31000 / GGS);
+setTimeout(function () {
+    mygame.animateBet(betTest2);
+    mygame.animateTintOtherPlayers(betTest2);
+}, 33000 / GGS);
+
+setTimeout(function () {
+    mygame.animateBet(betTest3);
+    mygame.animateTintOtherPlayers(betTest3);
+}, 35000 / GGS);
 
 
 setTimeout(function () {
     mygame.removePlayer(players[3]);
     mygame.display_game_marker(disconnected[3]);
-}, 26000 / GGS);
+}, 37000 / GGS);
 
 
 var youwin = {
@@ -563,17 +573,18 @@ setTimeout(function () {
 
 setTimeout(function () {
 
-}, 27500);
+}, 39500);
 
 setTimeout(function () {
+    mygame.animateTintOtherPlayers(players[5]);
     mygame.animatePlayerReceiveBet(players[5]);
-}, 28000);
+}, 40000);
 
 
 
 setTimeout(function () {
 //    mygame.animatePlayerReceiveBet(players[1]);
-}, 29000);
+}, 41000);
 
 
 
@@ -607,33 +618,42 @@ var bet7 = {
 };
 setTimeout(function () {
     mygame.animateBet(bet1);
-}, 30000 / GGS);
+    mygame.animateTintOtherPlayers(bet1);
+
+}, 43000 / GGS);
 setTimeout(function () {
     mygame.animateBet(bet2);
-}, 30500 / GGS);
+    mygame.animateTintOtherPlayers(bet2);
+}, 45000 / GGS);
 setTimeout(function () {
     mygame.animateBet(bet3);
-}, 31000 / GGS);
+    mygame.animateTintOtherPlayers(bet3);
+}, 47000 / GGS);
 setTimeout(function () {
     mygame.animateBet(bet4);
-}, 31500 / GGS);
+    mygame.animateTintOtherPlayers(bet4);
+}, 49500 / GGS);
 setTimeout(function () {
     mygame.animateBet(bet5);
-}, 32000 / GGS);
+    mygame.animateTintOtherPlayers(bet5);
+}, 52000 / GGS);
 setTimeout(function () {
     mygame.animateBet(bet6);
-}, 32500 / GGS);
+    mygame.animateTintOtherPlayers(bet6);
+}, 53500 / GGS);
 setTimeout(function () {
     mygame.animateBet(bet7);
-}, 33000 / GGS);
+    mygame.animateTintOtherPlayers(bet7);
+}, 56000 / GGS);
 setTimeout(function () {
     mygame.removePlayer(players[5]);
     mygame.display_game_marker(disconnected[5]);
-}, 35500 / GGS);
+}, 58500 / GGS);
 
 setTimeout(function () {
+    mygame.animateTintOtherPlayers(players[1]);
     mygame.animatePlayerReceiveBet(players[1]);
-}, 38500);
+}, 61500);
 
 
 
@@ -656,19 +676,19 @@ var joined4 = {
 
 setTimeout(function () {
 
-    mygame.spawnPlayer(players[4]);
+//    mygame.spawnPlayer(players[4]);
+//    mygame.display_game_marker(joined[5]);
 
-    mygame.display_game_marker(joined[5]);
 
-
-}, 41000);
-
-setTimeout(function () {
-    mygame.spawnPlayer(players[2]);
-    mygame.display_game_marker(joined[3]);
-
-}, 44000);
+}, 62000);
 
 setTimeout(function () {
+//    mygame.spawnPlayer(players[2]);
+//    mygame.display_game_marker(joined[3]);
+
+}, 65000);
+
+setTimeout(function () {
+    mygame.animateTintOtherPlayers(players[2]);
     mygame.animatePlayerReceiveBet(players[2]);
-}, 47500);
+}, 66500);

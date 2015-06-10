@@ -454,19 +454,59 @@ var AnimationLayer = cc.Layer.extend({
 //        cc.log(data);
 //        cc.log("AAAAAAAAAAAAAAAAA");
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var object = playerInformations[data.number - 1];
+        var object = playerInformations[data.playerNumber];
+        //cc.log(data.number);
 //        var childname = "player_" + (data.number - 1);
 //        cc.log(childname);
-        var existingPlayers = [];
-        for (i=1;i<10;i++){
-            var child = "player_" + i;
-            var player = backgroundLayer.getChildByName(child);
-            if (player){
-                existingPlayers.push(player);
+        var existingPlayersWithoutSpecified = [];
+        var existingSpecifiedPlayer = [];
+        for (i = 0; i < 10; i++) {
+            if (i != data.playerNumber) {
+                var child = "player_" + i;
+                var player = backgroundLayer.getChildByName(child);
+                if (player) {
+                    existingPlayersWithoutSpecified.push(player);
+                }
+            } else {
+
+                cc.log(data.playerNumber);
+                var childE = "player_" + i;
+                var player = backgroundLayer.getChildByName(childE);
+                if (player) {
+                    existingSpecifiedPlayer.push(player);
+                }
             }
         }
-//
-        cc.log(existingPlayers);
+
+        existingSpecifiedPlayer.forEach(dosomethingspecial1);
+        function dosomethingspecial1(element, index, array) {
+            cc.log("Element");
+            cc.log(element);
+            cc.log("Index");
+            cc.log(index);
+            cc.log("Array");
+            cc.log(array);
+            
+            
+            var unTint = new cc.TintTo.create(0, 250, 250, 250);
+            child = element._children[0];
+            cc.log("Children[0]");
+            cc.log(child);
+            child.runAction(unTint);
+
+//            cc.director.pause();
+        }
+
+
+        //cc.log(existingPlayersWithoutSpecified);
+        existingPlayersWithoutSpecified.forEach(dosomethingspecial2);
+        function dosomethingspecial2(element, index, array) {
+            var sprite_action = new cc.TintTo.create(0, 85, 85, 85);
+            child = element._children[0];
+            child.runAction(sprite_action);
+        }
+
+
 //        var TheActivePlayer = backgroundLayer.getChildByName(childname);
 //        cc.log (TheActivePlayer);
 //
