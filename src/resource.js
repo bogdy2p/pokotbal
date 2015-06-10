@@ -3,7 +3,7 @@ var res = {
     CloseNormal_png: "res/CloseNormal.png",
     CloseSelected_png: "res/CloseSelected.png",
     Background_none_png: "res/background/BackgroundNone.png",
-    Table_png: "res/background/Table.png",
+    Table_png: "res/background/Table14.png",
     //USER INTERFACE RESOURCES ================================================    
     UI_Marker: "res/userinterface/Marker.png",
     UI_BottomLeftInfo: "res/userinterface/BotLeftInfoNone.png",
@@ -42,19 +42,10 @@ var res = {
     Start_n_png: "res/controls/start_n.png",
     //Players :
 
-//    Player1: "res/pedro/player1.png",
-//    Player2: "res/pedro/player2.png",
-//    Player3: "res/pedro/player3.png",
-//    Player4: "res/pedro/player4.png",
-//    Player5: "res/pedro/player5.png",
-//    Player6: "res/pedro/player6.png",
-//    Player7: "res/pedro/player7.png",
-//    Player8: "res/pedro/player8.png",
-//    Player9: "res/pedro/player9.png",
-//    Player10: "res/pedro/player10.png",
+
     //Pedro Animation
-
-
+    Losenew_plist: "res/new/losenew.plist",
+    Losenew_png: "res/new/losenew.png",
     Losing_png: "res/pedro/textures/lose.png",
     Losing_plist: "res/pedro/textures/lose.plist",
     Pedrofull_png: "res/animations/pedrofull.png",

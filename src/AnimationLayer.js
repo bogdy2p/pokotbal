@@ -162,8 +162,8 @@ var AnimationLayer = cc.Layer.extend({
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
-        cc.spriteFrameCache.addSpriteFrames(res.Pedro90_plist);
-        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Pedro90_png);
+        cc.spriteFrameCache.addSpriteFrames(res.Losenew_plist);
+        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Losenew_png);
         var childname = "player_" + number;
         var asd = new Player(thisplayer, object);
         backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
@@ -183,95 +183,110 @@ var AnimationLayer = cc.Layer.extend({
             cc.log("Some strange error when trying to remove player " + (data.number - 1));
         }
 
-//        cc.spriteFrameCache.addSpriteFrames(res.Pedro90_plist);
-//        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Pedro90_png);
-//        var childname = "player_" + number;
-//        var asd = new Player(thisplayer, object);
-//        backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
 
     },
     animatePlayerWin: function (number, pozx, pozy) {
-        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var childname = "player_" + number;
-        var sprite = backgroundLayer.getChildByName(childname);
-        var thesprite = sprite._children[0];
-        var animFramesWin = [];
-        for (var i = 1; i < 6; i++) {
-            var str = "win" + i + ".png";
-            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-            animFramesWin.push(frame);
-        }
-        var animationWin = new cc.Animation(animFramesWin, 0.4);
-        var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
-        thesprite.runAction(animateWinning, 1);
+//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+//        var childname = "player_" + number;
+//        var sprite = backgroundLayer.getChildByName(childname);
+//        var thesprite = sprite._children[0];
+//        var animFramesWin = [];
+//        for (var i = 1; i < 6; i++) {
+//            var str = "win" + i + ".png";
+//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+//            animFramesWin.push(frame);
+//        }
+//        var animationWin = new cc.Animation(animFramesWin, 0.4);
+//        var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
+//        thesprite.runAction(animateWinning, 1);
     },
+//    animatePlayerLose: function (number, pozx, pozy) {
+//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+//        var childname = "player_" + number;
+//        var sprite = backgroundLayer.getChildByName(childname);
+//        var thesprite = sprite._children[0];
+//        var animFramesLose = [];
+//        for (var i = 1; i < 6; i++) {
+//            var str = "lose" + i + ".png";
+//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+//            animFramesLose.push(frame);
+//        }
+//        var animationLose = new cc.Animation(animFramesLose, 0.4);
+//        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
+//        thesprite.runAction(animateLosing, 1);
+//    },
     animatePlayerLose: function (number, pozx, pozy) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var childname = "player_" + number;
         var sprite = backgroundLayer.getChildByName(childname);
         var thesprite = sprite._children[0];
         var animFramesLose = [];
-        for (var i = 1; i < 6; i++) {
+        for (var i = 1; i <= 70; i++) {
             var str = "lose" + i + ".png";
+//            var str = "lose" + i + ".png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             animFramesLose.push(frame);
         }
-        var animationLose = new cc.Animation(animFramesLose, 0.4);
-        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
+        var animationLose = new cc.Animation(animFramesLose, 0.05);
+        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 5);
         thesprite.runAction(animateLosing, 1);
     },
     animatePlayerWait: function (number, pozx, pozy) {
-        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var childname = "player_" + number;
-        var sprite = backgroundLayer.getChildByName(childname);
-        var thesprite = sprite._children[0];
-        var animFramesWait = [];
-        for (var i = 1; i < 6; i++) {
-            var str = "wait" + i + ".png";
-            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-            animFramesWait.push(frame);
-        }
-        var animationWait = new cc.Animation(animFramesWait, 0.4);
-        var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 1);
-        thesprite.runAction(animateWaiting, 1);
+//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+//        var childname = "player_" + number;
+//        var sprite = backgroundLayer.getChildByName(childname);
+//        var thesprite = sprite._children[0];
+//        var animFramesWait = [];
+//        for (var i = 1; i < 6; i++) {
+//            var str = "wait" + i + ".png";
+//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+//            animFramesWait.push(frame);
+//        }
+//        var animationWait = new cc.Animation(animFramesWait, 0.4);
+//        var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 1);
+//        thesprite.runAction(animateWaiting, 1);
     },
     updateGameClock: function (dt) {
-        this.seconds += dt;
-        var seconds = Math.floor(this.seconds);
-        var UserInterfaceLayer = this.getParent().getChildByTag(TagOfLayer.UserInterface);
-        UserInterfaceLayer.updateTimerClock(seconds);
+        if (SHOWALL) {
+            this.seconds += dt;
+            var seconds = Math.floor(this.seconds);
+            var UserInterfaceLayer = this.getParent().getChildByTag(TagOfLayer.UserInterface);
+            UserInterfaceLayer.updateTimerClock(seconds);
+        }
 
     },
     animateGameTitle: function (data) {
-        var backgroundLayer = this.backgroundLayer;
-        var GameTitle = backgroundLayer.getChildByName("GameTitleBox");
-        var GameTitleX = GameTitle.getPosition().x;
-        var GameTitleY = GameTitle.getPosition().y;
-        var topLabel = new cc.LabelTTF.create(data.topInfo.toUpperCase(), "MontserratRegular", 14);
-        topLabel.setColor(cc.color(255, 255, 255));
-        topLabel.setAnchorPoint(0.5, 0.5);
-        topLabel.setPosition(cc.p(GameTitleX - 10, GameTitleY + 38));
-        backgroundLayer.addChild(topLabel, 500, "topLabel");
-        var versusLabel = new cc.LabelTTF("vs".toUpperCase(), "MontserratRegular", 16);
-        versusLabel.setColor(cc.color(255, 255, 255));
-        versusLabel.setAnchorPoint(0.5, 0.5);
-        versusLabel.setPosition(cc.p(GameTitleX - versusLabel.width / 4, GameTitleY - versusLabel.height / 4));
-        backgroundLayer.addChild(versusLabel, 500, "leftLabel");
-        var leftLabel = new cc.LabelTTF(data.leftInfo.toUpperCase(), "MontserratBold", 30);
-        leftLabel.setColor(cc.color(255, 255, 255));
-        leftLabel.setAnchorPoint(0.5, 0.5);
-        leftLabel.setPosition(cc.p(GameTitleX - leftLabel.width / 2 - versusLabel.width, GameTitleY));
-        backgroundLayer.addChild(leftLabel, 500, "leftLabel");
-        var rightLabel = new cc.LabelTTF(data.rightInfo.toUpperCase(), "MontserratBold", 30);
-        rightLabel.setColor(cc.color(255, 255, 255));
-        rightLabel.setAnchorPoint(0.5, 0.5);
-        rightLabel.setPosition(cc.p(GameTitleX + leftLabel.width / 2 + versusLabel.width, GameTitleY));
-        backgroundLayer.addChild(rightLabel, 500, "leftLabel");
-        var bottomLabel = new cc.LabelTTF(data.bottomInfo.toUpperCase(), "MontserratRegular", 16);
-        bottomLabel.setColor(cc.color(255, 255, 255));
-        bottomLabel.setAnchorPoint(0.5, 0.5);
-        bottomLabel.setPosition(cc.p(GameTitleX, GameTitleY - 30));
-        backgroundLayer.addChild(bottomLabel, 500, "topLabel");
+        if (SHOWALL) {
+            var backgroundLayer = this.backgroundLayer;
+            var GameTitle = backgroundLayer.getChildByName("GameTitleBox");
+            var GameTitleX = GameTitle.getPosition().x;
+            var GameTitleY = GameTitle.getPosition().y;
+            var topLabel = new cc.LabelTTF.create(data.topInfo.toUpperCase(), "MontserratRegular", 14);
+            topLabel.setColor(cc.color(255, 255, 255));
+            topLabel.setAnchorPoint(0.5, 0.5);
+            topLabel.setPosition(cc.p(GameTitleX - 10, GameTitleY + 38));
+            backgroundLayer.addChild(topLabel, 500, "topLabel");
+            var versusLabel = new cc.LabelTTF("vs".toUpperCase(), "MontserratRegular", 16);
+            versusLabel.setColor(cc.color(255, 255, 255));
+            versusLabel.setAnchorPoint(0.5, 0.5);
+            versusLabel.setPosition(cc.p(GameTitleX - versusLabel.width / 4, GameTitleY - versusLabel.height / 4));
+            backgroundLayer.addChild(versusLabel, 500, "leftLabel");
+            var leftLabel = new cc.LabelTTF(data.leftInfo.toUpperCase(), "MontserratBold", 30);
+            leftLabel.setColor(cc.color(255, 255, 255));
+            leftLabel.setAnchorPoint(0.5, 0.5);
+            leftLabel.setPosition(cc.p(GameTitleX - leftLabel.width / 2 - versusLabel.width, GameTitleY));
+            backgroundLayer.addChild(leftLabel, 500, "leftLabel");
+            var rightLabel = new cc.LabelTTF(data.rightInfo.toUpperCase(), "MontserratBold", 30);
+            rightLabel.setColor(cc.color(255, 255, 255));
+            rightLabel.setAnchorPoint(0.5, 0.5);
+            rightLabel.setPosition(cc.p(GameTitleX + leftLabel.width / 2 + versusLabel.width, GameTitleY));
+            backgroundLayer.addChild(rightLabel, 500, "leftLabel");
+            var bottomLabel = new cc.LabelTTF(data.bottomInfo.toUpperCase(), "MontserratRegular", 16);
+            bottomLabel.setColor(cc.color(255, 255, 255));
+            bottomLabel.setAnchorPoint(0.5, 0.5);
+            bottomLabel.setPosition(cc.p(GameTitleX, GameTitleY - 30));
+            backgroundLayer.addChild(bottomLabel, 500, "topLabel");
+        }
     },
     animateMarkerWithMessage: function (data) {
         var backgroundLayer = this.backgroundLayer;
@@ -324,7 +339,7 @@ var AnimationLayer = cc.Layer.extend({
 
         var moveToCenter = new cc.MoveTo.create(1.5, cc.p(700, 580));
         this.cashSpriteSheet.runAction(moveToCenter, 1);
-      
+
 
     }, animateGettingAllBets: function (data) {
         var backgroundLayer = this.backgroundLayer;
@@ -368,60 +383,64 @@ var AnimationLayer = cc.Layer.extend({
         }
     },
     animateYouWin: function (data) {
-        var backgroundLayer = this.backgroundLayer;
-        //Should add the whole screen sprite
-        //Also play an animation to the bottom left of the screen after the whole screen exits.
-        var youWinLabel = new cc.LabelTTF("YOU WIN", "MontserratBold", 28);
-        youWinLabel.setColor(cc.color(180, 180, 0));
-        youWinLabel.setAnchorPoint(0, 0);
-        youWinLabel.setOpacity(100);
-        youWinLabel.setPosition(cc.p(60, 12));
-        backgroundLayer.addChild(youWinLabel, 1500, "youWinLabel");
-        var fadeInMessage = cc.FadeIn.create(1);
-        var delay = cc.delayTime(3);
-        var fadeOutMessage = cc.FadeOut.create(0.5);
-        var youWinMessageSequence = cc.Sequence.create(fadeInMessage, delay, fadeOutMessage);
-        youWinLabel.runAction(youWinMessageSequence);
-        var youWinAmmountLabel = new cc.LabelTTF("£" + data.ammount, "MontserratBold", 36);
-        youWinAmmountLabel.setColor(cc.color(180, 180, 0));
-        youWinAmmountLabel.setAnchorPoint(0, 0);
-        youWinAmmountLabel.setOpacity(100);
-        youWinAmmountLabel.setPosition(cc.p(youWinLabel.x + youWinLabel.width + 5, 10));
-        backgroundLayer.addChild(youWinAmmountLabel, 1500, "youWinAmmountLabel");
-        var fadeInMessageAmmount = cc.FadeIn.create(1);
-        var delayAmmount = cc.delayTime(3);
-        var fadeOutMessageAmmount = cc.FadeOut.create(0.5);
-        var youWinAmmountSequence = cc.Sequence.create(fadeInMessageAmmount, delayAmmount, fadeOutMessageAmmount);
-        youWinAmmountLabel.runAction(youWinAmmountSequence);
+        if (SHOWALL) {
+            var backgroundLayer = this.backgroundLayer;
+            //Should add the whole screen sprite
+            //Also play an animation to the bottom left of the screen after the whole screen exits.
+            var youWinLabel = new cc.LabelTTF("YOU WIN", "MontserratBold", 28);
+            youWinLabel.setColor(cc.color(180, 180, 0));
+            youWinLabel.setAnchorPoint(0, 0);
+            youWinLabel.setOpacity(100);
+            youWinLabel.setPosition(cc.p(60, 12));
+            backgroundLayer.addChild(youWinLabel, 1500, "youWinLabel");
+            var fadeInMessage = cc.FadeIn.create(1);
+            var delay = cc.delayTime(3);
+            var fadeOutMessage = cc.FadeOut.create(0.5);
+            var youWinMessageSequence = cc.Sequence.create(fadeInMessage, delay, fadeOutMessage);
+            youWinLabel.runAction(youWinMessageSequence);
+            var youWinAmmountLabel = new cc.LabelTTF("£" + data.ammount, "MontserratBold", 36);
+            youWinAmmountLabel.setColor(cc.color(180, 180, 0));
+            youWinAmmountLabel.setAnchorPoint(0, 0);
+            youWinAmmountLabel.setOpacity(100);
+            youWinAmmountLabel.setPosition(cc.p(youWinLabel.x + youWinLabel.width + 5, 10));
+            backgroundLayer.addChild(youWinAmmountLabel, 1500, "youWinAmmountLabel");
+            var fadeInMessageAmmount = cc.FadeIn.create(1);
+            var delayAmmount = cc.delayTime(3);
+            var fadeOutMessageAmmount = cc.FadeOut.create(0.5);
+            var youWinAmmountSequence = cc.Sequence.create(fadeInMessageAmmount, delayAmmount, fadeOutMessageAmmount);
+            youWinAmmountLabel.runAction(youWinAmmountSequence);
+        }
 
     },
     animateDisplayBalanceChange: function (data) {
-        var backgroundLayer = this.backgroundLayer;
-        var yourBalanceLabel = new cc.LabelTTF("BALANCE", "MontserratBold", 28);
-        yourBalanceLabel.setColor(cc.color(255, 255, 255));
-        yourBalanceLabel.setAnchorPoint(0, 0);
-        yourBalanceLabel.setOpacity(100);
-        yourBalanceLabel.setPosition(cc.p(50, 50));
-        backgroundLayer.addChild(yourBalanceLabel, 1500, "yourBalance");
-        var fadeInMessage = cc.FadeIn.create(1);
+        if (SHOWALL) {
+            var backgroundLayer = this.backgroundLayer;
+            var yourBalanceLabel = new cc.LabelTTF("BALANCE", "MontserratBold", 28);
+            yourBalanceLabel.setColor(cc.color(255, 255, 255));
+            yourBalanceLabel.setAnchorPoint(0, 0);
+            yourBalanceLabel.setOpacity(100);
+            yourBalanceLabel.setPosition(cc.p(50, 50));
+            backgroundLayer.addChild(yourBalanceLabel, 1500, "yourBalance");
+            var fadeInMessage = cc.FadeIn.create(1);
 //        var delay = cc.delayTime(3);
 //        var fadeOutMessage = cc.FadeOut.create(0.5);
 //        var yourBalanceSequence = cc.Sequence.create(fadeInMessage, delay, fadeOutMessage);
-        var yourBalanceSequence = cc.Sequence.create(fadeInMessage);
-        yourBalanceLabel.runAction(yourBalanceSequence);
+            var yourBalanceSequence = cc.Sequence.create(fadeInMessage);
+            yourBalanceLabel.runAction(yourBalanceSequence);
 
-        var yourBalanceAmmountLabel = new cc.LabelTTF("£" + data.balance, "MontserratBold", 36);
-        yourBalanceAmmountLabel.setColor(cc.color(255, 255, 255));
-        yourBalanceAmmountLabel.setAnchorPoint(0, 0);
-        yourBalanceAmmountLabel.setOpacity(100);
-        yourBalanceAmmountLabel.setPosition(cc.p(yourBalanceLabel.x + yourBalanceLabel.width + 5, 49));
-        backgroundLayer.addChild(yourBalanceAmmountLabel, 1500, "yourBalanceAmmountLabel");
-        var fadeInMessageAmmount = cc.FadeIn.create(1);
+            var yourBalanceAmmountLabel = new cc.LabelTTF("£" + data.balance, "MontserratBold", 36);
+            yourBalanceAmmountLabel.setColor(cc.color(255, 255, 255));
+            yourBalanceAmmountLabel.setAnchorPoint(0, 0);
+            yourBalanceAmmountLabel.setOpacity(100);
+            yourBalanceAmmountLabel.setPosition(cc.p(yourBalanceLabel.x + yourBalanceLabel.width + 5, 49));
+            backgroundLayer.addChild(yourBalanceAmmountLabel, 1500, "yourBalanceAmmountLabel");
+            var fadeInMessageAmmount = cc.FadeIn.create(1);
 //        svar delayAmmount = cc.delayTime(3);
 //        var fadeOutMessageAmmount = cc.FadeOut.create(0.5);
 //        var yourBalanceAmmountSequence = cc.Sequence.create(fadeInMessageAmmount, delayAmmount, fadeOutMessageAmmount);
 //        var yourBalanceAmmountSequence = cc.Sequence.create(fadeInMessageAmmount, delayAmmount, fadeOutMessageAmmount);
-        yourBalanceAmmountLabel.runAction(fadeInMessageAmmount);
+            yourBalanceAmmountLabel.runAction(fadeInMessageAmmount);
+        }
 
     },
     tintOtherPlayers: function (data) {

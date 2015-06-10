@@ -24,8 +24,6 @@ if (typeof SpriteTag == "undefined") {
     SpriteTag.player10 = 9;
 }
 
-
-
 var playerInformations = [
     {
         x: 470,
