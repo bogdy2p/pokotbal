@@ -241,7 +241,6 @@ var AnimationLayer = cc.Layer.extend({
         var UserInterfaceLayer = this.getParent().getChildByTag(TagOfLayer.UserInterface);
         UserInterfaceLayer.updateTimerClock(seconds);
 
-
     },
     animateGameTitle: function (data) {
         var backgroundLayer = this.backgroundLayer;
@@ -325,22 +324,18 @@ var AnimationLayer = cc.Layer.extend({
 
         var moveToCenter = new cc.MoveTo.create(1.5, cc.p(700, 580));
         this.cashSpriteSheet.runAction(moveToCenter, 1);
-        //Spawn money over the player
-        //Move money to the middle of the game.
-        //Fade money out in the table.
+      
 
     }, animateGettingAllBets: function (data) {
         var backgroundLayer = this.backgroundLayer;
 
         if (this.current_bets > 0) {
 
-
             var allbets = [];
             var object = playerInformations[data.playerNumber];
             var player_x = object.x;
             var player_y = object.y;
             var player_z = object.zIndex;
-
             for (i = 0; i < this.current_bets; i++) {
                 var bet = backgroundLayer.getChildByName("bet" + i);
                 if (bet)
@@ -368,12 +363,6 @@ var AnimationLayer = cc.Layer.extend({
                 }
             }, 3500);
             this.current_bets = 0;
-            //Reset CurrentBets TO 0 !!!
-//            setTimeout(function () {
-//                cc.log(backgroundLayer);
-//            }, 2600);
-
-
         } else {
             cc.log("THERE WERE NO BETS ON THE TABLE!");
         }
@@ -436,8 +425,7 @@ var AnimationLayer = cc.Layer.extend({
 
     },
     tintOtherPlayers: function (data) {
-//        cc.log(data);
-//        cc.log("AAAAAAAAAAAAAAAAA");
+
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var object = playerInformations[data.playerNumber];
         //cc.log(data.number);
