@@ -8,11 +8,5 @@ var PlayScene = cc.Scene.extend({
             this.addChild(new StatusLayer(), 2, TagOfLayer.Status);
         }
         this.addChild(new UserInterfaceLayer(), 3, TagOfLayer.UserInterface);
-        if (SHOWALL) {
-            this.addChild(new LastLayer(), 4, TagOfLayer.LastLayer);
-            this.addChild(new TopFeedLayer(), 5, TagOfLayer.TopFeed);
-            this.addChild(new BotFeedLayer(), 6, TagOfLayer.BotFeed);
-        }
-
     },
 });

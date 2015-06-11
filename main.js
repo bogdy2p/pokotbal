@@ -180,7 +180,7 @@ var mygame = {
             // Adjust viewport meta
             cc.view.adjustViewPort(true);
             // Setup the resolution policy and design resolution size
-            cc.view.setDesignResolutionSize(1694, 1024, cc.ResolutionPolicy.SHOW_ALL);
+            cc.view.setDesignResolutionSize(1100, 650, cc.ResolutionPolicy.SHOW_ALL);
             // The game will be resized when browser size change
             cc.view.resizeWithBrowserSize(true);
             //load resources

@@ -1,3 +1,13 @@
+var topLane = 490;
+var botLane = 190;
+var midLane = 320;
+var leftSolo = 200;
+var col1 = 340;
+var col2 = 480;
+var col3 = 620;
+var col4 = 760;
+var rightSolo = 900;
+
 
 if (typeof TagOfLayer == "undefined") {
     var TagOfLayer = {};
@@ -26,8 +36,8 @@ if (typeof SpriteTag == "undefined") {
 
 var playerInformations = [
     {
-        x: 470,
-        y: 720,
+        x: col1,
+        y: topLane,
         zIndex: 0,
         playerNumber: 1,
         defaultName: "Player1",
@@ -37,8 +47,8 @@ var playerInformations = [
         popUpZ: 0,
     },
     {
-        x: 620,
-        y: 720,
+        x: col2,
+        y: topLane,
         zIndex: 0,
         playerNumber: 2,
         defaultName: "Player2",
@@ -48,8 +58,8 @@ var playerInformations = [
         popUpZ: 0,
     },
     {
-        x: 770,
-        y: 720,
+        x: col3,
+        y: topLane,
         zIndex: 0,
         playerNumber: 3,
         defaultName: "Player3",
@@ -59,8 +69,8 @@ var playerInformations = [
         popUpZ: 0,
     },
     {
-        x: 920,
-        y: 720,
+        x: col4,
+        y: topLane,
         zIndex: 0,
         playerNumber: 4,
         defaultName: "Player4",
@@ -71,8 +81,8 @@ var playerInformations = [
     },
     //Right One
     {
-        x: 1050,
-        y: 530,
+        x: rightSolo,
+        y: midLane,
         zIndex: 0,
         playerNumber: 5,
         defaultName: "Player5",
@@ -83,8 +93,8 @@ var playerInformations = [
     },
 //    Next three bottom
     {
-        x: 920,
-        y: 400,
+        x: col4,
+        y: botLane,
         zIndex: 2,
         playerNumber: 6,
         defaultName: "Player6",
@@ -94,8 +104,8 @@ var playerInformations = [
         popUpZ: 0,
     },
     {
-        x: 770,
-        y: 400,
+        x: col3,
+        y: botLane,
         zIndex: 2,
         playerNumber: 7,
         defaultName: "Player7",
@@ -105,8 +115,8 @@ var playerInformations = [
         popUpZ: 0,
     },
     {
-        x: 620,
-        y: 400,
+        x: col2,
+        y: botLane,
         zIndex: 2,
         playerNumber: 8,
         defaultName: "Player8",
@@ -115,8 +125,8 @@ var playerInformations = [
         popUpY: 270,
         popUpZ: 0, },
     {
-        x: 470,
-        y: 400,
+        x: col1,
+        y: botLane,
         zIndex: 2,
         playerNumber: 9,
         defaultName: "Player9",
@@ -127,8 +137,8 @@ var playerInformations = [
     },
     //Next  clockwise
     {
-        x: 340,
-        y: 530,
+        x: leftSolo,
+        y: midLane,
         zIndex: 0,
         playerNumber: 10,
         defaultName: "Player10",
@@ -141,22 +151,22 @@ var playerInformations = [
 
 
 
-var playerPositions = [
-    //Formation 4-1-4-1 Clockwise
-    //First four top
-    {x: 470, y: 720, zIndex: 0},
-    {x: 620, y: 720, zIndex: 0},
-    {x: 770, y: 720, zIndex: 0},
-    {x: 920, y: 720, zIndex: 0},
-    //Next  clockwise
-    {x: 1050, y: 530, zIndex: 2},
-//    Next three bottom
-    {x: 920, y: 400, zIndex: 2},
-    {x: 770, y: 400, zIndex: 2},
-    {x: 620, y: 400, zIndex: 2},
-    {x: 470, y: 400, zIndex: 2},
-    //Next  clockwise
-    {x: 340, y: 530, zIndex: 2},
-];
+//var playerPositions = [
+//    //Formation 4-1-4-1 Clockwise
+//    //First four top
+//    {x: 470, y: 720, zIndex: 0},
+//    {x: 620, y: 720, zIndex: 0},
+//    {x: 770, y: 720, zIndex: 0},
+//    {x: 920, y: 720, zIndex: 0},
+//    //Next  clockwise
+//    {x: 1050, y: 530, zIndex: 2},
+////    Next three bottom
+//    {x: 920, y: 400, zIndex: 2},
+//    {x: 770, y: 400, zIndex: 2},
+//    {x: 620, y: 400, zIndex: 2},
+//    {x: 470, y: 400, zIndex: 2},
+//    //Next  clockwise
+//    {x: 340, y: 530, zIndex: 2},
+//];
 
 var global_current_position = 0;

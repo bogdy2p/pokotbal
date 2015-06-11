@@ -17,9 +17,6 @@
         "src/PlayScene.js",
         "src/UserInterfaceLayer.js",
         "src/StatusLayer.js",
-        "src/LastLayer.js",
-        "src/TopFeedLayer.js",
-        "src/BotFeedLayer.js",
         "src/Player.js"
     ]
 }
