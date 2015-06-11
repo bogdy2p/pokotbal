@@ -26,7 +26,6 @@ var AnimationLayer = cc.Layer.extend({
             event: cc.EventListener.CUSTOM,
             eventName: "spawn_player_event",
             callback: function (event) {
-
                 var userdata = event.getUserData();
                 that.spawnPlayer(userdata.number, userdata.name, userdata.ammount);
             }
@@ -37,7 +36,6 @@ var AnimationLayer = cc.Layer.extend({
             event: cc.EventListener.CUSTOM,
             eventName: "remove_player_event",
             callback: function (event) {
-
                 var data = event.getUserData();
                 that.removePlayer(data);
             }
@@ -45,7 +43,6 @@ var AnimationLayer = cc.Layer.extend({
         cc.eventManager.addListener(removePlayerEvent, 1);
 
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-
         var winningListener = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
             eventName: "event_player_winning",
@@ -59,7 +56,6 @@ var AnimationLayer = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(winningListener, 1);
-
         var losingListener = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
             eventName: "event_player_losing",
@@ -69,7 +65,6 @@ var AnimationLayer = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(losingListener, 1);
-
         var waitingListener = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
             eventName: "event_player_waiting",
@@ -99,7 +94,6 @@ var AnimationLayer = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(WinningListener, 1);
-
         var GettingAllBetsListener = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
             eventName: "event_animate_player_receiving_bets",
@@ -109,7 +103,6 @@ var AnimationLayer = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(GettingAllBetsListener, 1);
-
         var tintOtherPlayersListener = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
             eventName: "event_tint_other_players",
@@ -265,34 +258,6 @@ var AnimationLayer = cc.Layer.extend({
             cc.log("THERE WERE NO BETS ON THE TABLE!");
         }
     },
-//    animateYouWin: function (data) {
-//        if (SHOWALL) {
-//            var backgroundLayer = this.backgroundLayer;
-//            var youWinLabel = new cc.LabelTTF("YOU WIN", "MontserratBold", 28);
-//            youWinLabel.setColor(cc.color(180, 180, 0));
-//            youWinLabel.setAnchorPoint(0, 0);
-//            youWinLabel.setOpacity(100);
-//            youWinLabel.setPosition(cc.p(60, 12));
-//            backgroundLayer.addChild(youWinLabel, 1500, "youWinLabel");
-//            var fadeInMessage = cc.FadeIn.create(1);
-//            var delay = cc.delayTime(3);
-//            var fadeOutMessage = cc.FadeOut.create(0.5);
-//            var youWinMessageSequence = cc.Sequence.create(fadeInMessage, delay, fadeOutMessage);
-//            youWinLabel.runAction(youWinMessageSequence);
-//            var youWinAmmountLabel = new cc.LabelTTF("£" + data.ammount, "MontserratBold", 36);
-//            youWinAmmountLabel.setColor(cc.color(180, 180, 0));
-//            youWinAmmountLabel.setAnchorPoint(0, 0);
-//            youWinAmmountLabel.setOpacity(100);
-//            youWinAmmountLabel.setPosition(cc.p(youWinLabel.x + youWinLabel.width + 5, 10));
-//            backgroundLayer.addChild(youWinAmmountLabel, 1500, "youWinAmmountLabel");
-//            var fadeInMessageAmmount = cc.FadeIn.create(1);
-//            var delayAmmount = cc.delayTime(3);
-//            var fadeOutMessageAmmount = cc.FadeOut.create(0.5);
-//            var youWinAmmountSequence = cc.Sequence.create(fadeInMessageAmmount, delayAmmount, fadeOutMessageAmmount);
-//            youWinAmmountLabel.runAction(youWinAmmountSequence);
-//        }
-//
-//    },
     tintOtherPlayers: function (data) {
 
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);

@@ -5,18 +5,12 @@ var MenuLayer = cc.Layer.extend({
     },
     init: function () {
         this._super();
-
-
-        
+       
         var winSize = cc.director.getWinSize();
-
         var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
         var spriteBackground = new cc.Sprite(res.Background_none_png);
         spriteBackground.setPosition(centerPos);
-        this.addChild(spriteBackground);
-
-
-
+//        this.addChild(spriteBackground);
         //Add Start Menu Button / Menu Item and assign it to "ONPLAY" function"
         var menuItemPlay = new cc.MenuItemSprite(
                 new cc.Sprite(res.Start_n_png), // normal state
@@ -26,10 +20,6 @@ var MenuLayer = cc.Layer.extend({
         menu.setPosition(centerPos);
         this.addChild(menu);
         //=====================================================================
-       
-
-
-
     },
     //========================================================================
     //The OnPlay FUNCTION
@@ -38,8 +28,6 @@ var MenuLayer = cc.Layer.extend({
     }
     //=========================================================================
 });
-
-
 var MenuScene = cc.Scene.extend({
     onEnter: function () {
         this._super();
