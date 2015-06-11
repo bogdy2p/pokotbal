@@ -36,7 +36,7 @@ var res = {
     P_popupUnderGrey: "res/userinterface/UnderPopupGrey.png",
     P_popupUnderGreen: "res/userinterface/UnderPopupGreen.png",
     //=========================================================================
-
+    Test_png: "res/test.png",
     //Controls
 
     Start_s_png: "res/controls/start_s.png",

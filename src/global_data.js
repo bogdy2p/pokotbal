@@ -1,12 +1,12 @@
 var topLane = 490;
 var botLane = 190;
 var midLane = 320;
-var leftSolo = 200;
+var leftSolo = 180;
 var col1 = 340;
 var col2 = 480;
 var col3 = 620;
 var col4 = 760;
-var rightSolo = 900;
+var rightSolo = 920;
 
 
 if (typeof TagOfLayer == "undefined") {

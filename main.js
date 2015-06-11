@@ -2,120 +2,7 @@
 var SHOWALL = false;
 var GGS = 1;
 
-var playerInformations = [
-    {
-        x: 470,
-        y: 720,
-        zIndex: 0,
-        playerNumber: 1,
-        defaultName: "Player1",
-        popUpTop: true,
-        popUpX: 470,
-        popUpY: 850,
-        popUpZ: 0,
-    },
-    {
-        x: 620,
-        y: 720,
-        zIndex: 0,
-        playerNumber: 2,
-        defaultName: "Player2",
-        popUpTop: true,
-        popUpX: 620,
-        popUpY: 850,
-        popUpZ: 0,
-    },
-    {
-        x: 770,
-        y: 720,
-        zIndex: 0,
-        playerNumber: 3,
-        defaultName: "Player3",
-        popUpTop: true,
-        popUpX: 770,
-        popUpY: 850,
-        popUpZ: 0,
-    },
-    {
-        x: 920,
-        y: 720,
-        zIndex: 0,
-        playerNumber: 4,
-        defaultName: "Player4",
-        popUpTop: true,
-        popUpX: 920,
-        popUpY: 850,
-        popUpZ: 0,
-    },
-    //Right One
-    {
-        x: 1050,
-        y: 530,
-        zIndex: 2,
-        playerNumber: 5,
-        defaultName: "Player5",
-        popUpTop: true,
-        popUpX: 1050,
-        popUpY: 650,
-        popUpZ: 0,
-    },
-//    Next three bottom
-    {
-        x: 920,
-        y: 400,
-        zIndex: 2,
-        playerNumber: 6,
-        defaultName: "Player6",
-        popUpTop: false,
-        popUpX: 920,
-        popUpY: 270,
-        popUpZ: 0,
-    },
-    {
-        x: 770,
-        y: 400,
-        zIndex: 2,
-        playerNumber: 7,
-        defaultName: "Player7",
-        popUpTop: false,
-        popUpX: 770,
-        popUpY: 270,
-        popUpZ: 0,
-    },
-    {
-        x: 620,
-        y: 400,
-        zIndex: 2,
-        playerNumber: 8,
-        defaultName: "Player8",
-        popUpTop: false,
-        popUpX: 620,
-        popUpY: 270,
-        popUpZ: 0, },
-    {
-        x: 470,
-        y: 400,
-        zIndex: 2,
-        playerNumber: 9,
-        defaultName: "Player9",
-        popUpTop: false,
-        popUpX: 470,
-        popUpY: 270,
-        popUpZ: 0,
-    },
-    //Next  clockwise
-    {
-        x: 340,
-        y: 530,
-        zIndex: 2,
-        playerNumber: 10,
-        defaultName: "Player10",
-        popUpTop: true,
-        popUpX: 340,
-        popUpY: 650,
-        popUpZ: 0,
-    },
-];
+
 
 
 /**
@@ -200,6 +87,12 @@ var mygame = {
         event.setUserData(playerdata);
         cc.eventManager.dispatchEvent(event);
     },
+    updatePlayerData: function (playerdata) {
+        var event = new cc.EventCustom("event_set_player_data");
+        event.setUserData(playerdata);
+        cc.eventManager.dispatchEvent(event);
+
+    },
     animatePlayerWin: function (number) {
         var event = new cc.EventCustom("event_player_winning");
         event.setUserData(number);
@@ -232,8 +125,6 @@ var mygame = {
     },
 };
 
-//mygame.start();
-
 var players = [];
 for (i = 0; i < 10; i++) {
     var thename = "player" + i;
@@ -241,92 +132,9 @@ for (i = 0; i < 10; i++) {
         playerNumber: i,
         number: i,
         name: thename,
-        ammount: 100
+        amount: "0"
     };
 }
-
-var disconnected3 = {
-    markerImage: "testImage",
-    markerMessage: "Player 3 has been disconnected.",
-    fadeInSec: 1,
-    timeToShow: 1,
-    fadeOutSec: 1,
-    repeatTimes: 1,
-};
-var disconnected5 = {
-    markerImage: "testImage",
-    markerMessage: "Player 5 has been disconnected.",
-    fadeInSec: 1,
-    timeToShow: 1,
-    fadeOutSec: 1,
-    repeatTimes: 1,
-};
-
-var disconnected = [];
-for (i = 0; i < 10; i++) {
-    disconnected[i] = {
-        markerImage: "imageforplayer" + i,
-        markerMessage: "Player " + i + " has been disconnected",
-        fadeInSec: 1,
-        timeToShow: 1,
-        fadeOutSec: 1,
-        repeatTimes: 1,
-    };
-}
-
-var joined = [];
-for (i = 0; i < 10; i++) {
-    joined[i] = {
-        markerImage: "imageforplayer" + i,
-        markerMessage: "Player " + i + " has rejoined the match.",
-        fadeInSec: 1,
-        timeToShow: 1,
-        fadeOutSec: 1,
-        repeatTimes: 1,
-    };
-}
-
-var betz = [];
-
-for (k = 0; k < 10; k++) {
-    betz[k] = {
-        playerNumber: k,
-        ammmount: (k + 1) * 50,
-    }
-
-}
-
-var round1bet1 = {
-    playerNumber: 1,
-    ammount: 100,
-};
-var round1bet2 = {
-    playerNumber: 6,
-    ammount: 100,
-};
-var round1bet3 = {
-    playerNumber: 3,
-    ammount: 100,
-};
-
-var betTest = {
-    playerNumber: 2,
-    ammount: 100,
-};
-var betTest2 = {
-    playerNumber: 7,
-    ammount: 100,
-};
-var betTest3 = {
-    playerNumber: 4,
-    ammount: 100,
-};
-
-
-//spawn10players4sec();
-
-
-
 //  ACTUALLY START THE GAME HERE !
 //  ACTUALLY START THE GAME HERE !
 //  ACTUALLY START THE GAME HERE !

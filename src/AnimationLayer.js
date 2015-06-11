@@ -17,9 +17,7 @@ var AnimationLayer = cc.Layer.extend({
     init: function () {
         this._super();
         this.backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        //Schedule the timer clock update to every second
         this.current_bets = 0;
-        //===============================================
 
         var that = this;
         var spawnPlayerEvent = cc.EventListener.create({
@@ -28,6 +26,7 @@ var AnimationLayer = cc.Layer.extend({
             callback: function (event) {
                 var userdata = event.getUserData();
                 that.spawnPlayer(userdata.number, userdata.name, userdata.ammount);
+                that.updatePlayerData(userdata);
             }
         });
         cc.eventManager.addListener(spawnPlayerEvent, 1);
@@ -113,8 +112,19 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(tintOtherPlayersListener, 1);
 
+        var updatePlayerData = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_set_player_data",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.updatePlayerData(data);
+            }
+        });
+        cc.eventManager.addListener(updatePlayerData, 1);
+
     },
     spawnPlayer: function (number, name, ammount) {
+//        cc.log(cc.Director);
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var object = playerInformations[number];
         var player_x = object.x;
@@ -138,6 +148,66 @@ var AnimationLayer = cc.Layer.extend({
         } else {
             cc.log("Some strange error when trying to remove player " + (data.number - 1));
         }
+    },
+    updatePlayerData: function (data) {
+//        cc.log(data);
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var object = playerInformations[data.playerNumber];
+        var childname = "player_" + (data.playerNumber);
+
+
+        var ThePlayer = backgroundLayer.getChildByName(childname);
+//        cc.log(ThePlayer);
+        var children = ThePlayer._children;
+        var popUp = children[1];
+
+
+        
+
+
+        var nameDataIsSet = backgroundLayer.getChildByName("player_" + data.playerNumber + "_nameLabel");
+        var ammountDataIsSet = backgroundLayer.getChildByName("player_" + data.playerNumber + "_ammountLabel");
+        
+        if (ammountDataIsSet) {
+            cc.log(ammountDataIsSet);
+            ammountDataIsSet.setString("£ "+ data.amount);
+            
+
+        } else {
+            var popUpX = popUp.getPosition().x;
+            var popUpY = popUp.getPosition().y;
+            var nameLabel = new cc.LabelTTF.create(data.name, "MontserratRegular", 14);
+            nameLabel.setColor(cc.color(255, 255, 255));
+            nameLabel.setAnchorPoint(0.5, 0.5);
+            if (popUpY < 400) {
+                nameLabel.setPosition(cc.p(popUpX, popUpY + 10));
+            } else {
+                nameLabel.setPosition(cc.p(popUpX, popUpY + 10));
+            }
+
+            backgroundLayer.addChild(nameLabel, 500, "player_" + data.playerNumber + "_nameLabel");
+            var amountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratRegular", 14);
+            amountLabel.setColor(cc.color(255, 255, 255));
+            amountLabel.setAnchorPoint(0.5, 0.5);
+
+            if (popUpY < 400) {
+                amountLabel.setPosition(cc.p(popUpX, popUpY - 5));
+            } else {
+                amountLabel.setPosition(cc.p(popUpX, popUpY - 5));
+            }
+
+
+
+            backgroundLayer.addChild(amountLabel, 500, "player_" + data.playerNumber + "_ammountLabel");
+        }
+
+
+
+
+
+//        cc.log(amountLabel);
+//
+//        cc.log(popUp);
     },
     animatePlayerWin: function (number, pozx, pozy) {
 //        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
