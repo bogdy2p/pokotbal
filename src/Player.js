@@ -17,7 +17,7 @@ var Player = cc.Layer.extend({
 //        var initial_picture = "#wait" + playerdata.playerNumber + ".png";
 //        this.sprite = new cc.Sprite.create(initial_picture);
 //=============================================================================
-        this.sprite = new cc.Sprite.create(res.Test_png);
+        this.sprite = new cc.Sprite.create("#_0000_1loseA1.png.png");
         this.sprite.setPosition(playerdata.x, playerdata.y);
         this.sprite.setOpacity(0);
         spriteSheet.addChild(this.sprite, playerdata.Zindex, playerdata.defaultName);

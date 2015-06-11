@@ -130,8 +130,8 @@ var AnimationLayer = cc.Layer.extend({
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
-        cc.spriteFrameCache.addSpriteFrames(res.Losenew_plist);
-        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Losenew_png);
+        cc.spriteFrameCache.addSpriteFrames(res.Finale_plist);
+        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Finale_png);
         var childname = "player_" + number;
         var asd = new Player(thisplayer, object);
         backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
@@ -150,29 +150,20 @@ var AnimationLayer = cc.Layer.extend({
         }
     },
     updatePlayerData: function (data) {
-//        cc.log(data);
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var object = playerInformations[data.playerNumber];
         var childname = "player_" + (data.playerNumber);
-
 
         var ThePlayer = backgroundLayer.getChildByName(childname);
 //        cc.log(ThePlayer);
         var children = ThePlayer._children;
         var popUp = children[1];
-
-
-        
-
-
-        var nameDataIsSet = backgroundLayer.getChildByName("player_" + data.playerNumber + "_nameLabel");
+//        var nameDataIsSet = backgroundLayer.getChildByName("player_" + data.playerNumber + "_nameLabel");
         var ammountDataIsSet = backgroundLayer.getChildByName("player_" + data.playerNumber + "_ammountLabel");
-        
+
         if (ammountDataIsSet) {
             cc.log(ammountDataIsSet);
-            ammountDataIsSet.setString("£ "+ data.amount);
-            
-
+            ammountDataIsSet.setString("£ " + data.amount);
         } else {
             var popUpX = popUp.getPosition().x;
             var popUpY = popUp.getPosition().y;
@@ -184,7 +175,6 @@ var AnimationLayer = cc.Layer.extend({
             } else {
                 nameLabel.setPosition(cc.p(popUpX, popUpY + 10));
             }
-
             backgroundLayer.addChild(nameLabel, 500, "player_" + data.playerNumber + "_nameLabel");
             var amountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratRegular", 14);
             amountLabel.setColor(cc.color(255, 255, 255));
@@ -195,9 +185,6 @@ var AnimationLayer = cc.Layer.extend({
             } else {
                 amountLabel.setPosition(cc.p(popUpX, popUpY - 5));
             }
-
-
-
             backgroundLayer.addChild(amountLabel, 500, "player_" + data.playerNumber + "_ammountLabel");
         }
 
@@ -215,10 +202,19 @@ var AnimationLayer = cc.Layer.extend({
 //        var sprite = backgroundLayer.getChildByName(childname);
 //        var thesprite = sprite._children[0];
 //        var animFramesWin = [];
-//        for (var i = 1; i < 6; i++) {
-//            var str = "win" + i + ".png";
+//         for (var i = 1; i < 10; i++) {
+//            var str = "_000" + i + "_1loseA" + (i + 1) + ".png.png";
+////            cc.log(str);
+////            var str = "lose" + i + ".png";
 //            var frame = cc.spriteFrameCache.getSpriteFrame(str);
 //            animFramesWin.push(frame);
+//        }
+//        for (var i = 10; i < 60; i++) {
+//            var str2 = "_00" + i + "_1loseA" + (i + 1) + ".png.png";
+//            cc.log(str2);
+////            var str = "lose" + i + ".png";
+//            var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
+//            animFramesWin.push(frame2);
 //        }
 //        var animationWin = new cc.Animation(animFramesWin, 0.4);
 //        var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
@@ -245,30 +241,50 @@ var AnimationLayer = cc.Layer.extend({
         var sprite = backgroundLayer.getChildByName(childname);
         var thesprite = sprite._children[0];
         var animFramesLose = [];
-        for (var i = 1; i <= 70; i++) {
-            var str = "lose" + i + ".png";
+        for (var i = 1; i < 10; i++) {
+            var str = "_000" + i + "_1loseA" + (i + 1) + ".png.png";
+//            cc.log(str);
 //            var str = "lose" + i + ".png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             animFramesLose.push(frame);
         }
+        for (var i = 10; i < 60; i++) {
+            var str2 = "_00" + i + "_1loseA" + (i + 1) + ".png.png";
+//            cc.log(str2);
+//            var str = "lose" + i + ".png";
+            var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
+            animFramesLose.push(frame2);
+        }
+        
+//        cc.log(animFramesLose.length);
         var animationLose = new cc.Animation(animFramesLose, 0.05);
-        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 5);
+        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 2);
         thesprite.runAction(animateLosing, 1);
     },
     animatePlayerWait: function (number, pozx, pozy) {
-//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-//        var childname = "player_" + number;
-//        var sprite = backgroundLayer.getChildByName(childname);
-//        var thesprite = sprite._children[0];
-//        var animFramesWait = [];
-//        for (var i = 1; i < 6; i++) {
-//            var str = "wait" + i + ".png";
-//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-//            animFramesWait.push(frame);
-//        }
-//        var animationWait = new cc.Animation(animFramesWait, 0.4);
-//        var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 1);
-//        thesprite.runAction(animateWaiting, 1);
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var childname = "player_" + number;
+        var sprite = backgroundLayer.getChildByName(childname);
+        var thesprite = sprite._children[0];
+        var animFramesWait = [];
+         for (var i = 1; i < 10; i++) {
+            var str = "_000" + i + "_1waitA" + (i + 1) + ".png.png";
+//            cc.log(str);
+//            var str = "lose" + i + ".png";
+            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+            animFramesWait.push(frame);
+        }
+        for (var i = 10; i < 84; i++) {
+            var str2 = "_00" + i + "_1waitA" + (i + 1) + ".png.png";
+//            cc.log(str2);
+//            var str = "lose" + i + ".png";
+            var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
+            animFramesWait.push(frame2);
+        }
+        
+        var animationWait = new cc.Animation(animFramesWait, 0.05);
+        var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 2);
+        thesprite.runAction(animateWaiting, 1);
     },
     animateBetting: function (data) {
         var backgroundLayer = this.backgroundLayer;

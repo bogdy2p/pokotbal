@@ -170,28 +170,52 @@ setTimeout(function () {
     setTimeout(function () {
         mygame.spawnPlayer(players[6]);
     }, 2000 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[7]);
-    }, 2300 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[8]);
-    }, 2600 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[9]);
-    }, 2900 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[7]);
+//    }, 2300 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[8]);
+//    }, 2600 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[9]);
+//    }, 2900 / GGS);
 }, 1500);
 //END OF SPAWNING==============================================================
 //END OF SPAWNING==============================================================
 
 //Make all the players run a specific animation [LOSE].
 setTimeout(function () {
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < 7; i++) {
         mygame.animatePlayerLose(players[i]);
     }
-}, 11000 / GGS);
+}, 6000 / GGS);
 
 //END OF ACTION ==============================================================
 
+setTimeout(function () {
+    for (i = 0; i < 5; i++) {
+        mygame.animatePlayerWait(players[i]);
+    }
+}, 12400 / GGS);
+
+setTimeout(function () {
+    for (i = 5; i < 7; i++) {
+        mygame.animatePlayerLose(players[i]);
+    }
+}, 12400 / GGS);
+
+
+setTimeout(function () {
+    for (i = 0; i < 5; i++) {
+        mygame.animatePlayerLose(players[i]);
+    }
+}, 21000 / GGS);
+
+setTimeout(function () {
+    for (i = 5; i < 7; i++) {
+        mygame.animatePlayerWait(players[i]);
+    }
+}, 21000 / GGS);
 
 
 

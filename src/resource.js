@@ -42,7 +42,8 @@ var res = {
     Start_s_png: "res/controls/start_s.png",
     Start_n_png: "res/controls/start_n.png",
     //Players :
-
+    Finale_png: "res/animations/finale.png",
+    Finale_plist: "res/animations/finale.plist",
 
     //Pedro Animation
     Losenew_plist: "res/new/losenew.plist",
