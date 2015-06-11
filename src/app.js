@@ -6,6 +6,8 @@ var MenuLayer = cc.Layer.extend({
     init: function () {
         this._super();
 
+
+        
         var winSize = cc.director.getWinSize();
 
         var centerPos = cc.p(winSize.width / 2, winSize.height / 2);

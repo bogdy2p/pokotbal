@@ -2,7 +2,8 @@ var res = {
     HelloWorld_png: "res/HelloWorld.png",
     CloseNormal_png: "res/CloseNormal.png",
     CloseSelected_png: "res/CloseSelected.png",
-    Background_none_png: "res/background/BackgroundNone.png",
+//    Background_none_png: "res/background/BackgroundNone.png",
+    Background_none_png: "res/background/stripes.png",
     Table_png: "res/background/Table14.png",
     //USER INTERFACE RESOURCES ================================================    
     UI_Marker: "res/userinterface/Marker.png",

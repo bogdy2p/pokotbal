@@ -31,13 +31,34 @@
                 font-weight: 400;
                 src: local('MontserratRegular'), url(res/fonts/MontserratRegular.ttf) format ('woff');
             }
+            .vasile {
+                width:1920px;
+                height:1080px;
+                background-position: center;
+                
+                background-image: url("bigbg.png");
+            }
+            #gameCanvas {
+                background-color: none !important;
+            }
+            .gameCanvas{
+                background-color: none !important;
+            }
+            /*
+            canvas{
+                background-color: none !important;
+            }*/
         </style>
-        
+
     </head>
     <body style="padding:0; margin: 0; background: #000;">
 
         <script src="res/loading.js"></script>
-        <canvas id="gameCanvas" width="800" height="450"></canvas>
+        <div class ="vasile">
+            <canvas id="gameCanvas" width="800" height="750" ></canvas>
+        </div>
+
+
         <script src="frameworks/cocos2d-html5/CCBoot.js"></script>
         <script cocos src="main.js"></script>
         <!--<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>-->
@@ -48,8 +69,8 @@
 //                socket.emit('my other event', {my: 'data'});
 //            });
         </script>
-        
-        <script src="round1.js"></script>
+
+        <!--<script src="round1.js"></script>-->
 
     </body>
 </html>

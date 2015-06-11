@@ -1,5 +1,5 @@
 //Global game speed,  increase to run faster for testing  [up-to 4 for a ok result]
-var SHOWALL = true;
+var SHOWALL = false;
 var GGS = 1;
 
 var playerInformations = [
@@ -168,13 +168,15 @@ var playerInformations = [
  */
 
 var mygame = {
+    
     start: function () {
+        
         cc.game.onStart = function () {
             if (!cc.sys.isNative && document.getElementById("cocosLoading")) //If referenced loading.js, please remove it
                 document.body.removeChild(document.getElementById("cocosLoading"));
-
+            
             // Pass true to enable retina display, disabled by default to improve performance
-            cc.view.enableRetina(true);
+            cc.view.enableRetina(false);
             // Adjust viewport meta
             cc.view.adjustViewPort(true);
             // Setup the resolution policy and design resolution size
