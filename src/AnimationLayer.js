@@ -447,7 +447,7 @@ var AnimationLayer = cc.Layer.extend({
                 }
             }
         }
-        cc.log(existingPlayersWithoutSpecified);
+//        cc.log(existingPlayersWithoutSpecified);
 
         function activatePlayer(element, index, array) {
             var unTint = new cc.TintTo.create(1, 85, 250, 250);
@@ -456,6 +456,36 @@ var AnimationLayer = cc.Layer.extend({
             var OverHead = new cc.Sprite.create(res.P_overHead);
             OverHead.setPosition(object.x, object.y + 110);
             backgroundLayer.addChild(OverHead, 1000, "Player" + data.playerNumber + "_overHead");
+
+
+            //FETCH THE CURRENT PLAYER'S OVERHEADPOPUP AND MAKE IT GREEN
+            var PlayerSprite = backgroundLayer.getChildByName("player_" + data.playerNumber);
+//            cc.log(PlayerSprite);
+            var PlayerSpritePopUp = PlayerSprite._children[1];
+
+            var asd = PlayerSprite._children[0];
+//            cc.log(asd);
+//            cc.log(PlayerSpritePopUp);
+            // playerdata.defaultName + "_popup"
+//            cc.log(backgroundLayer);
+            var tintredAction = cc.TintTo.create(1, 255, 0, 0);
+
+            
+            var table = backgroundLayer.getChildByName('thegametable');
+         
+            PlayerSprite.runAction(tintredAction);
+//            asd.runAction(moverightAction);
+            
+//            cc.log(asd.getColor());
+//            PlayerSprite.runAction(moverightAction,1);
+//            asd.setColor(new cc.Color(60, 60, 60, 1));
+//            var f = new cc.colorToHex(15,60,60,60);
+
+
+//            cc.log(asd.getColor());
+//            return true;
+
+
         }
         existingPlayersWithoutSpecified.forEach(deactivatePlayer);
         existingSpecifiedPlayer.forEach(activatePlayer);
@@ -474,27 +504,20 @@ var AnimationLayer = cc.Layer.extend({
 //        cc.log(backgroundLayer);
     },
     animateCircleText: function (data) {
-        
-        
+
         var winSize = cc.director.getWinSize();
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        
-        
+
         var thearray = [];
         thearray = data.split('');
         thearray.reverse();
-        
-        cc.log(thearray);
-        
-        
-       
-        
-        
-        var circleLabelTTF = CircleLabelTTF.create("CircleLabelTTF", thearray, 8 * thearray.length);
+
+//        cc.log(thearray);
+//        var circleLabelTTF = CircleLabelTTF.create("CircleLabelTTF", thearray, 8 * thearray.length);
 //        circleLabelTTF.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
-        circleLabelTTF.setPosition(cc.p(140, 100));
-        backgroundLayer.addChild(circleLabelTTF,1500,"TEST");
-        cc.log(backgroundLayer);
+//        circleLabelTTF.setPosition(cc.p(140, 100));
+//        backgroundLayer.addChild(circleLabelTTF,1500,"TEST");
+//        cc.log(backgroundLayer);
     }
 
 

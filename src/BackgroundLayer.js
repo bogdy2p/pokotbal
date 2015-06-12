@@ -13,7 +13,7 @@ var BackgroundLayer = cc.Layer.extend({
         var spriteTable = new cc.Sprite(res.Table_png);
         spriteTable.setPosition(tablePos);
         spriteTable.setOpacity(0);
-        this.addChild(spriteTable, 1);
+        this.addChild(spriteTable, 1, "thegametable");
         var fadeInTable = cc.FadeIn.create(2.2);
         spriteTable.runAction(fadeInTable);
     },
