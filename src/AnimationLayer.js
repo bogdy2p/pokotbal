@@ -25,7 +25,7 @@ var AnimationLayer = cc.Layer.extend({
             eventName: "spawn_player_event",
             callback: function (event) {
                 var userdata = event.getUserData();
-                that.spawnPlayer(userdata.number, userdata.name, userdata.ammount);
+                that.spawnPlayer(userdata);
                 that.updatePlayerData(userdata);
             }
         });
@@ -46,33 +46,50 @@ var AnimationLayer = cc.Layer.extend({
             event: cc.EventListener.CUSTOM,
             eventName: "event_player_winning",
             callback: function (event) {
-
                 var data = event.getUserData();
-                var playerNumber = data.playerNumber;
-                var positionX = data.positionX;
-                var positionY = data.positionY;
-                that.animatePlayerWin(playerNumber, positionX, positionY);
+//                var playerNumber = data.playerNumber;
+//                var positionX = data.positionX;
+//                var positionY = data.positionY;
+                that.animatePlayerWin(data);
             }
         });
         cc.eventManager.addListener(winningListener, 1);
-        var losingListener = cc.EventListener.create({
+        var losingListenerA = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
-            eventName: "event_player_losing",
+            eventName: "event_player_losing_a",
             callback: function (event) {
                 var data = event.getUserData();
-                that.animatePlayerLose(data.playerNumber, data.positionX, data.positionY);
+                that.animatePlayerLoseA(data);
             }
         });
-        cc.eventManager.addListener(losingListener, 1);
-        var waitingListener = cc.EventListener.create({
+        cc.eventManager.addListener(losingListenerA, 1);
+        var losingListenerB = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
-            eventName: "event_player_waiting",
+            eventName: "event_player_losing_b",
             callback: function (event) {
                 var data = event.getUserData();
-                that.animatePlayerWait(data.playerNumber, data.positionX, data.positionY);
+                that.animatePlayerLoseB(data);
             }
         });
-        cc.eventManager.addListener(waitingListener, 1);
+        cc.eventManager.addListener(losingListenerB, 1);
+        var waitingListenerA = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_player_waiting_a",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.animatePlayerWaitA(data);
+            }
+        });
+        cc.eventManager.addListener(waitingListenerA, 1);
+         var waitingListenerB = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_player_waiting_b",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.animatePlayerWaitB(data);
+            }
+        });
+        cc.eventManager.addListener(waitingListenerB, 1);
 
         var BettingListener = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
@@ -123,16 +140,15 @@ var AnimationLayer = cc.Layer.extend({
         cc.eventManager.addListener(updatePlayerData, 1);
 
     },
-    spawnPlayer: function (number, name, ammount) {
-//        cc.log(cc.Director);
+    spawnPlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var object = playerInformations[number];
+        var object = playerInformations[data.playerNumber];
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
         cc.spriteFrameCache.addSpriteFrames(res.Finale_plist);
         var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Finale_png);
-        var childname = "player_" + number;
+        var childname = "player_" + data.playerNumber;
         var asd = new Player(thisplayer, object);
         backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
 
@@ -155,15 +171,16 @@ var AnimationLayer = cc.Layer.extend({
         var childname = "player_" + (data.playerNumber);
 
         var ThePlayer = backgroundLayer.getChildByName(childname);
-//        cc.log(ThePlayer);
         var children = ThePlayer._children;
         var popUp = children[1];
-//        var nameDataIsSet = backgroundLayer.getChildByName("player_" + data.playerNumber + "_nameLabel");
+        var nameDataIsSet = backgroundLayer.getChildByName("player_" + data.playerNumber + "_nameLabel");
         var ammountDataIsSet = backgroundLayer.getChildByName("player_" + data.playerNumber + "_ammountLabel");
 
         if (ammountDataIsSet) {
-            cc.log(ammountDataIsSet);
             ammountDataIsSet.setString("£ " + data.amount);
+            if (nameDataIsSet) {
+                nameDataIsSet.setString(data.name);
+            }
         } else {
             var popUpX = popUp.getPosition().x;
             var popUpY = popUp.getPosition().y;
@@ -187,14 +204,6 @@ var AnimationLayer = cc.Layer.extend({
             }
             backgroundLayer.addChild(amountLabel, 500, "player_" + data.playerNumber + "_ammountLabel");
         }
-
-
-
-
-
-//        cc.log(amountLabel);
-//
-//        cc.log(popUp);
     },
     animatePlayerWin: function (number, pozx, pozy) {
 //        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -235,56 +244,112 @@ var AnimationLayer = cc.Layer.extend({
 //        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
 //        thesprite.runAction(animateLosing, 1);
 //    },
-    animatePlayerLose: function (number, pozx, pozy) {
+    animatePlayerLoseA: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var childname = "player_" + number;
+        var childname = "player_" + data.playerNumber;
         var sprite = backgroundLayer.getChildByName(childname);
         var thesprite = sprite._children[0];
         var animFramesLose = [];
         for (var i = 1; i < 10; i++) {
             var str = "_000" + i + "_1loseA" + (i + 1) + ".png.png";
-//            cc.log(str);
-//            var str = "lose" + i + ".png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             animFramesLose.push(frame);
         }
         for (var i = 10; i < 60; i++) {
             var str2 = "_00" + i + "_1loseA" + (i + 1) + ".png.png";
-//            cc.log(str2);
-//            var str = "lose" + i + ".png";
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesLose.push(frame2);
         }
-        
+
+
+//        cc.log(data);
+        var speed = data.animationLength / animFramesLose.length;
+//        cc.log(speed);
+//        cc.log(data.animationLength);
 //        cc.log(animFramesLose.length);
-        var animationLose = new cc.Animation(animFramesLose, 0.05);
-        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 2);
+
+        var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
+        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
         thesprite.runAction(animateLosing, 1);
+        cc.log("Player " + data.playerNumber + " is now animating LOSING [A version]");
     },
-    animatePlayerWait: function (number, pozx, pozy) {
+    animatePlayerLoseB: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var childname = "player_" + number;
+        var childname = "player_" + data.playerNumber;
+        var sprite = backgroundLayer.getChildByName(childname);
+        var thesprite = sprite._children[0];
+        var animFramesLose = [];
+        for (var i = 1; i < 10; i++) {
+            var str = "_000" + i + "_1loseB" + (i + 1) + ".png.png";
+            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+            animFramesLose.push(frame);
+        }
+        for (var i = 10; i < 88; i++) {
+            var str2 = "_00" + i + "_1loseB" + (i + 1) + ".png.png";
+            var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
+            animFramesLose.push(frame2);
+        }
+
+
+//        cc.log(data);
+        var speed = data.animationLength / animFramesLose.length;
+//        cc.log(speed);
+//        cc.log(data.animationLength);
+//        cc.log(animFramesLose.length);
+
+        var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
+        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
+        thesprite.runAction(animateLosing, 1);
+        cc.log("Player " + data.playerNumber + " is now animating LOSING [B version]");
+    },
+    animatePlayerWaitA: function (data) {
+//        cc.log(data);
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var childname = "player_" + data.playerNumber;
+//        cc.log(childname);
         var sprite = backgroundLayer.getChildByName(childname);
         var thesprite = sprite._children[0];
         var animFramesWait = [];
-         for (var i = 1; i < 10; i++) {
+        for (var i = 1; i < 10; i++) {
             var str = "_000" + i + "_1waitA" + (i + 1) + ".png.png";
-//            cc.log(str);
-//            var str = "lose" + i + ".png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             animFramesWait.push(frame);
         }
         for (var i = 10; i < 84; i++) {
             var str2 = "_00" + i + "_1waitA" + (i + 1) + ".png.png";
-//            cc.log(str2);
-//            var str = "lose" + i + ".png";
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesWait.push(frame2);
         }
-        
-        var animationWait = new cc.Animation(animFramesWait, 0.05);
-        var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 2);
+
+        var speed = data.animationLength / animFramesWait.length;
+//        cc.log(speed);
+        var animationWait = new cc.Animation(animFramesWait, data.animationLength / animFramesWait.length);
+        var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 1);
         thesprite.runAction(animateWaiting, 1);
+        cc.log("Player " + data.playerNumber + " is now animating WAIT [A version]");
+    },
+     animatePlayerWaitB: function (data) {
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var childname = "player_" + data.playerNumber;
+        var sprite = backgroundLayer.getChildByName(childname);
+        var thesprite = sprite._children[0];
+        var animFramesWaitB = [];
+        for (var i = 1; i < 10; i++) {
+            var str = "_000" + i + "_1waitB" + (i + 1) + ".png.png";
+            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+            animFramesWaitB.push(frame);
+        }
+        for (var i = 10; i < 99; i++) {
+            var str2 = "_00" + i + "_1waitB" + (i + 1) + ".png.png";
+            var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
+            animFramesWaitB.push(frame2);
+        }
+
+        var speed = data.animationLength / animFramesWaitB.length;
+        var animationWaitB = new cc.Animation(animFramesWaitB, data.animationLength / animFramesWaitB.length);
+        var animateWaitingB = new cc.Repeat(new cc.Animate(animationWaitB), 1);
+        thesprite.runAction(animateWaitingB, 1);
+        cc.log("Player " + data.playerNumber + " is now animating WAIT [B version]");
     },
     animateBetting: function (data) {
         var backgroundLayer = this.backgroundLayer;
@@ -303,7 +368,7 @@ var AnimationLayer = cc.Layer.extend({
         this.current_bets++;
         var moveToCenter = new cc.MoveTo.create(1.5, cc.p(winSize.width / 2, winSize.height / 2));
         this.cashSpriteSheet.runAction(moveToCenter, 1);
-
+        cc.log("Player " + data.playerNumber + " is now animating A BET");
 
     }, animateGettingAllBets: function (data) {
         var backgroundLayer = this.backgroundLayer;

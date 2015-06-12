@@ -93,19 +93,29 @@ var mygame = {
         cc.eventManager.dispatchEvent(event);
 
     },
-    animatePlayerWin: function (number) {
+    animatePlayerWin: function (data) {
         var event = new cc.EventCustom("event_player_winning");
-        event.setUserData(number);
+        event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-    animatePlayerLose: function (number) {
-        var event = new cc.EventCustom("event_player_losing");
-        event.setUserData(number);
+    animatePlayerLoseA: function (data) {
+        var event = new cc.EventCustom("event_player_losing_a");
+        event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-    animatePlayerWait: function (number) {
-        var event = new cc.EventCustom("event_player_waiting");
-        event.setUserData(number);
+    animatePlayerLoseB: function (data) {
+        var event = new cc.EventCustom("event_player_losing_b");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
+    },
+    animatePlayerWaitA: function (data) {
+        var event = new cc.EventCustom("event_player_waiting_a");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
+    },
+    animatePlayerWaitB: function (data) {
+        var event = new cc.EventCustom("event_player_waiting_b");
+        event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
     animateBet: function (data) {
@@ -130,7 +140,7 @@ for (i = 0; i < 10; i++) {
     var thename = "player" + i;
     players[i] = {
         playerNumber: i,
-        number: i,
+//        number: i,
         name: thename,
         amount: "0"
     };
@@ -144,78 +154,80 @@ mygame.start();
 //////////////////////////////////
 
 
+new runPlayer1Stuff(2500);
+//new runPlayer2Stuff(4200);
 ///////////////////////////////////////////////
 //Spawn all players during the first 5 seconds
 ///////////////////////////////////////////////
-
-setTimeout(function () {
-    setTimeout(function () {
-        mygame.spawnPlayer(players[0]);
-    }, 200 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[1]);
-    }, 500 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[2]);
-    }, 800 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[3]);
-    }, 1100 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[4]);
-    }, 1400 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[5]);
-    }, 1700 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[6]);
-    }, 2000 / GGS);
+//
+//setTimeout(function () {
 //    setTimeout(function () {
-//        mygame.spawnPlayer(players[7]);
-//    }, 2300 / GGS);
+//        mygame.spawnPlayer(players[0]);
+//    }, 200 / GGS);
 //    setTimeout(function () {
-//        mygame.spawnPlayer(players[8]);
-//    }, 2600 / GGS);
+//        mygame.spawnPlayer(players[1]);
+//    }, 500 / GGS);
 //    setTimeout(function () {
-//        mygame.spawnPlayer(players[9]);
-//    }, 2900 / GGS);
-}, 1500);
+//        mygame.spawnPlayer(players[2]);
+//    }, 800 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[3]);
+//    }, 1100 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[4]);
+//    }, 1400 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[5]);
+//    }, 1700 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[6]);
+//    }, 2000 / GGS);
+////    setTimeout(function () {
+////        mygame.spawnPlayer(players[7]);
+////    }, 2300 / GGS);
+////    setTimeout(function () {
+////        mygame.spawnPlayer(players[8]);
+////    }, 2600 / GGS);
+////    setTimeout(function () {
+////        mygame.spawnPlayer(players[9]);
+////    }, 2900 / GGS);
+//}, 1500);
 //END OF SPAWNING==============================================================
 //END OF SPAWNING==============================================================
 
 //Make all the players run a specific animation [LOSE].
-setTimeout(function () {
-    for (i = 0; i < 7; i++) {
-        mygame.animatePlayerLose(players[i]);
-    }
-}, 6000 / GGS);
+//setTimeout(function () {
+//    for (i = 0; i < 7; i++) {
+//        mygame.animatePlayerLose(players[i]);
+//    }
+//}, 6000 / GGS);
 
 //END OF ACTION ==============================================================
 
-setTimeout(function () {
-    for (i = 0; i < 5; i++) {
-        mygame.animatePlayerWait(players[i]);
-    }
-}, 12400 / GGS);
-
-setTimeout(function () {
-    for (i = 5; i < 7; i++) {
-        mygame.animatePlayerLose(players[i]);
-    }
-}, 12400 / GGS);
-
-
-setTimeout(function () {
-    for (i = 0; i < 5; i++) {
-        mygame.animatePlayerLose(players[i]);
-    }
-}, 21000 / GGS);
-
-setTimeout(function () {
-    for (i = 5; i < 7; i++) {
-        mygame.animatePlayerWait(players[i]);
-    }
-}, 21000 / GGS);
+//setTimeout(function () {
+//    for (i = 0; i < 5; i++) {
+//        mygame.animatePlayerWait(players[i]);
+//    }
+//}, 12400 / GGS);
+//
+//setTimeout(function () {
+//    for (i = 5; i < 7; i++) {
+//        mygame.animatePlayerLose(players[i]);
+//    }
+//}, 12400 / GGS);
+//
+//
+//setTimeout(function () {
+//    for (i = 0; i < 5; i++) {
+//        mygame.animatePlayerLose(players[i]);
+//    }
+//}, 21000 / GGS);
+//
+//setTimeout(function () {
+//    for (i = 5; i < 7; i++) {
+//        mygame.animatePlayerWait(players[i]);
+//    }
+//}, 21000 / GGS);
 
 
 
@@ -228,49 +240,78 @@ setTimeout(function () {
 //    }, 16000 / GGS);
 //
 //}
+//
 
-var youwin = {
-    player: 1,
-    balance: 490,
-    ammount: 50,
-};
 
-var youwin2 = {
-    ammount: 400,
+function runPlayer1Stuff(startTime) {
+
+//    var startTime = 2000;
+    console.log("Spawning at " + startTime);
+
+    var player1Tests = setTimeout(function () {
+        mygame.spawnPlayer({playerNumber: 4, name: 'FirstPl', amount: 500});
+    }, startTime);
+    
+
+    setTimeout(function () {
+        mygame.animatePlayerWaitA({playerNumber: 4, animationLength: 2});
+    }, startTime);
+    startTime += 2000 * 2;
+    console.log("Waiting at " + startTime);
+
+    setTimeout(function () {
+        mygame.animatePlayerLoseA({playerNumber: 4, animationLength: 2});
+    }, startTime);
+    startTime += 2000 * 2;
+    console.log("Losing at " + startTime);
+
+    setTimeout(function () {
+        mygame.animatePlayerWaitB({playerNumber: 4, animationLength: 3});
+    }, startTime);
+    startTime += 2000 * 3;
+    console.log("Waiting at " + startTime);
+    
+     setTimeout(function () {
+        mygame.animatePlayerLoseB({playerNumber: 4, animationLength: 2});
+    }, startTime);
+    startTime += 2000 * 2;
+    console.log("Losing at " + startTime);
+    
+    
+    
+    
+    
+    
+    return player1Tests;
 }
 
-var youwin3 = {
-    ammount: 120,
-}
 
-var youwin4 = {
-    ammount: 840,
+function runPlayer2Stuff(startTime) {
+
+//    var startTime = 3000;
+    console.log("Spawning at " + startTime);
+
+    var player2Tests = setTimeout(function () {
+        mygame.spawnPlayer({playerNumber: 8, name: 'SecondPl', amount: 500});
+    }, startTime);
+    
+
+    setTimeout(function () {
+        mygame.animatePlayerWaitA({playerNumber: 8, animationLength: 2});
+    }, startTime);
+    startTime += 2000 * 2;
+    console.log("Waiting at " + startTime);
+
+    setTimeout(function () {
+        mygame.animatePlayerLose({playerNumber: 8, animationLength: 2});
+    }, startTime);
+    startTime += 2000 * 2;
+    console.log("Losing at " + startTime);
+
+    setTimeout(function () {
+        mygame.animatePlayerWaitA({playerNumber: 8, animationLength: 6});
+    }, startTime);
+    startTime += 2000 * 6;
+    console.log("Waiting at " + startTime);
+    return player2Tests;
 }
-var bet1 = {
-    playerNumber: 2,
-    ammount: 100,
-};
-var bet2 = {
-    playerNumber: 7,
-    ammount: 100,
-};
-var bet3 = {
-    playerNumber: 4,
-    ammount: 100,
-};
-var bet4 = {
-    playerNumber: 9,
-    ammount: 100,
-};
-var bet5 = {
-    playerNumber: 3,
-    ammount: 100,
-};
-var bet6 = {
-    playerNumber: 8,
-    ammount: 100,
-};
-var bet7 = {
-    playerNumber: 5,
-    ammount: 100,
-};
