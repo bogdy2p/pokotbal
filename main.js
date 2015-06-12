@@ -128,8 +128,8 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-    animateTintOtherPlayers: function (data) {
-        var event = new cc.EventCustom("event_tint_other_players");
+    animateActivatePlayer: function (data) {
+        var event = new cc.EventCustom("event_activate_player");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
@@ -154,44 +154,44 @@ mygame.start();
 //////////////////////////////////
 
 
-new runPlayer1Stuff(2500);
+//new runPlayer1Stuff(2500);
 //new runPlayer2Stuff(4200);
 ///////////////////////////////////////////////
 //Spawn all players during the first 5 seconds
 ///////////////////////////////////////////////
 //
-//setTimeout(function () {
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[0]);
-//    }, 200 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[1]);
-//    }, 500 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[2]);
-//    }, 800 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[3]);
-//    }, 1100 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[4]);
-//    }, 1400 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[5]);
-//    }, 1700 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[6]);
-//    }, 2000 / GGS);
-////    setTimeout(function () {
-////        mygame.spawnPlayer(players[7]);
-////    }, 2300 / GGS);
-////    setTimeout(function () {
-////        mygame.spawnPlayer(players[8]);
-////    }, 2600 / GGS);
-////    setTimeout(function () {
-////        mygame.spawnPlayer(players[9]);
-////    }, 2900 / GGS);
-//}, 1500);
+setTimeout(function () {
+    setTimeout(function () {
+        mygame.spawnPlayer(players[0]);
+    }, 200 / GGS);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[1]);
+    }, 500 / GGS);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[2]);
+    }, 800 / GGS);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[3]);
+    }, 1100 / GGS);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[4]);
+    }, 1400 / GGS);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[5]);
+    }, 1700 / GGS);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[6]);
+    }, 2000 / GGS);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[7]);
+    }, 2300 / GGS);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[8]);
+    }, 2600 / GGS);
+    setTimeout(function () {
+        mygame.spawnPlayer(players[9]);
+    }, 2900 / GGS);
+}, 1500);
 //END OF SPAWNING==============================================================
 //END OF SPAWNING==============================================================
 

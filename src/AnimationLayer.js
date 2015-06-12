@@ -81,7 +81,7 @@ var AnimationLayer = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(waitingListenerA, 1);
-         var waitingListenerB = cc.EventListener.create({
+        var waitingListenerB = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
             eventName: "event_player_waiting_b",
             callback: function (event) {
@@ -119,15 +119,15 @@ var AnimationLayer = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(GettingAllBetsListener, 1);
-        var tintOtherPlayersListener = cc.EventListener.create({
+        var activatePlayerListener = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
-            eventName: "event_tint_other_players",
+            eventName: "event_activate_player",
             callback: function (event) {
                 var data = event.getUserData();
-                that.tintOtherPlayers(data);
+                that.activatePlayer(data);
             }
         });
-        cc.eventManager.addListener(tintOtherPlayersListener, 1);
+        cc.eventManager.addListener(activatePlayerListener, 1);
 
         var updatePlayerData = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
@@ -164,26 +164,26 @@ var AnimationLayer = cc.Layer.extend({
         } else {
             cc.log("Some strange error when trying to remove player " + (data.playerNumber));
         }
-        
+
         // SHOULD ALSO REMOVE THE AMOUNT AND THE NAME FROM THE TABLE
-        
+
         var nameLabel = backgroundLayer.getChildByName("player_" + data.playerNumber + "_nameLabel");
         var amountLabel = backgroundLayer.getChildByName("player_" + data.playerNumber + "_ammountLabel");
-        
+
         if (nameLabel) {
             nameLabel.removeFromParent(1);
         }
-        if (amountLabel){
+        if (amountLabel) {
             amountLabel.removeFromParent(1);
         }
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
     },
     updatePlayerData: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -249,21 +249,6 @@ var AnimationLayer = cc.Layer.extend({
 //        var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
 //        thesprite.runAction(animateWinning, 1);
     },
-//    animatePlayerLose: function (number, pozx, pozy) {
-//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-//        var childname = "player_" + number;
-//        var sprite = backgroundLayer.getChildByName(childname);
-//        var thesprite = sprite._children[0];
-//        var animFramesLose = [];
-//        for (var i = 1; i < 6; i++) {
-//            var str = "lose" + i + ".png";
-//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-//            animFramesLose.push(frame);
-//        }
-//        var animationLose = new cc.Animation(animFramesLose, 0.4);
-//        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
-//        thesprite.runAction(animateLosing, 1);
-//    },
     animatePlayerLoseA: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var childname = "player_" + data.playerNumber;
@@ -348,7 +333,7 @@ var AnimationLayer = cc.Layer.extend({
         thesprite.runAction(animateWaiting, 1);
         cc.log("Player " + data.playerNumber + " is now animating WAIT [A version]");
     },
-     animatePlayerWaitB: function (data) {
+    animatePlayerWaitB: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var childname = "player_" + data.playerNumber;
         var sprite = backgroundLayer.getChildByName(childname);
@@ -429,10 +414,10 @@ var AnimationLayer = cc.Layer.extend({
             cc.log("THERE WERE NO BETS ON THE TABLE!");
         }
     },
-    tintOtherPlayers: function (data) {
-
+    activatePlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var object = playerInformations[data.playerNumber];
+//        cc.log(object);
         var existingPlayersWithoutSpecified = [];
         var existingSpecifiedPlayer = [];
         for (i = 0; i < 10; i++) {
@@ -450,18 +435,31 @@ var AnimationLayer = cc.Layer.extend({
                 }
             }
         }
-        existingSpecifiedPlayer.forEach(dosomethingspecial1);
-        function dosomethingspecial1(element, index, array) {
-            var unTint = new cc.TintTo.create(0, 250, 250, 250);
+        cc.log(existingPlayersWithoutSpecified);
+
+        function activatePlayer(element, index, array) {
+            var unTint = new cc.TintTo.create(1, 85, 250, 250);
             child = element._children[0];
-            child.runAction(unTint);
+            child.setOpacity(255);
+            var OverHead = new cc.Sprite.create(res.P_overHead);
+            OverHead.setPosition(object.x, object.y + 110);
+            backgroundLayer.addChild(OverHead, 1000, "Player" + data.playerNumber + "_overHead");
         }
-        existingPlayersWithoutSpecified.forEach(dosomethingspecial2);
-        function dosomethingspecial2(element, index, array) {
-            var sprite_action = new cc.TintTo.create(0, 85, 85, 85);
+        existingPlayersWithoutSpecified.forEach(deactivatePlayer);
+        existingSpecifiedPlayer.forEach(activatePlayer);
+        function deactivatePlayer(element, index, array) {
+            var sprite_action = new cc.TintTo.create(1, 85, 85, 85);
             child = element._children[0];
-            child.runAction(sprite_action);
+            child.setOpacity(170);
+            for (i = 1; i < 10; i++) {
+                var overheadName = "Player" + i + "_overHead";
+                var existingOverHeadSprite = backgroundLayer.getChildByName(overheadName);
+                if (existingOverHeadSprite) {
+                    existingOverHeadSprite.removeFromParent(1);
+                }
+            }
         }
+//        cc.log(backgroundLayer);
     }
 
 });
