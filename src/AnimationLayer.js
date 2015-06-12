@@ -156,14 +156,34 @@ var AnimationLayer = cc.Layer.extend({
     removePlayer: function (data) {
 
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var object = playerInformations[data.number - 1];
-        var childname = "player_" + (data.number - 1);
+        var object = playerInformations[data.playerNumber];
+        var childname = "player_" + (data.playerNumber);
         var ThePlayer = backgroundLayer.getChildByName(childname);
         if (ThePlayer) {
             ThePlayer.removeFromParent(1);
         } else {
-            cc.log("Some strange error when trying to remove player " + (data.number - 1));
+            cc.log("Some strange error when trying to remove player " + (data.playerNumber));
         }
+        
+        // SHOULD ALSO REMOVE THE AMOUNT AND THE NAME FROM THE TABLE
+        
+        var nameLabel = backgroundLayer.getChildByName("player_" + data.playerNumber + "_nameLabel");
+        var amountLabel = backgroundLayer.getChildByName("player_" + data.playerNumber + "_ammountLabel");
+        
+        if (nameLabel) {
+            nameLabel.removeFromParent(1);
+        }
+        if (amountLabel){
+            amountLabel.removeFromParent(1);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
     },
     updatePlayerData: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
