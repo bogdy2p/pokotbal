@@ -133,6 +133,13 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
+    
+    animateCircleText: function (data) {
+        var event = new cc.EventCustom("event_animate_circle_label");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
+    }
+    
 };
 
 var players = [];

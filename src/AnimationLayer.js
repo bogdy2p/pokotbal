@@ -139,6 +139,18 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(updatePlayerData, 1);
 
+        var animateCircleTextLabel = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_animate_circle_label",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.animateCircleText(data);
+            }
+        });
+        cc.eventManager.addListener(animateCircleTextLabel, 1);
+
+
+
     },
     spawnPlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -460,6 +472,31 @@ var AnimationLayer = cc.Layer.extend({
             }
         }
 //        cc.log(backgroundLayer);
+    },
+    animateCircleText: function (data) {
+        
+        
+        var winSize = cc.director.getWinSize();
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        
+        
+        var thearray = [];
+        thearray = data.split('');
+        thearray.reverse();
+        
+        cc.log(thearray);
+        
+        
+       
+        
+        
+        var circleLabelTTF = CircleLabelTTF.create("CircleLabelTTF", thearray, 8 * thearray.length);
+//        circleLabelTTF.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        circleLabelTTF.setPosition(cc.p(140, 100));
+        backgroundLayer.addChild(circleLabelTTF,1500,"TEST");
+        cc.log(backgroundLayer);
     }
+
+
 
 });
