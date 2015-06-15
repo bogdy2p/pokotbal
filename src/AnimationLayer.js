@@ -4,6 +4,7 @@ var AnimationLayer = cc.Layer.extend({
     spriteSheet: null,
     loseSpriteSheet: null,
     current_bets: null,
+    betPosition: 0,
     cashSpriteSheet: null,
     pedroAnimationAction: null,
     spawnPlayerAction: null,
@@ -395,10 +396,15 @@ var AnimationLayer = cc.Layer.extend({
         this.current_bets++;
 
         var spinning = new cc.RotateBy.create(1.5, 180);
-        var scaleto = new cc.ScaleTo.create(1.5,1);
-        var moveToCenter = new cc.MoveTo.create(1.5, cc.p(winSize.width / 2, winSize.height / 2));
+        var scaleto = new cc.ScaleTo.create(1.5, 1);
 
-        this.cashSpriteSheet.runAction(scaleto,1);
+        if (this.betPosition <= 10) {
+            var moveToCenter = new cc.MoveTo.create(1.5, cc.p(winSize.width / 2, winSize.height / 2 + this.betPosition * 2));
+        } else {
+            var moveToCenter = new cc.MoveTo.create(1.5, cc.p(winSize.width / 2, winSize.height / 2 + 20));
+        }
+        this.betPosition++;
+        this.cashSpriteSheet.runAction(scaleto, 1);
         this.cashSpriteSheet.runAction(moveToCenter, 1);
         this.cashSpriteSheet.runAction(spinning, 1);
         cc.log("Player " + data.playerNumber + " is now animating A BET");
