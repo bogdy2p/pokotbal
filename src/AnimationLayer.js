@@ -567,13 +567,13 @@ var AnimationLayer = cc.Layer.extend({
         } else if (data.playerName.length > 5 && data.playerName.length <= 8) {
             playerNameSize = 24;
         } else if (data.playerName.length > 8 && data.playerName.length <= 12) {
-            playerNameSize = 20;
+            playerNameSize = 22;
         } else if (data.playerName.length > 12 && data.playerName.length <= 14) {
-            playerNameSize = 16;
+            playerNameSize = 18;
         } else if (data.playerName.length > 14 && data.playerName.length <= 16) {
-            playerNameSize = 14;
+            playerNameSize = 16;
         } else {
-            playerNameSize = 10;
+            playerNameSize = 14;
         }
 
         var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
