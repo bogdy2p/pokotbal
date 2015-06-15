@@ -552,12 +552,9 @@ var AnimationLayer = cc.Layer.extend({
         if (data.timeToDisplay == null) {
             data.timeToDisplay = 2;
         }
-//        cc.log(bigSprite.height);
         if (data.playerName == null) {
             data.playerName = "UnnamedPlayer";
         }
-//        cc.log('data playername length: ');
-//        cc.log(data.playerName.length);
         //If the name is less than 5 chars , use font = 36;
         // if the name is between 6-10 chars use font = 20;
         // if the name is between 11-15 chars use font = 14;
@@ -605,12 +602,72 @@ var AnimationLayer = cc.Layer.extend({
         }, data.timeToDisplay * 1000);
         cc.log('AnimatePOPUP_SELF');
 
-
-
-
-
     },
     animatePopUpWinOthers: function (data) {
+        var winSize = cc.director.getWinSize();
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var WinSprite1AlreadyPresent = backgroundLayer.getChildByName("WinSprite1");
+        var WinSpritePlayerNameLabelAlreadyExists = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
+        var theWinAmountLabelAlreadyExists = backgroundLayer.getChildByName("WinAmountLabel");
+        var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
+        var bigSprite = new cc.Sprite(res.PopUpWin2);
+        bigSprite.setPosition(centerPos);
+        bigSprite.setScale(0.3);
+        if (!WinSprite1AlreadyPresent) {
+            backgroundLayer.addChild(bigSprite, 1000, "WinSpriteOther");
+        }
+        //Function to remove after certain amount of time:
+        if (data.timeToDisplay == null) {
+            data.timeToDisplay = 2;
+        }
+        if (data.playerName == null) {
+            data.playerName = "UnnamedPlayer";
+        }
+        //If the name is less than 5 chars , use font = 36;
+        // if the name is between 6-10 chars use font = 20;
+        // if the name is between 11-15 chars use font = 14;
+        // if the name is > 15 chars , use font = 10;
+        var playerNameSize = 20;
+        if (data.playerName.length <= 5) {
+            playerNameSize = 36;
+        } else if (data.playerName.length > 5 && data.playerName.length <= 8) {
+            playerNameSize = 24;
+        } else if (data.playerName.length > 8 && data.playerName.length <= 12) {
+            playerNameSize = 22;
+        } else if (data.playerName.length > 12 && data.playerName.length <= 14) {
+            playerNameSize = 18;
+        } else if (data.playerName.length > 14 && data.playerName.length <= 16) {
+            playerNameSize = 16;
+        } else {
+            playerNameSize = 14;
+        }
+        var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
+        playerNameLabel.setPosition(cc.p(winSize.width / 2, 430));
+        if (WinSpritePlayerNameLabelAlreadyExists == null) {
+            backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
+
+        }
+        var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 28);
+        winAmountLabel.setPosition(cc.p(winSize.width / 2, 140));
+        if (!theWinAmountLabelAlreadyExists) {
+            backgroundLayer.addChild(winAmountLabel, 1000, "WinAmountLabel");
+        }
+        var thePopUp = backgroundLayer.getChildByName("WinSpriteOther");
+        var theWinAmountLabel = backgroundLayer.getChildByName("WinAmountLabel");
+        var thePlayerNameLabel = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
+
+
+        setTimeout(function () {
+            if (thePopUp) {
+                thePopUp.removeFromParent(1);
+            }
+            if (theWinAmountLabel) {
+                theWinAmountLabel.removeFromParent(1);
+            }
+            if (thePlayerNameLabel) {
+                thePlayerNameLabel.removeFromParent(1);
+            }
+        }, data.timeToDisplay * 1000);
         cc.log('AnimatePOPUP_OTHERS');
     }
 });
