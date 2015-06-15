@@ -10,6 +10,7 @@ var Player = cc.Layer.extend({
     ctor: function (spriteSheet, playerdata) {
         this.playerNumber = global_current_position;
         this.playerSpriteSheet = spriteSheet;
+//      
 //=================!!!!!!!TO DO!!!!!!!=========================================
 //        //This will be the sprite of the default player.
 //        // Should be a different sprite for each player. (up-to 5 ? );
@@ -37,12 +38,11 @@ var Player = cc.Layer.extend({
         spriteSheet.addChild(this.popUp, playerdata.Zindex, playerdata.defaultName + "_popup");
         global_current_position++;
         this.init();
-        
+
 
 
     },
     init: function () {
-//        var that = this;
         this.animateFadeIn();
     },
     animateFadeIn: function () {

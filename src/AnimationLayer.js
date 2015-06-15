@@ -149,7 +149,25 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(animateCircleTextLabel, 1);
 
+        var displayPopUpWinSelf = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_display_popup_win_self",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.animatePopUpWinSelf(data);
+            }
+        });
+        cc.eventManager.addListener(displayPopUpWinSelf, 1);
 
+        var displayPopUpWinOthers = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_display_popup_win_others",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.animatePopUpWinOthers(data);
+            }
+        });
+        cc.eventManager.addListener(displayPopUpWinOthers, 1);
 
     },
     spawnPlayer: function (data) {
@@ -270,13 +288,7 @@ var AnimationLayer = cc.Layer.extend({
             animFramesLose.push(frame2);
         }
 
-
-//        cc.log(data);
         var speed = data.animationLength / animFramesLose.length;
-//        cc.log(speed);
-//        cc.log(data.animationLength);
-//        cc.log(animFramesLose.length);
-
         var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
         thesprite.runAction(animateLosing, 1);
@@ -300,12 +312,7 @@ var AnimationLayer = cc.Layer.extend({
         }
 
 
-//        cc.log(data);
         var speed = data.animationLength / animFramesLose.length;
-//        cc.log(speed);
-//        cc.log(data.animationLength);
-//        cc.log(animFramesLose.length);
-
         var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
         thesprite.runAction(animateLosing, 1);
@@ -331,7 +338,6 @@ var AnimationLayer = cc.Layer.extend({
         }
 
         var speed = data.animationLength / animFramesWait.length;
-//        cc.log(speed);
         var animationWait = new cc.Animation(animFramesWait, data.animationLength / animFramesWait.length);
         var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 1);
         thesprite.runAction(animateWaiting, 1);
@@ -511,19 +517,60 @@ var AnimationLayer = cc.Layer.extend({
 ////        backgroundLayer.addChild(circleLabelTTF,1500,"TEST");
 ////        cc.log(backgroundLayer);
 //    },
-    animateYouWin: function (data) {
+    animatePopUpWinSelf: function (data) {
 
         var winSize = cc.director.getWinSize();
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
+
+        var bigSprite = new cc.Sprite(res.PopUpWin1);
+        bigSprite.setPosition(centerPos);
+        bigSprite.setScale(0.3);
+//        bigSprite.setOpacity(100);
+        backgroundLayer.addChild(bigSprite, 1000, "WinSprite1");
+
+        //Function to remove after certain amount of time:
+        if (data.timeToDisplay == null) {
+            data.timeToDisplay = 2;
+        }
+//        cc.log(bigSprite.height);
+
+        if (data.playerName == null) {
+            data.playerName = "UnnamedPlayer";
+        }
+
+        var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", 24);
+        playerNameLabel.setPosition(cc.p(winSize.width / 2 , 430));
+        backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
+
+        var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 24);
+        winAmountLabel.setPosition(cc.p(winSize.width / 2, 140));
+        backgroundLayer.addChild(winAmountLabel, 1000, "WinAmountLabel");
+
+        var thePopUp = backgroundLayer.getChildByName("WinSprite1");
+        var theWinAmountLabel = backgroundLayer.getChildByName("WinAmountLabel");
+        var thePlayerNameLabel = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
         
-        
+        setTimeout(function () {
+            if (thePopUp) {
+                thePopUp.removeFromParent(1);
+            }
+            if (theWinAmountLabel) {
+                theWinAmountLabel.removeFromParent(1);
+            }
+            if (thePlayerNameLabel) {
+                thePlayerNameLabel.removeFromParent(1);
+            }
+        }, data.timeToDisplay * 1000);
+
+        cc.log('AnimatePOPUP_SELF');
 
     },
-    animateOtherWins: function (data) {
-        
-        
-        
-        
+    animatePopUpWinOthers: function (data) {
+
+
+        cc.log('AnimatePOPUP_OTHERS');
+
     }
 
 

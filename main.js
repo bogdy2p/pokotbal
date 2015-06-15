@@ -133,13 +133,23 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-    
     animateCircleText: function (data) {
         var event = new cc.EventCustom("event_animate_circle_label");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
+    },
+    displayPopUpWinSelf: function (data) {
+        var event = new cc.EventCustom("event_display_popup_win_self");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
+    },
+    displayPopUpWinOthers: function (data) {
+        var event = new cc.EventCustom("event_display_popup_win_others");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
     }
-    
+
+
 };
 
 var players = [];
@@ -167,38 +177,39 @@ mygame.start();
 //Spawn all players during the first 5 seconds
 ///////////////////////////////////////////////
 //
-setTimeout(function () {
-    setTimeout(function () {
-        mygame.spawnPlayer(players[0]);
-    }, 200 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[1]);
-    }, 500 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[2]);
-    }, 800 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[3]);
-    }, 1100 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[4]);
-    }, 1400 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[5]);
-    }, 1700 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[6]);
-    }, 2000 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[7]);
-    }, 2300 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[8]);
-    }, 2600 / GGS);
-    setTimeout(function () {
-        mygame.spawnPlayer(players[9]);
-    }, 2900 / GGS);
-}, 4000);
+//
+//setTimeout(function () {
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[0]);
+//    }, 200 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[1]);
+//    }, 500 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[2]);
+//    }, 800 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[3]);
+//    }, 1100 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[4]);
+//    }, 1400 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[5]);
+//    }, 1700 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[6]);
+//    }, 2000 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[7]);
+//    }, 2300 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[8]);
+//    }, 2600 / GGS);
+//    setTimeout(function () {
+//        mygame.spawnPlayer(players[9]);
+//    }, 2900 / GGS);
+//}, 4000);
 //END OF SPAWNING==============================================================
 //END OF SPAWNING==============================================================
 
@@ -250,75 +261,163 @@ setTimeout(function () {
 //
 
 
-function runPlayer1Stuff(startTime) {
+//function runPlayer1Stuff(startTime) {
+//
+////    var startTime = 2000;
+//    console.log("Spawning at " + startTime);
+//
+//    var player1Tests = setTimeout(function () {
+//        mygame.spawnPlayer({playerNumber: 4, name: 'FirstPl', amount: 500});
+//    }, startTime);
+//    
+//
+//    setTimeout(function () {
+//        mygame.animatePlayerWaitA({playerNumber: 4, animationLength: 2});
+//    }, startTime);
+//    startTime += 2000 * 2;
+//    console.log("Waiting at " + startTime);
+//
+//    setTimeout(function () {
+//        mygame.animatePlayerLoseA({playerNumber: 4, animationLength: 2});
+//    }, startTime);
+//    startTime += 2000 * 2;
+//    console.log("Losing at " + startTime);
+//
+//    setTimeout(function () {
+//        mygame.animatePlayerWaitB({playerNumber: 4, animationLength: 3});
+//    }, startTime);
+//    startTime += 2000 * 3;
+//    console.log("Waiting at " + startTime);
+//    
+//     setTimeout(function () {
+//        mygame.animatePlayerLoseB({playerNumber: 4, animationLength: 2});
+//    }, startTime);
+//    startTime += 2000 * 2;
+//    console.log("Losing at " + startTime);
+//    
+//    
+//    
+//    
+//    
+//    
+//    return player1Tests;
+//}
+//
+//
+//function runPlayer2Stuff(startTime) {
+//
+////    var startTime = 3000;
+//    console.log("Spawning at " + startTime);
+//
+//    var player2Tests = setTimeout(function () {
+//        mygame.spawnPlayer({playerNumber: 8, name: 'SecondPl', amount: 500});
+//    }, startTime);
+//    
+//
+//    setTimeout(function () {
+//        mygame.animatePlayerWaitA({playerNumber: 8, animationLength: 2});
+//    }, startTime);
+//    startTime += 2000 * 2;
+//    console.log("Waiting at " + startTime);
+//
+//    setTimeout(function () {
+//        mygame.animatePlayerLose({playerNumber: 8, animationLength: 2});
+//    }, startTime);
+//    startTime += 2000 * 2;
+//    console.log("Losing at " + startTime);
+//
+//    setTimeout(function () {
+//        mygame.animatePlayerWaitA({playerNumber: 8, animationLength: 6});
+//    }, startTime);
+//    startTime += 2000 * 6;
+//    console.log("Waiting at " + startTime);
+//    return player2Tests;
+//}
+//
+
+function playGame1(startTime) {
 
 //    var startTime = 2000;
-    console.log("Spawning at " + startTime);
-
+    console.log("Spawning Player 4.  Time:  " + startTime);
     var player1Tests = setTimeout(function () {
-        mygame.spawnPlayer({playerNumber: 4, name: 'FirstPl', amount: 500});
+        mygame.spawnPlayer({playerNumber: 4, name: 'FOUR', amount: 500});
     }, startTime);
-    
+
 
     setTimeout(function () {
         mygame.animatePlayerWaitA({playerNumber: 4, animationLength: 2});
     }, startTime);
-    startTime += 2000 * 2;
     console.log("Waiting at " + startTime);
+    startTime += 2000 * 2;
+
+
 
     setTimeout(function () {
-        mygame.animatePlayerLoseA({playerNumber: 4, animationLength: 2});
+        console.log("Spawning Player 7.  Time:  " + startTime);
+        mygame.spawnPlayer({playerNumber: 7, name: 'SEVEN', amount: 700});
     }, startTime);
-    startTime += 2000 * 2;
-    console.log("Losing at " + startTime);
+
 
     setTimeout(function () {
         mygame.animatePlayerWaitB({playerNumber: 4, animationLength: 3});
     }, startTime);
+    console.log("P4 Waiting at " + startTime);
     startTime += 2000 * 3;
-    console.log("Waiting at " + startTime);
-    
-     setTimeout(function () {
-        mygame.animatePlayerLoseB({playerNumber: 4, animationLength: 2});
-    }, startTime);
-    startTime += 2000 * 2;
-    console.log("Losing at " + startTime);
-    
-    
-    
-    
-    
-    
-    return player1Tests;
-}
 
 
-function runPlayer2Stuff(startTime) {
 
-//    var startTime = 3000;
-    console.log("Spawning at " + startTime);
-
-    var player2Tests = setTimeout(function () {
-        mygame.spawnPlayer({playerNumber: 8, name: 'SecondPl', amount: 500});
-    }, startTime);
-    
 
     setTimeout(function () {
-        mygame.animatePlayerWaitA({playerNumber: 8, animationLength: 2});
+        mygame.animatePlayerWaitA({playerNumber: 4, animationLength: 2});
     }, startTime);
+    console.log("P4 Waiting at " + startTime);
     startTime += 2000 * 2;
-    console.log("Waiting at " + startTime);
+
+//
+//    setTimeout(function () {
+//        mygame.animatePlayerLoseB({playerNumber: 4, animationLength: 2});
+//    }, startTime);
+//    startTime += 2000 * 2;
+//    console.log("Losing at " + startTime);
 
     setTimeout(function () {
-        mygame.animatePlayerLose({playerNumber: 8, animationLength: 2});
+
+        mygame.animateBet({playerNumber: 4});
+
     }, startTime);
-    startTime += 2000 * 2;
-    console.log("Losing at " + startTime);
+    console.log("P4 Has Bet !    @ " + startTime);
+    startTime += 2000;
 
     setTimeout(function () {
-        mygame.animatePlayerWaitA({playerNumber: 8, animationLength: 6});
+        mygame.animateBet({playerNumber: 7});
     }, startTime);
-    startTime += 2000 * 6;
-    console.log("Waiting at " + startTime);
-    return player2Tests;
+    startTime += 2000;
+
+    //
+    setTimeout(function () {
+        mygame.displayPopUpWinSelf(
+                {
+                    timeToDisplay: 3,
+                    playerName: "FOUR",
+                    amount: 200
+                }
+
+        );
+       
+
+    }, startTime);
+     cc.log('Win Popup Displayed @ ' + startTime);
+    startTime += 3000;
+
+    setTimeout(function () {
+        mygame.animatePlayerReceiveBet(players[4]);
+    }, startTime);
+     cc.log('Receive bet animation @ ' + startTime);
+
+    setTimeout(function () {
+
+    }, startTime);
+
+
+//    return player1Tests;
 }
