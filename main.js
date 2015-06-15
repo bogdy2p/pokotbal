@@ -1,7 +1,6 @@
 //Global game speed,  increase to run faster for testing  [up-to 4 for a ok result]
 var SHOWALL = false;
 var GGS = 1;
-
 /**
  * A brief explanation for "project.json":
  * Here is the content of project.json file, this is the global configuration for your game, you can modify it to customize some behavior.
@@ -57,7 +56,6 @@ var mygame = {
         cc.game.onStart = function () {
             if (!cc.sys.isNative && document.getElementById("cocosLoading")) //If referenced loading.js, please remove it
                 document.body.removeChild(document.getElementById("cocosLoading"));
-
             // Pass true to enable retina display, disabled by default to improve performance
             cc.view.enableRetina(false);
             // Adjust viewport meta
@@ -70,7 +68,6 @@ var mygame = {
             cc.LoaderScene.preload(g_resources, function () {
                 cc.director.runScene(new MenuScene());
             }, this);
-
         };
         cc.game.run();
     },
@@ -88,7 +85,6 @@ var mygame = {
         var event = new cc.EventCustom("event_set_player_data");
         event.setUserData(playerdata);
         cc.eventManager.dispatchEvent(event);
-
     },
     animatePlayerWin: function (data) {
         var event = new cc.EventCustom("event_player_winning");
@@ -149,11 +145,18 @@ var mygame = {
         var event = new cc.EventCustom("event_deactivate_all_players");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
+    },
+    spawnThePotFlag: function (data) {
+        var event = new cc.EventCustom("event_spawn_the_pot_flag");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
+    },
+    removeThePotFlag: function (data) {
+        var event = new cc.EventCustom("event_remove_the_pot_flag");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
     }
-    
-
 };
-
 var players = [];
 for (i = 0; i < 10; i++) {
     var thename = "player" + i;
@@ -344,37 +347,25 @@ function playGame1(startTime) {
     var player1Tests = setTimeout(function () {
         mygame.spawnPlayer({playerNumber: 4, name: 'FOUR', amount: 500});
     }, startTime);
-
-
     setTimeout(function () {
         mygame.animatePlayerWaitA({playerNumber: 4, animationLength: 2});
     }, startTime);
     console.log("Waiting at " + startTime);
     startTime += 2000 * 2;
-
-
-
     setTimeout(function () {
         console.log("Spawning Player 7.  Time:  " + startTime);
         mygame.spawnPlayer({playerNumber: 7, name: 'SEVEN', amount: 700});
     }, startTime);
-
-
     setTimeout(function () {
         mygame.animatePlayerWaitB({playerNumber: 4, animationLength: 3});
     }, startTime);
     console.log("P4 Waiting at " + startTime);
     startTime += 2000 * 3;
-
-
-
-
     setTimeout(function () {
         mygame.animatePlayerWaitA({playerNumber: 4, animationLength: 2});
     }, startTime);
     console.log("P4 Waiting at " + startTime);
     startTime += 2000 * 2;
-
 //
 //    setTimeout(function () {
 //        mygame.animatePlayerLoseB({playerNumber: 4, animationLength: 2});
@@ -389,14 +380,12 @@ function playGame1(startTime) {
     }, startTime);
     console.log("P4 Has Bet !    @ " + startTime);
     startTime += 2000;
-
     setTimeout(function () {
         mygame.animateActivatePlayer({playerNumber: 7});
         mygame.animateBet({playerNumber: 7});
         mygame.updatePlayerData({playerNumber: 7, name: "SEVEN", amount: 600});
     }, startTime);
     startTime += 2000;
-
     //
     setTimeout(function () {
         mygame.displayPopUpWinSelf(
@@ -407,23 +396,15 @@ function playGame1(startTime) {
                 }
 
         );
-
-
     }, startTime);
     cc.log('Win Popup Displayed @ ' + startTime);
     startTime += 3000;
-
     setTimeout(function () {
         mygame.animatePlayerReceiveBet(players[4]);
         mygame.updatePlayerData({playerNumber: 4, name: "FOUR", amount: 600});
-
     }, startTime);
-
     cc.log('Receive bet animation @ ' + startTime);
-
     startTime += 3200;
-
-
     //Player 2 joins the game
 
     setTimeout(function () {
@@ -431,9 +412,7 @@ function playGame1(startTime) {
         mygame.spawnPlayer(
                 {playerNumber: 2, name: 'TWO', amount: 500}
         );
-
         cc.log("Player TWO Has joine the game");
-
     }, startTime);
     startTime += 5000;
 //===============================================================================//
@@ -443,29 +422,21 @@ function playGame1(startTime) {
         mygame.animateActivatePlayer({playerNumber: 4});
         mygame.animateBet({playerNumber: 4});
         mygame.updatePlayerData({playerNumber: 4, name: "FOUR", amount: 400});
-
-
     }, startTime);
     startTime += 2200;
-
-
     setTimeout(function () {
         mygame.animateActivatePlayer({playerNumber: 2});
         mygame.animateBet({playerNumber: 2});
         mygame.updatePlayerData({playerNumber: 2, name: "TWO", amount: 300});
-
     }, startTime);
     startTime += 2200;
-
     setTimeout(function () {
         mygame.animateActivatePlayer({playerNumber: 7});
         //THIS PLAYER DOES NOT BET RIGHT NOW
 //        mygame.animateBet({playerNumber: 7});
         mygame.updatePlayerData({playerNumber: 7, name: "SEVEN", amount: 600});
-
     }, startTime);
     startTime += 2200;
-
     setTimeout(function () {
         mygame.displayPopUpWinOthers(
                 {
@@ -477,11 +448,9 @@ function playGame1(startTime) {
         mygame.animateActivatePlayer({playerNumber: 2});
         mygame.animatePlayerReceiveBet(players[2]);
         mygame.updatePlayerData({playerNumber: 2, name: "TWO", amount: 700});
-
     }, startTime);
-        startTime += 1000;
-    
-    setTimeout(function (){
+    startTime += 1000;
+    setTimeout(function () {
         mygame.deActivatePlayers();
     }, startTime);
 }

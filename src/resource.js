@@ -68,7 +68,7 @@ var res = {
     //Game Popups ===========================================================    
     PopUpWin1: "res/popups/PopUpWin1Tiny.png",
     PopUpWin2: "res/popups/PopUpWin2Tiny.png",
-    
+    ThePotFlag: "res/userinterface/ThePot.png",
 };
 
 var g_resources = [];

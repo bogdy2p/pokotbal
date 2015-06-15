@@ -180,7 +180,25 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(deActivateAllPlayers, 1);
 
+        var spawnThePotFlag = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_spawn_the_pot_flag",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.spawnThePotFlag(data);
+            }
+        });
+        cc.eventManager.addListener(spawnThePotFlag, 1);
 
+        var removeThePotFlag = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_remove_the_pot_flag",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.removeThePotFlag();
+            }
+        });
+        cc.eventManager.addListener(removeThePotFlag, 1);
     },
     spawnPlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -392,7 +410,7 @@ var AnimationLayer = cc.Layer.extend({
         this.cashSpriteSheet = new cc.Sprite.create(res.UI_Cash);
         this.cashSpriteSheet.setPosition(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y);
         this.cashSpriteSheet.setScale(0.1);
-        backgroundLayer.addChild(this.cashSpriteSheet, playerInformations[data.playerNumber].Zindex + 500, "bet" + this.current_bets);
+        backgroundLayer.addChild(this.cashSpriteSheet, 100, "bet" + this.current_bets);
         this.current_bets++;
 
         var spinning = new cc.RotateBy.create(1.5, 180);
@@ -548,7 +566,7 @@ var AnimationLayer = cc.Layer.extend({
         var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
         var bigSprite = new cc.Sprite(res.PopUpWin1);
         bigSprite.setPosition(centerPos);
-        bigSprite.setScale(0.3);
+        bigSprite.setScale(1);
         if (!WinSprite1AlreadyPresent) {
             backgroundLayer.addChild(bigSprite, 1000, "WinSprite1");
         }
@@ -673,5 +691,40 @@ var AnimationLayer = cc.Layer.extend({
             }
         }, data.timeToDisplay * 1000);
         cc.log('AnimatePOPUP_OTHERS');
+    },
+    spawnThePotFlag: function (data) {
+        //The Pot Flag Should Be Spawned Only ONCE per ROUND.
+        //It Should be on TOP of the money stack.
+        var winSize = cc.director.getWinSize();
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var checkThePotExists = backgroundLayer.getChildByName("ThePotSprite");
+        if (!checkThePotExists) {
+            var thePotSprite = new cc.Sprite(res.ThePotFlag);
+            thePotSprite.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - thePotSprite.height));
+            thePotSprite.setOpacity(0);
+            backgroundLayer.addChild(thePotSprite, 1560, "ThePotSprite");
+            var fadeInPot = new cc.FadeIn.create(1);
+            thePotSprite.runAction(fadeInPot, 1);
+        }
+        var ThePotAmountLabelExists = backgroundLayer.getChildByName("ThePotAmountLabel");
+        if (!ThePotAmountLabelExists) {
+            var thePotAmountLabel = new cc.LabelTTF.create("£" + data.potAmount, "MontserratBold", 40);
+            thePotAmountLabel.setColor(new cc.Color(200, 200, 0, 255));
+            thePotAmountLabel.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - thePotSprite.height - 24));
+            backgroundLayer.addChild(thePotAmountLabel, 1560, "ThePotAmountLabel");
+        } else {
+            ThePotAmountLabelExists.setString("£" + data.potAmount);
+        }
+    },
+    removeThePotFlag: function () {
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var checkThePotExists = backgroundLayer.getChildByName("ThePotSprite");
+        if (checkThePotExists) {
+            checkThePotExists.removeFromParent(1);
+        }
+        var ThePotAmountLabelExists = backgroundLayer.getChildByName("ThePotAmountLabel");
+        if (ThePotAmountLabelExists) {
+            ThePotAmountLabelExists.removeFromParent(1);
+        }
     }
 });
