@@ -20,7 +20,7 @@ var Player = cc.Layer.extend({
 //=============================================================================
 
         var initial_sprite_string = "#_0000_" + playerdata.playerModel +"loseA1.png.png";
-        cc.log(initial_sprite_string);
+//        cc.log(initial_sprite_string);
 
         this.sprite = new cc.Sprite.create(initial_sprite_string);
         this.sprite.setPosition(playerdata.x, playerdata.y);

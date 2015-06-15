@@ -474,7 +474,6 @@ var AnimationLayer = cc.Layer.extend({
             child.setOpacity(255);
             var OverHead = new cc.Sprite.create(res.P_overHead);
             OverHead.setPosition(object.x, object.y + 110);
-
             var buildString = "Player" + data.playerNumber + "_overHead";
             var playerAlreadyActive = backgroundLayer.getChildByName(buildString);
             if (!playerAlreadyActive) {
@@ -498,8 +497,10 @@ var AnimationLayer = cc.Layer.extend({
             var sprite_action = new cc.TintTo.create(1, 85, 85, 85);
             child = element._children[0];
             child.setOpacity(170);
-            for (i = 1; i < 10; i++) {
+            for (i = 0; i < 10; i++) {
                 var overheadName = "Player" + i + "_overHead";
+                cc.log("overheadName:");
+                cc.log(overheadName);
                 var existingOverHeadSprite = backgroundLayer.getChildByName(overheadName);
                 if (existingOverHeadSprite) {
                     existingOverHeadSprite.removeFromParent(1);
