@@ -16,7 +16,6 @@ if (typeof TagOfLayer == "undefined") {
     TagOfLayer.UserInterface = 2;
     TagOfLayer.Status = 3;
     TagOfLayer.LastLayer = 4;
-    TagOfLayer.Player1 = 5;
 }
 
 if (typeof SpriteTag == "undefined") {

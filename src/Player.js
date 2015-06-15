@@ -53,43 +53,6 @@ var Player = cc.Layer.extend({
         var fadeOutPlayer = cc.FadeOut.create(1 / GGS);
         this.sprite.runAction(fadeOutPlayer);
     },
-//    setPlayerName: function (name, playerdata) {
-////        cc.log(this.playerSpriteSheet);
-//        var children = this.playerSpriteSheet._children;
-//        var popUp = children[1];
-////        cc.log(children);
-//        cc.log(popUp);
-////        var popUpX = popUp.getPosition().x;
-////        var popUpY = popUp.getPosition().y;
-//        var popUpX = 30;
-//        var popUpY = 60;
-//        var nameLabel = new cc.LabelTTF.create(name, "MontserratRegular", 12);
-//        nameLabel.setColor(cc.color(255, 255, 255));
-//        nameLabel.setAnchorPoint(0.5, 0.5);
-//        nameLabel.setPosition(cc.p(popUpX - 10, popUpY + 38));
-//        popUp.addChild(nameLabel, 500, playerdata.defaultName + "_nameLabel");
-////        
-////        var versusLabel = new cc.LabelTTF("vs".toUpperCase(), "MontserratRegular", 16);
-////        versusLabel.setColor(cc.color(255, 255, 255));
-////        versusLabel.setAnchorPoint(0.5, 0.5);
-////        versusLabel.setPosition(cc.p(GameTitleX - versusLabel.width / 4, GameTitleY - versusLabel.height / 4));
-////        backgroundLayer.addChild(versusLabel, 500, "leftLabel");
-////        var leftLabel = new cc.LabelTTF(data.leftInfo.toUpperCase(), "MontserratBold", 30);
-////        leftLabel.setColor(cc.color(255, 255, 255));
-////        leftLabel.setAnchorPoint(0.5, 0.5);
-////        leftLabel.setPosition(cc.p(GameTitleX - leftLabel.width / 2 - versusLabel.width, GameTitleY));
-////        backgroundLayer.addChild(leftLabel, 500, "leftLabel");
-////        var rightLabel = new cc.LabelTTF(data.rightInfo.toUpperCase(), "MontserratBold", 30);
-////        rightLabel.setColor(cc.color(255, 255, 255));
-////        rightLabel.setAnchorPoint(0.5, 0.5);
-////        rightLabel.setPosition(cc.p(GameTitleX + leftLabel.width / 2 + versusLabel.width, GameTitleY));
-////        backgroundLayer.addChild(rightLabel, 500, "leftLabel");
-////        var bottomLabel = new cc.LabelTTF(data.bottomInfo.toUpperCase(), "MontserratRegular", 16);
-////        bottomLabel.setColor(cc.color(255, 255, 255));
-////        bottomLabel.setAnchorPoint(0.5, 0.5);
-////        bottomLabel.setPosition(cc.p(GameTitleX, GameTitleY - 30));
-////        backgroundLayer.addChild(bottomLabel, 500, "topLabel");
-//    },
 });
 
 

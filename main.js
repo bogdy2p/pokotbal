@@ -198,7 +198,7 @@ setTimeout(function () {
     setTimeout(function () {
         mygame.spawnPlayer(players[9]);
     }, 2900 / GGS);
-}, 1500);
+}, 4000);
 //END OF SPAWNING==============================================================
 //END OF SPAWNING==============================================================
 

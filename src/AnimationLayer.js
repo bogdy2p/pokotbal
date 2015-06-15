@@ -188,14 +188,6 @@ var AnimationLayer = cc.Layer.extend({
         if (amountLabel) {
             amountLabel.removeFromParent(1);
         }
-
-
-
-
-
-
-
-
     },
     updatePlayerData: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -470,12 +462,12 @@ var AnimationLayer = cc.Layer.extend({
 //            cc.log(backgroundLayer);
             var tintredAction = cc.TintTo.create(1, 255, 0, 0);
 
-            
+
             var table = backgroundLayer.getChildByName('thegametable');
-         
+
             PlayerSprite.runAction(tintredAction);
 //            asd.runAction(moverightAction);
-            
+
 //            cc.log(asd.getColor());
 //            PlayerSprite.runAction(moverightAction,1);
 //            asd.setColor(new cc.Color(60, 60, 60, 1));
@@ -503,21 +495,35 @@ var AnimationLayer = cc.Layer.extend({
         }
 //        cc.log(backgroundLayer);
     },
-    animateCircleText: function (data) {
+//    animateCircleText: function (data) {
+//
+//        var winSize = cc.director.getWinSize();
+//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+//
+//        var thearray = [];
+//        thearray = data.split('');
+//        thearray.reverse();
+//
+////        cc.log(thearray);
+////        var circleLabelTTF = CircleLabelTTF.create("CircleLabelTTF", thearray, 8 * thearray.length);
+////        circleLabelTTF.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+////        circleLabelTTF.setPosition(cc.p(140, 100));
+////        backgroundLayer.addChild(circleLabelTTF,1500,"TEST");
+////        cc.log(backgroundLayer);
+//    },
+    animateYouWin: function (data) {
 
         var winSize = cc.director.getWinSize();
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        
+        
 
-        var thearray = [];
-        thearray = data.split('');
-        thearray.reverse();
-
-//        cc.log(thearray);
-//        var circleLabelTTF = CircleLabelTTF.create("CircleLabelTTF", thearray, 8 * thearray.length);
-//        circleLabelTTF.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
-//        circleLabelTTF.setPosition(cc.p(140, 100));
-//        backgroundLayer.addChild(circleLabelTTF,1500,"TEST");
-//        cc.log(backgroundLayer);
+    },
+    animateOtherWins: function (data) {
+        
+        
+        
+        
     }
 
 
