@@ -536,17 +536,18 @@ var AnimationLayer = cc.Layer.extend({
         }
     },
     animatePopUpWinSelf: function (data) {
-
         var winSize = cc.director.getWinSize();
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var WinSprite1AlreadyPresent = backgroundLayer.getChildByName("WinSprite1");
+        var WinSpritePlayerNameLabelAlreadyExists = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
+        var theWinAmountLabelAlreadyExists = backgroundLayer.getChildByName("WinAmountLabel");
         var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
-
         var bigSprite = new cc.Sprite(res.PopUpWin1);
         bigSprite.setPosition(centerPos);
         bigSprite.setScale(0.3);
-//        bigSprite.setOpacity(100);
-        backgroundLayer.addChild(bigSprite, 1000, "WinSprite1");
-
+        if (!WinSprite1AlreadyPresent) {
+            backgroundLayer.addChild(bigSprite, 1000, "WinSprite1");
+        }
         //Function to remove after certain amount of time:
         if (data.timeToDisplay == null) {
             data.timeToDisplay = 2;
@@ -575,18 +576,21 @@ var AnimationLayer = cc.Layer.extend({
         } else {
             playerNameSize = 14;
         }
-
         var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
         playerNameLabel.setPosition(cc.p(winSize.width / 2, 430));
-        backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
+        if (WinSpritePlayerNameLabelAlreadyExists == null) {
+            backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
 
-        var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 24);
+        }
+        var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 28);
         winAmountLabel.setPosition(cc.p(winSize.width / 2, 140));
-        backgroundLayer.addChild(winAmountLabel, 1000, "WinAmountLabel");
-
+        if (!theWinAmountLabelAlreadyExists) {
+            backgroundLayer.addChild(winAmountLabel, 1000, "WinAmountLabel");
+        }
         var thePopUp = backgroundLayer.getChildByName("WinSprite1");
         var theWinAmountLabel = backgroundLayer.getChildByName("WinAmountLabel");
         var thePlayerNameLabel = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
+
 
         setTimeout(function () {
             if (thePopUp) {
@@ -599,17 +603,14 @@ var AnimationLayer = cc.Layer.extend({
                 thePlayerNameLabel.removeFromParent(1);
             }
         }, data.timeToDisplay * 1000);
-
         cc.log('AnimatePOPUP_SELF');
+
+
+
+
 
     },
     animatePopUpWinOthers: function (data) {
-
-
         cc.log('AnimatePOPUP_OTHERS');
-
     }
-
-
-
 });
