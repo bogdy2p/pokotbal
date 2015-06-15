@@ -178,8 +178,8 @@ var AnimationLayer = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(deActivateAllPlayers, 1);
-        
-        
+
+
     },
     spawnPlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -510,24 +510,7 @@ var AnimationLayer = cc.Layer.extend({
                 }
             }
         }
-//        cc.log(backgroundLayer);
     },
-//    animateCircleText: function (data) {
-//
-//        var winSize = cc.director.getWinSize();
-//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-//
-//        var thearray = [];
-//        thearray = data.split('');
-//        thearray.reverse();
-//
-////        cc.log(thearray);
-////        var circleLabelTTF = CircleLabelTTF.create("CircleLabelTTF", thearray, 8 * thearray.length);
-////        circleLabelTTF.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
-////        circleLabelTTF.setPosition(cc.p(140, 100));
-////        backgroundLayer.addChild(circleLabelTTF,1500,"TEST");
-////        cc.log(backgroundLayer);
-//    },
     deActivateAll: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var existingPlayersWithoutSpecified = [];
@@ -569,12 +552,31 @@ var AnimationLayer = cc.Layer.extend({
             data.timeToDisplay = 2;
         }
 //        cc.log(bigSprite.height);
-
         if (data.playerName == null) {
             data.playerName = "UnnamedPlayer";
         }
+//        cc.log('data playername length: ');
+//        cc.log(data.playerName.length);
+        //If the name is less than 5 chars , use font = 36;
+        // if the name is between 6-10 chars use font = 20;
+        // if the name is between 11-15 chars use font = 14;
+        // if the name is > 15 chars , use font = 10;
+        var playerNameSize = 20;
+        if (data.playerName.length <= 5) {
+            playerNameSize = 36;
+        } else if (data.playerName.length > 5 && data.playerName.length <= 8) {
+            playerNameSize = 24;
+        } else if (data.playerName.length > 8 && data.playerName.length <= 12) {
+            playerNameSize = 20;
+        } else if (data.playerName.length > 12 && data.playerName.length <= 14) {
+            playerNameSize = 16;
+        } else if (data.playerName.length > 14 && data.playerName.length <= 16) {
+            playerNameSize = 14;
+        } else {
+            playerNameSize = 10;
+        }
 
-        var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", 24);
+        var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
         playerNameLabel.setPosition(cc.p(winSize.width / 2, 430));
         backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
 

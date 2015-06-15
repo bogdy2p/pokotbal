@@ -490,6 +490,6 @@ function playGame1(startTime) {
 }
 
 setTimeout(function () {
-    playGame1(300);
+//    playGame1(300);
 }, 2000);
 
