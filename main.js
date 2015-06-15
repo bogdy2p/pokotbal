@@ -2,9 +2,6 @@
 var SHOWALL = false;
 var GGS = 1;
 
-
-
-
 /**
  * A brief explanation for "project.json":
  * Here is the content of project.json file, this is the global configuration for your game, you can modify it to customize some behavior.

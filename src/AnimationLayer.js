@@ -258,30 +258,30 @@ var AnimationLayer = cc.Layer.extend({
             backgroundLayer.addChild(amountLabel, 500, "player_" + data.playerNumber + "_ammountLabel");
         }
     },
-    animatePlayerWin: function (number, pozx, pozy) {
-//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-//        var childname = "player_" + number;
-//        var sprite = backgroundLayer.getChildByName(childname);
-//        var thesprite = sprite._children[0];
-//        var animFramesWin = [];
-//         for (var i = 1; i < 10; i++) {
-//            var str = "_000" + i + "_1loseA" + (i + 1) + ".png.png";
-////            cc.log(str);
-////            var str = "lose" + i + ".png";
-//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-//            animFramesWin.push(frame);
-//        }
-//        for (var i = 10; i < 60; i++) {
-//            var str2 = "_00" + i + "_1loseA" + (i + 1) + ".png.png";
+    animatePlayerWin: function (data) {
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var childname = "player_" + data.playerNumber;
+        var sprite = backgroundLayer.getChildByName(childname);
+        var thesprite = sprite._children[0];
+        var animFramesWin = [];
+        for (var i = 1; i < 10; i++) {
+            var str = "_000" + i + "_" + data.playerModel + "winA" + (i + 1) + ".png.png";
+            var frame = cc.spriteFrameCache.getSpriteFrame(str);
+            animFramesWin.push(frame);
+        }
+        for (var i = 10; i < 60; i++) {
+            var str2 = "_00" + i + "_" + data.playerModel + "winA" + (i + 1) + ".png.png";
 //            cc.log(str2);
 ////            var str = "lose" + i + ".png";
-//            var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
-//            animFramesWin.push(frame2);
-//        }
-//        var animationWin = new cc.Animation(animFramesWin, 0.4);
-//        var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
-//        thesprite.runAction(animateWinning, 1);
-    },
+            var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
+            animFramesWin.push(frame2);
+        }
+        var animationWin = new cc.Animation(animFramesWin, 0.4);
+        var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
+        thesprite.runAction(animateWinning, 1);
+        cc.log("Player " + data.playerNumber + " is now animating WIN-A");
+    }
+    ,
     animatePlayerLoseA: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var childname = "player_" + data.playerNumber;
@@ -289,12 +289,12 @@ var AnimationLayer = cc.Layer.extend({
         var thesprite = sprite._children[0];
         var animFramesLose = [];
         for (var i = 1; i < 10; i++) {
-            var str = "_000" + i + "_1loseA" + (i + 1) + ".png.png";
+            var str = "_000" + i + "_" + data.playerModel + "loseA" + (i + 1) + ".png.png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             animFramesLose.push(frame);
         }
         for (var i = 10; i < 60; i++) {
-            var str2 = "_00" + i + "_1loseA" + (i + 1) + ".png.png";
+            var str2 = "_00" + i + "_" + data.playerModel + "loseA" + (i + 1) + ".png.png";
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesLose.push(frame2);
         }
@@ -303,7 +303,7 @@ var AnimationLayer = cc.Layer.extend({
         var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
         thesprite.runAction(animateLosing, 1);
-        cc.log("Player " + data.playerNumber + " is now animating LOSING [A version]");
+        cc.log("Player " + data.playerNumber + " is now animating LOSING-A");
     },
     animatePlayerLoseB: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -312,12 +312,12 @@ var AnimationLayer = cc.Layer.extend({
         var thesprite = sprite._children[0];
         var animFramesLose = [];
         for (var i = 1; i < 10; i++) {
-            var str = "_000" + i + "_1loseB" + (i + 1) + ".png.png";
+            var str = "_000" + i + "_" + data.playerModel + "loseB" + (i + 1) + ".png.png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             animFramesLose.push(frame);
         }
         for (var i = 10; i < 88; i++) {
-            var str2 = "_00" + i + "_1loseB" + (i + 1) + ".png.png";
+            var str2 = "_00" + i + "_" + data.playerModel + "loseB" + (i + 1) + ".png.png";
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesLose.push(frame2);
         }
@@ -327,7 +327,7 @@ var AnimationLayer = cc.Layer.extend({
         var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
         thesprite.runAction(animateLosing, 1);
-        cc.log("Player " + data.playerNumber + " is now animating LOSING [B version]");
+        cc.log("Player " + data.playerNumber + " is now animating LOSING-B");
     },
     animatePlayerWaitA: function (data) {
 //        cc.log(data);
@@ -338,12 +338,12 @@ var AnimationLayer = cc.Layer.extend({
         var thesprite = sprite._children[0];
         var animFramesWait = [];
         for (var i = 1; i < 10; i++) {
-            var str = "_000" + i + "_1waitA" + (i + 1) + ".png.png";
+            var str = "_000" + i + "_" + data.playerModel + "waitA" + (i + 1) + ".png.png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             animFramesWait.push(frame);
         }
         for (var i = 10; i < 84; i++) {
-            var str2 = "_00" + i + "_1waitA" + (i + 1) + ".png.png";
+            var str2 = "_00" + i + "_" + data.playerModel + "waitA" + (i + 1) + ".png.png";
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesWait.push(frame2);
         }
@@ -352,7 +352,7 @@ var AnimationLayer = cc.Layer.extend({
         var animationWait = new cc.Animation(animFramesWait, data.animationLength / animFramesWait.length);
         var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 1);
         thesprite.runAction(animateWaiting, 1);
-        cc.log("Player " + data.playerNumber + " is now animating WAIT [A version]");
+        cc.log("Player " + data.playerNumber + " is now animating WAIT-A");
     },
     animatePlayerWaitB: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -375,7 +375,7 @@ var AnimationLayer = cc.Layer.extend({
         var animationWaitB = new cc.Animation(animFramesWaitB, data.animationLength / animFramesWaitB.length);
         var animateWaitingB = new cc.Repeat(new cc.Animate(animationWaitB), 1);
         thesprite.runAction(animateWaitingB, 1);
-        cc.log("Player " + data.playerNumber + " is now animating WAIT [B version]");
+        cc.log("Player " + data.playerNumber + " is now animating WAIT-B");
     },
     animateBetting: function (data) {
         var backgroundLayer = this.backgroundLayer;
@@ -392,9 +392,26 @@ var AnimationLayer = cc.Layer.extend({
         this.cashSpriteSheet.setPosition(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y);
         backgroundLayer.addChild(this.cashSpriteSheet, playerInformations[data.playerNumber].Zindex + 500, "bet" + this.current_bets);
         this.current_bets++;
+        
+        var spinning = new cc.RotateBy.create(1.5,180);
+        
+        
         var moveToCenter = new cc.MoveTo.create(1.5, cc.p(winSize.width / 2, winSize.height / 2));
         this.cashSpriteSheet.runAction(moveToCenter, 1);
+        this.cashSpriteSheet.runAction(spinning,1);
         cc.log("Player " + data.playerNumber + " is now animating A BET");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
     }, animateGettingAllBets: function (data) {
         var backgroundLayer = this.backgroundLayer;
@@ -438,7 +455,6 @@ var AnimationLayer = cc.Layer.extend({
     activatePlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var object = playerInformations[data.playerNumber];
-//        cc.log(object);
         var existingPlayersWithoutSpecified = [];
         var existingSpecifiedPlayer = [];
         for (i = 0; i < 10; i++) {
@@ -456,7 +472,11 @@ var AnimationLayer = cc.Layer.extend({
                 }
             }
         }
-//        cc.log(existingPlayersWithoutSpecified);
+
+        
+        existingPlayersWithoutSpecified.forEach(deactivatePlayer);
+        existingSpecifiedPlayer.forEach(activatePlayer);
+
 
         function activatePlayer(element, index, array) {
             var unTint = new cc.TintTo.create(1, 85, 250, 250);
@@ -464,40 +484,26 @@ var AnimationLayer = cc.Layer.extend({
             child.setOpacity(255);
             var OverHead = new cc.Sprite.create(res.P_overHead);
             OverHead.setPosition(object.x, object.y + 110);
-            backgroundLayer.addChild(OverHead, 1000, "Player" + data.playerNumber + "_overHead");
+
+            var buildString = "Player" + data.playerNumber + "_overHead";
+            var playerAlreadyActive = backgroundLayer.getChildByName(buildString);
+            if (!playerAlreadyActive) {
+                backgroundLayer.addChild(OverHead, 1000, "Player" + data.playerNumber + "_overHead");
+                var PlayerSprite = backgroundLayer.getChildByName("player_" + data.playerNumber);
+                var PlayerSpritePopUp = PlayerSprite._children[1];
+                var asd = PlayerSprite._children[0];
+                var tintredAction = cc.TintTo.create(1, 255, 0, 0);
+                var table = backgroundLayer.getChildByName('thegametable');
+                PlayerSprite.runAction(tintredAction);
+            }
+
 
 
             //FETCH THE CURRENT PLAYER'S OVERHEADPOPUP AND MAKE IT GREEN
-            var PlayerSprite = backgroundLayer.getChildByName("player_" + data.playerNumber);
-//            cc.log(PlayerSprite);
-            var PlayerSpritePopUp = PlayerSprite._children[1];
-
-            var asd = PlayerSprite._children[0];
-//            cc.log(asd);
-//            cc.log(PlayerSpritePopUp);
-            // playerdata.defaultName + "_popup"
-//            cc.log(backgroundLayer);
-            var tintredAction = cc.TintTo.create(1, 255, 0, 0);
-
-
-            var table = backgroundLayer.getChildByName('thegametable');
-
-            PlayerSprite.runAction(tintredAction);
-//            asd.runAction(moverightAction);
-
-//            cc.log(asd.getColor());
-//            PlayerSprite.runAction(moverightAction,1);
-//            asd.setColor(new cc.Color(60, 60, 60, 1));
-//            var f = new cc.colorToHex(15,60,60,60);
-
-
-//            cc.log(asd.getColor());
-//            return true;
-
 
         }
-        existingPlayersWithoutSpecified.forEach(deactivatePlayer);
-        existingSpecifiedPlayer.forEach(activatePlayer);
+
+
         function deactivatePlayer(element, index, array) {
             var sprite_action = new cc.TintTo.create(1, 85, 85, 85);
             child = element._children[0];
@@ -511,17 +517,18 @@ var AnimationLayer = cc.Layer.extend({
             }
         }
     },
+    //===========================================================================================
     deActivateAll: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var existingPlayersWithoutSpecified = [];
+        var all_the_players_at_table = [];
         for (i = 0; i < 10; i++) {
             var child = "player_" + i;
             var player = backgroundLayer.getChildByName(child);
             if (player) {
-                existingPlayersWithoutSpecified.push(player);
+                all_the_players_at_table.push(player);
             }
         }
-        existingPlayersWithoutSpecified.forEach(deactivatePlayer);
+        all_the_players_at_table.forEach(deactivatePlayer);
         function deactivatePlayer(element, index, array) {
             var sprite_action = new cc.TintTo.create(1, 85, 85, 85);
             child = element._children[0];
@@ -560,15 +567,15 @@ var AnimationLayer = cc.Layer.extend({
         // if the name is between 11-15 chars use font = 14;
         // if the name is > 15 chars , use font = 10;
         var playerNameSize = 20;
-        if (data.playerName.length <= 5) {
+        if (data.playerName.length <= 6) {
             playerNameSize = 36;
-        } else if (data.playerName.length > 5 && data.playerName.length <= 8) {
+        } else if (data.playerName.length > 6 && data.playerName.length <= 11) {
             playerNameSize = 24;
-        } else if (data.playerName.length > 8 && data.playerName.length <= 12) {
+        } else if (data.playerName.length > 11 && data.playerName.length <= 13) {
             playerNameSize = 22;
-        } else if (data.playerName.length > 12 && data.playerName.length <= 14) {
+        } else if (data.playerName.length > 13 && data.playerName.length <= 16) {
             playerNameSize = 18;
-        } else if (data.playerName.length > 14 && data.playerName.length <= 16) {
+        } else if (data.playerName.length > 16 && data.playerName.length <= 18) {
             playerNameSize = 16;
         } else {
             playerNameSize = 14;
@@ -628,15 +635,15 @@ var AnimationLayer = cc.Layer.extend({
         // if the name is between 11-15 chars use font = 14;
         // if the name is > 15 chars , use font = 10;
         var playerNameSize = 20;
-        if (data.playerName.length <= 5) {
+        if (data.playerName.length <= 6) {
             playerNameSize = 36;
-        } else if (data.playerName.length > 5 && data.playerName.length <= 8) {
+        } else if (data.playerName.length > 6 && data.playerName.length <= 11) {
             playerNameSize = 24;
-        } else if (data.playerName.length > 8 && data.playerName.length <= 12) {
+        } else if (data.playerName.length > 11 && data.playerName.length <= 13) {
             playerNameSize = 22;
-        } else if (data.playerName.length > 12 && data.playerName.length <= 14) {
+        } else if (data.playerName.length > 13 && data.playerName.length <= 16) {
             playerNameSize = 18;
-        } else if (data.playerName.length > 14 && data.playerName.length <= 16) {
+        } else if (data.playerName.length > 16 && data.playerName.length <= 18) {
             playerNameSize = 16;
         } else {
             playerNameSize = 14;

@@ -18,7 +18,11 @@ var Player = cc.Layer.extend({
 //        var initial_picture = "#wait" + playerdata.playerNumber + ".png";
 //        this.sprite = new cc.Sprite.create(initial_picture);
 //=============================================================================
-        this.sprite = new cc.Sprite.create("#_0000_1loseA1.png.png");
+
+        var initial_sprite_string = "#_0000_" + playerdata.playerModel +"loseA1.png.png";
+        cc.log(initial_sprite_string);
+
+        this.sprite = new cc.Sprite.create(initial_sprite_string);
         this.sprite.setPosition(playerdata.x, playerdata.y);
         this.sprite.setOpacity(0);
         spriteSheet.addChild(this.sprite, playerdata.Zindex, playerdata.defaultName);
@@ -26,21 +30,14 @@ var Player = cc.Layer.extend({
 
         this.popUp = new cc.Sprite.create(res.P_popupOverGrey);
         if (playerdata.playerNumber <= 4) {
-
             this.popUp.setPosition(playerdata.x, playerdata.y + this.popUpPixelDifference);
         } else {
             this.popUp.setRotation(180);
             this.popUp.setPosition(playerdata.x, playerdata.y - this.popUpPixelDifference);
-
         }
-
-
         spriteSheet.addChild(this.popUp, playerdata.Zindex, playerdata.defaultName + "_popup");
         global_current_position++;
         this.init();
-
-
-
     },
     init: function () {
         this.animateFadeIn();
@@ -54,62 +51,3 @@ var Player = cc.Layer.extend({
         this.sprite.runAction(fadeOutPlayer);
     },
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        this.sprite.runAction(winLoseWait);
-
-
-//======================================================================   
-//Winning Animation 
-//======================================================================
-//        var animFramesWin = [];
-//        for (var i = 1; i < 6; i++) {
-//            var str = "win" + i + ".png";
-//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-//            animFramesWin.push(frame);
-//        }
-//        var animationWin = new cc.Animation(animFramesWin, 0.4);
-//        var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 2);
-//        //======================================================================   
-//        //Losing Animation 
-//        //======================================================================
-//        var animFramesLose = [];
-//        for (var i = 1; i < 6; i++) {
-//            var str = "lose" + i + ".png";
-//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-//            animFramesLose.push(frame);
-//        }
-//        var animationLose = new cc.Animation(animFramesLose, 0.4);
-//        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 2);
-//        //======================================================================   
-//        //Waiting Animation 
-//        //======================================================================    
-//        var animFramesWait = [];
-//        for (var i = 1; i < 6; i++) {
-//            var str = "wait" + i + ".png";
-//            var frame = cc.spriteFrameCache.getSpriteFrame(str);
-//            animFramesWait.push(frame);
-//        }
-//        var animationWait = new cc.Animation(animFramesWait, 0.4);
-//        var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 2);
-//        //======================================================================   
-//
-//
-//        var winLoseWait = cc.Sequence.create(animateWinning, animateLosing, animateWaiting);

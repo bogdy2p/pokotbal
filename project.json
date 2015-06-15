@@ -9,7 +9,6 @@
     "modules": ["cocos2d"],
     "jsList": [
         "src/underscore.js",
-        
         "src/global_data.js",
         "src/resource.js",
         "src/app.js",

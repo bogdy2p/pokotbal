@@ -61,11 +61,6 @@ var res = {
     Players_plist: "res/pedro/textures/players.plist",
     ThreePlayers_png: "res/pedro/textures/3players.png",
     ThreePlayers_plist: "res/pedro/textures/3players.plist",
-//    Button1_png: "res/1.png",
-//    Button2_png: "res/2.png",
-//    Button3_png: "res/3.png",
-//    Button4_png: "res/4.png",
-//    Button5_png: "res/5.png",
     ///////////FONTS
     MontserratReg: "res/fonts/MontserratRegular.ttf",
     MontserratBold: "res/fonts/MontserratBold.ttf",
