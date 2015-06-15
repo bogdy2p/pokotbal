@@ -1,4 +1,4 @@
-var topLane = 490;
+var topLane = 505;
 var botLane = 190;
 var midLane = 320;
 var leftSolo = 180;

@@ -390,28 +390,18 @@ var AnimationLayer = cc.Layer.extend({
         var cashSpriteName = "bet_player_" + data.playerNumber;
         this.cashSpriteSheet = new cc.Sprite.create(res.UI_Cash);
         this.cashSpriteSheet.setPosition(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y);
+        this.cashSpriteSheet.setScale(0.1);
         backgroundLayer.addChild(this.cashSpriteSheet, playerInformations[data.playerNumber].Zindex + 500, "bet" + this.current_bets);
         this.current_bets++;
-        
-        var spinning = new cc.RotateBy.create(1.5,180);
-        
-        
+
+        var spinning = new cc.RotateBy.create(1.5, 180);
+        var scaleto = new cc.ScaleTo.create(1.5,1);
         var moveToCenter = new cc.MoveTo.create(1.5, cc.p(winSize.width / 2, winSize.height / 2));
+
+        this.cashSpriteSheet.runAction(scaleto,1);
         this.cashSpriteSheet.runAction(moveToCenter, 1);
-        this.cashSpriteSheet.runAction(spinning,1);
+        this.cashSpriteSheet.runAction(spinning, 1);
         cc.log("Player " + data.playerNumber + " is now animating A BET");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
 
     }, animateGettingAllBets: function (data) {
         var backgroundLayer = this.backgroundLayer;
@@ -473,7 +463,7 @@ var AnimationLayer = cc.Layer.extend({
             }
         }
 
-        
+
         existingPlayersWithoutSpecified.forEach(deactivatePlayer);
         existingSpecifiedPlayer.forEach(activatePlayer);
 
