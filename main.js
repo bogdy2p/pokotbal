@@ -147,8 +147,13 @@ var mygame = {
         var event = new cc.EventCustom("event_display_popup_win_others");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
+    },
+    deActivatePlayers: function (data) {
+        var event = new cc.EventCustom("event_deactivate_all_players");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
     }
-
+    
 
 };
 
@@ -381,15 +386,17 @@ function playGame1(startTime) {
 //    console.log("Losing at " + startTime);
 
     setTimeout(function () {
-
+        mygame.animateActivatePlayer({playerNumber: 4});
         mygame.animateBet({playerNumber: 4});
-
+        mygame.updatePlayerData({playerNumber: 4, name: "FOUR", amount: 400});
     }, startTime);
     console.log("P4 Has Bet !    @ " + startTime);
     startTime += 2000;
 
     setTimeout(function () {
+        mygame.animateActivatePlayer({playerNumber: 7});
         mygame.animateBet({playerNumber: 7});
+        mygame.updatePlayerData({playerNumber: 7, name: "SEVEN", amount: 600});
     }, startTime);
     startTime += 2000;
 
@@ -403,21 +410,86 @@ function playGame1(startTime) {
                 }
 
         );
-       
+
 
     }, startTime);
-     cc.log('Win Popup Displayed @ ' + startTime);
+    cc.log('Win Popup Displayed @ ' + startTime);
     startTime += 3000;
 
     setTimeout(function () {
         mygame.animatePlayerReceiveBet(players[4]);
+        mygame.updatePlayerData({playerNumber: 4, name: "FOUR", amount: 600});
+
     }, startTime);
-     cc.log('Receive bet animation @ ' + startTime);
+
+    cc.log('Receive bet animation @ ' + startTime);
+
+    startTime += 3200;
+
+
+    //Player 2 joins the game
 
     setTimeout(function () {
 
+        mygame.spawnPlayer(
+                {playerNumber: 2, name: 'TWO', amount: 500}
+        );
+
+        cc.log("Player TWO Has joine the game");
+
     }, startTime);
+    startTime += 5000;
+//===============================================================================//
+
+    setTimeout(function () {
+
+        mygame.animateActivatePlayer({playerNumber: 4});
+        mygame.animateBet({playerNumber: 4});
+        mygame.updatePlayerData({playerNumber: 4, name: "FOUR", amount: 400});
 
 
-//    return player1Tests;
+    }, startTime);
+    startTime += 2200;
+
+
+    setTimeout(function () {
+        mygame.animateActivatePlayer({playerNumber: 2});
+        mygame.animateBet({playerNumber: 2});
+        mygame.updatePlayerData({playerNumber: 2, name: "TWO", amount: 300});
+
+    }, startTime);
+    startTime += 2200;
+
+    setTimeout(function () {
+        mygame.animateActivatePlayer({playerNumber: 7});
+        //THIS PLAYER DOES NOT BET RIGHT NOW
+//        mygame.animateBet({playerNumber: 7});
+        mygame.updatePlayerData({playerNumber: 7, name: "SEVEN", amount: 600});
+
+    }, startTime);
+    startTime += 2200;
+
+    setTimeout(function () {
+        mygame.displayPopUpWinOthers(
+                {
+                    timeToDisplay: 3,
+                    playerName: "TWO",
+                    amount: 700
+                }
+        );
+        mygame.animateActivatePlayer({playerNumber: 2});
+        mygame.animatePlayerReceiveBet(players[2]);
+        mygame.updatePlayerData({playerNumber: 2, name: "TWO", amount: 700});
+
+    }, startTime);
+        startTime += 1000;
+    
+    setTimeout(function (){
+        mygame.deActivatePlayers();
+    }, startTime);
 }
+
+setTimeout(function () {
+    playGame1(300);
+}, 2000);
+

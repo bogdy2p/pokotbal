@@ -169,6 +169,17 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(displayPopUpWinOthers, 1);
 
+        var deActivateAllPlayers = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_deactivate_all_players",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.deActivateAll();
+            }
+        });
+        cc.eventManager.addListener(deActivateAllPlayers, 1);
+        
+        
     },
     spawnPlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -517,6 +528,30 @@ var AnimationLayer = cc.Layer.extend({
 ////        backgroundLayer.addChild(circleLabelTTF,1500,"TEST");
 ////        cc.log(backgroundLayer);
 //    },
+    deActivateAll: function (data) {
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var existingPlayersWithoutSpecified = [];
+        for (i = 0; i < 10; i++) {
+            var child = "player_" + i;
+            var player = backgroundLayer.getChildByName(child);
+            if (player) {
+                existingPlayersWithoutSpecified.push(player);
+            }
+        }
+        existingPlayersWithoutSpecified.forEach(deactivatePlayer);
+        function deactivatePlayer(element, index, array) {
+            var sprite_action = new cc.TintTo.create(1, 85, 85, 85);
+            child = element._children[0];
+            child.setOpacity(255);
+            for (i = 1; i < 10; i++) {
+                var overheadName = "Player" + i + "_overHead";
+                var existingOverHeadSprite = backgroundLayer.getChildByName(overheadName);
+                if (existingOverHeadSprite) {
+                    existingOverHeadSprite.removeFromParent(1);
+                }
+            }
+        }
+    },
     animatePopUpWinSelf: function (data) {
 
         var winSize = cc.director.getWinSize();
@@ -540,7 +575,7 @@ var AnimationLayer = cc.Layer.extend({
         }
 
         var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", 24);
-        playerNameLabel.setPosition(cc.p(winSize.width / 2 , 430));
+        playerNameLabel.setPosition(cc.p(winSize.width / 2, 430));
         backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
 
         var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 24);
@@ -550,7 +585,7 @@ var AnimationLayer = cc.Layer.extend({
         var thePopUp = backgroundLayer.getChildByName("WinSprite1");
         var theWinAmountLabel = backgroundLayer.getChildByName("WinAmountLabel");
         var thePlayerNameLabel = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
-        
+
         setTimeout(function () {
             if (thePopUp) {
                 thePopUp.removeFromParent(1);
