@@ -197,18 +197,14 @@ var AnimationLayer = cc.Layer.extend({
         cc.eventManager.addListener(removeThePotFlag, 1);
     },
     spawnPlayer: function (data) {
-        cc.log(data);
-
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var object = positionInformations[data.playerNumber];
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
         var spriteFramesForPlayer = "res/animations/player" + data.playerModel + ".plist";
-        cc.log(spriteFramesForPlayer);
         cc.spriteFrameCache.addSpriteFrames(spriteFramesForPlayer);
         var spriteBatchNodeFile = "res/animations/player" + data.playerModel + ".png";
-        cc.log(spriteBatchNodeFile);
         var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(spriteBatchNodeFile);
         var childname = "player_" + data.playerNumber;
         var asd = new Player(thisplayer, object);
