@@ -277,18 +277,12 @@ var AnimationLayer = cc.Layer.extend({
     animatePlayerWin: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var childname = "player_" + data.playerNumber;
-
-
         var sprite = backgroundLayer.getChildByName(childname);
         var thesprite = sprite._children[0];
-        cc.log(thesprite);
         ///////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////
         var position = positionInformations[data.playerNumber];
-
-
         thesprite.setPosition(position.x - 19, position.y + 13);
-//        var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x - 19, position.y + 13);
         ///////////////////////////////////////////////////////////////////////
         var animFramesWin = [];
         for (var i = 1; i < 10; i++) {
@@ -301,16 +295,9 @@ var AnimationLayer = cc.Layer.extend({
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesWin.push(frame2);
         }
-        cc.log(animFramesWin);
-//        var returnFrameString = "_0000_" + data.playerModel + "loseA1.png.png";
-//        cc.log(returnFrameString);
-//        var returnFrame = cc.spriteFrameCache.getSpriteFrame(returnFrameString);
-//        animFramesWin.push(returnFrame);
         var animationWin = new cc.Animation(animFramesWin, data.animationLength / animFramesWin.length);
         var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
-//        thesprite.runAction(moveSpriteToCorrectPosition, 1);
         thesprite.runAction(animateWinning, 1);
-        cc.log("Player " + data.playerNumber + " is now animating WIN");
 
     }
     ,
@@ -319,10 +306,8 @@ var AnimationLayer = cc.Layer.extend({
         var childname = "player_" + data.playerNumber;
         var sprite = backgroundLayer.getChildByName(childname);
         var thesprite = sprite._children[0];
-
         ///////////////////////////////////////////////////////////////////////
         var position = positionInformations[data.playerNumber];
-        var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x, position.y);
         ///////////////////////////////////////////////////////////////////////
         thesprite.setPosition(position.x, position.y);
         var animFramesLose = [];
@@ -336,13 +321,9 @@ var AnimationLayer = cc.Layer.extend({
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesLose.push(frame2);
         }
-
-        var speed = data.animationLength / animFramesLose.length;
         var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
-//        thesprite.runAction(moveSpriteToCorrectPosition, 1);
         thesprite.runAction(animateLosing, 1);
-        cc.log("Player " + data.playerNumber + " is now animating LOSING-A");
     },
     animatePlayerLoseB: function (data) {
 //        cc.log(data);
@@ -353,27 +334,21 @@ var AnimationLayer = cc.Layer.extend({
         ///////////////////////////////////////////////////////////////////////
         var position = positionInformations[data.playerNumber];
         thesprite.setPosition(position.x, position.y);
-        var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x, position.y);
         ///////////////////////////////////////////////////////////////////////
         var animFramesLose = [];
         for (var i = 1; i < 10; i++) {
             var str = "_000" + i + "_" + data.playerModel + "loseB" + (i + 1) + ".png.png";
-            cc.log(str);
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             animFramesLose.push(frame);
         }
         for (var i = 10; i < 88; i++) {
             var str2 = "_00" + i + "_" + data.playerModel + "loseB" + (i + 1) + ".png.png";
-            cc.log(str2);
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesLose.push(frame2);
         }
-        var speed = data.animationLength / animFramesLose.length;
         var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
-//        thesprite.runAction(moveSpriteToCorrectPosition, 1);
         thesprite.runAction(animateLosing, 1);
-        cc.log("Player " + data.playerNumber + " is now animating LOSING-B");
     },
     animatePlayerWaitA: function (data) {
 
@@ -384,7 +359,6 @@ var AnimationLayer = cc.Layer.extend({
         ///////////////////////////////////////////////////////////////////////
         var position = positionInformations[data.playerNumber];
         thesprite.setPosition(position.x, position.y);
-//        var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x, position.y);
         ///////////////////////////////////////////////////////////////////////
         var animFramesWait = [];
         for (var i = 1; i < 10; i++) {
@@ -397,13 +371,9 @@ var AnimationLayer = cc.Layer.extend({
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesWait.push(frame2);
         }
-
-        var speed = data.animationLength / animFramesWait.length;
         var animationWait = new cc.Animation(animFramesWait, data.animationLength / animFramesWait.length);
         var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 1);
-//        thesprite.runAction(moveSpriteToCorrectPosition, 1);
         thesprite.runAction(animateWaiting, 1);
-        cc.log("Player " + data.playerNumber + " is now animating WAIT-A");
     },
     animatePlayerWaitB: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -413,7 +383,6 @@ var AnimationLayer = cc.Layer.extend({
         ///////////////////////////////////////////////////////////////////////
         var position = positionInformations[data.playerNumber];
         thesprite.setPosition(position.x, position.y);
-//        var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x, position.y);
         ///////////////////////////////////////////////////////////////////////
         var animFramesWaitB = [];
         for (var i = 1; i < 10; i++) {
@@ -426,13 +395,9 @@ var AnimationLayer = cc.Layer.extend({
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesWaitB.push(frame2);
         }
-
-        var speed = data.animationLength / animFramesWaitB.length;
         var animationWaitB = new cc.Animation(animFramesWaitB, data.animationLength / animFramesWaitB.length);
         var animateWaitingB = new cc.Repeat(new cc.Animate(animationWaitB), 1);
-//        thesprite.runAction(moveSpriteToCorrectPosition, 1);
         thesprite.runAction(animateWaitingB, 1);
-        cc.log("Player " + data.playerNumber + " is now animating WAIT-B");
     },
     animateBetting: function (data) {
         var backgroundLayer = this.backgroundLayer;
@@ -463,8 +428,6 @@ var AnimationLayer = cc.Layer.extend({
         this.cashSpriteSheet.runAction(scaleto, 1);
         this.cashSpriteSheet.runAction(moveToCenter, 1);
         this.cashSpriteSheet.runAction(spinning, 1);
-        cc.log("Player " + data.playerNumber + " is now animating A BET");
-
     }, animateGettingAllBets: function (data) {
         var backgroundLayer = this.backgroundLayer;
         if (this.current_bets > 0) {
@@ -492,7 +455,6 @@ var AnimationLayer = cc.Layer.extend({
                 theBigSequences[i] = cc.Sequence.create(randomMoves[i], randomFades[i]);
                 allbets[i].runAction(theBigSequences[i], 1);
             }
-
             var current_bets = this.current_bets;
             setTimeout(function () {
                 for (i = 0; i < current_bets; i++) {
@@ -524,7 +486,6 @@ var AnimationLayer = cc.Layer.extend({
                 }
             }
         }
-
 
         existingPlayersWithoutSpecified.forEach(deactivatePlayer);
         existingSpecifiedPlayer.forEach(activatePlayer);
@@ -660,8 +621,6 @@ var AnimationLayer = cc.Layer.extend({
                 thePlayerNameLabel.removeFromParent(1);
             }
         }, data.timeToDisplay * 1000);
-        cc.log('AnimatePOPUP_SELF');
-
     },
     animatePopUpWinOthers: function (data) {
         var winSize = cc.director.getWinSize();
@@ -728,7 +687,6 @@ var AnimationLayer = cc.Layer.extend({
                 thePlayerNameLabel.removeFromParent(1);
             }
         }, data.timeToDisplay * 1000);
-        cc.log('AnimatePOPUP_OTHERS');
     },
     spawnThePotFlag: function (data) {
         //The Pot Flag Should Be Spawned Only ONCE per ROUND.
