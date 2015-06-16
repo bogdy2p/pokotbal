@@ -48,9 +48,6 @@ var AnimationLayer = cc.Layer.extend({
             eventName: "event_player_winning",
             callback: function (event) {
                 var data = event.getUserData();
-//                var playerNumber = data.playerNumber;
-//                var positionX = data.positionX;
-//                var positionY = data.positionY;
                 that.animatePlayerWin(data);
             }
         });
@@ -208,25 +205,18 @@ var AnimationLayer = cc.Layer.extend({
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
-
         var spriteFramesForPlayer = "res/animations/player" + data.playerModel + ".plist";
         cc.log(spriteFramesForPlayer);
-//        cc.spriteFrameCache.addSpriteFrames(res.Player1_plist);
         cc.spriteFrameCache.addSpriteFrames(spriteFramesForPlayer);
-
         var spriteBatchNodeFile = "res/animations/player" + data.playerModel + ".png";
         cc.log(spriteBatchNodeFile);
-//        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Player1_png);
         var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(spriteBatchNodeFile);
-        
-
         var childname = "player_" + data.playerNumber;
         var asd = new Player(thisplayer, object);
         backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
 
     },
     removePlayer: function (data) {
-
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var object = playerInformations[data.playerNumber];
         var childname = "player_" + (data.playerNumber);
@@ -236,9 +226,7 @@ var AnimationLayer = cc.Layer.extend({
         } else {
             cc.log("Some strange error when trying to remove player " + (data.playerNumber));
         }
-
         // SHOULD ALSO REMOVE THE AMOUNT AND THE NAME FROM THE TABLE
-
         var nameLabel = backgroundLayer.getChildByName("player_" + data.playerNumber + "_nameLabel");
         var amountLabel = backgroundLayer.getChildByName("player_" + data.playerNumber + "_ammountLabel");
 
@@ -253,7 +241,6 @@ var AnimationLayer = cc.Layer.extend({
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var object = playerInformations[data.playerNumber];
         var childname = "player_" + (data.playerNumber);
-
         var ThePlayer = backgroundLayer.getChildByName(childname);
         var children = ThePlayer._children;
         var popUp = children[1];
@@ -296,21 +283,24 @@ var AnimationLayer = cc.Layer.extend({
         var thesprite = sprite._children[0];
         var animFramesWin = [];
         for (var i = 1; i < 10; i++) {
-            var str = "_000" + i + "_" + data.playerModel + "winA" + (i + 1) + ".png.png";
+            var str = "_000" + i + "_" + data.playerModel + "win" + (i + 1) + ".png.png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             animFramesWin.push(frame);
         }
-        for (var i = 10; i < 60; i++) {
-            var str2 = "_00" + i + "_" + data.playerModel + "winA" + (i + 1) + ".png.png";
-//            cc.log(str2);
-////            var str = "lose" + i + ".png";
+        for (var i = 10; i < 37; i++) {
+            var str2 = "_00" + i + "_" + data.playerModel + "win" + (i + 1) + ".png.png";
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesWin.push(frame2);
         }
-        var animationWin = new cc.Animation(animFramesWin, 0.4);
+        cc.log(animFramesWin);
+        var returnFrameString = "_0000_" + data.playerModel + "loseA1.png.png";
+        cc.log(returnFrameString);
+        var returnFrame = cc.spriteFrameCache.getSpriteFrame(returnFrameString);
+        animFramesWin.push(returnFrame);
+        var animationWin = new cc.Animation(animFramesWin, data.animationLength / animFramesWin.length);
         var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
         thesprite.runAction(animateWinning, 1);
-        cc.log("Player " + data.playerNumber + " is now animating WIN-A");
+        cc.log("Player " + data.playerNumber + " is now animating WIN");
     }
     ,
     animatePlayerLoseA: function (data) {
@@ -329,7 +319,7 @@ var AnimationLayer = cc.Layer.extend({
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesLose.push(frame2);
         }
-
+        
         var speed = data.animationLength / animFramesLose.length;
         var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
@@ -399,12 +389,12 @@ var AnimationLayer = cc.Layer.extend({
         var thesprite = sprite._children[0];
         var animFramesWaitB = [];
         for (var i = 1; i < 10; i++) {
-            var str = "_000" + i + "_1waitB" + (i + 1) + ".png.png";
+            var str = "_000" + i + "_" + data.playerModel + "waitB" + (i + 1) + ".png.png";
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             animFramesWaitB.push(frame);
         }
         for (var i = 10; i < 99; i++) {
-            var str2 = "_00" + i + "_1waitB" + (i + 1) + ".png.png";
+            var str2 = "_00" + i + "_" + data.playerModel + "waitB" + (i + 1) + ".png.png";
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesWaitB.push(frame2);
         }
