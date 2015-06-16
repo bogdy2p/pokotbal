@@ -156,55 +156,7 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     }
-
-
-//    ,
-//    help: function (data) {
-//
-//        cc.log("THIS IS THE HELP FILE");
-//        if (data) {
-//
-//            switch (data) {
-//
-//                case "spawnPlayer":
-//                    cc.log("SPAWN PLAYER FUNCTION");
-//                    
-//                    break;
-//
-//
-//            }
-//
-//
-//
-//        }
-//
-//
-//
-//    }
-
-
-
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -215,6 +167,7 @@ for (i = 0; i < 10; i++) {
         playerNumber: i,
 //        number: i,
         playerModel: (i % 5 + 1),
+        animationLength: 2,
         name: thename,
         amount: "0"
     };
@@ -392,6 +345,6 @@ function playGame1(startTime) {
 }
 
 setTimeout(function () {
-//    playGame1(300);
+//    playGame1(1000);
 }, 2000);
 
