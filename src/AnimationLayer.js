@@ -792,7 +792,20 @@ var AnimationLayer = cc.Layer.extend({
         backgroundLayer.addChild(playerHand, 1720, "PlayerHand");
         ////////////////////////////////////////////////////////////////////////
 
-        
+
+        var winsFlag = new cc.Sprite(res.BP_WinsText);
+        winsFlag.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        winsFlag.setScale(0.05);
+
+        var ScaleWinsFlagAction = new cc.ScaleTo(0.1, 1);
+        var MoveWinsFlagAction = new cc.MoveTo(0.1, cc.p(winSize.width / 2, 100));
+        var FlagDelay = new cc.DelayTime(0.1);
+
+
+        var WinsFlagSequence = new cc.Sequence.create(FlagDelay, ScaleWinsFlagAction, MoveWinsFlagAction);
+        winsFlag.runAction(WinsFlagSequence);
+
+        backgroundLayer.addChild(winsFlag, 1730, "WinsFlag");
 
 
 
