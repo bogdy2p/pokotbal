@@ -195,6 +195,17 @@ var AnimationLayer = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(removeThePotFlag, 1);
+
+        var bigAnimation1 = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_big_animation_one",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.bigAnimationSelf();
+            }
+        });
+        cc.eventManager.addListener(bigAnimation1, 1);
+
     },
     spawnPlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -518,8 +529,6 @@ var AnimationLayer = cc.Layer.extend({
             child.setOpacity(170);
             for (i = 0; i < 10; i++) {
                 var overheadName = "Player" + i + "_overHead";
-//                cc.log("overheadName:");
-//                cc.log(overheadName);
                 var existingOverHeadSprite = backgroundLayer.getChildByName(overheadName);
                 if (existingOverHeadSprite) {
                     existingOverHeadSprite.removeFromParent(1);
@@ -718,5 +727,87 @@ var AnimationLayer = cc.Layer.extend({
         if (ThePotAmountLabelExists) {
             ThePotAmountLabelExists.removeFromParent(1);
         }
+    },
+    bigAnimationSelf: function (data) {
+
+        var defaultConfig = {
+        };
+        var winSize = cc.director.getWinSize();
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
+
+
+        ////////////////////////////////////////////////////////////////////////
+        //THE BACKGROUND TRANSPARENCY;
+        ////////////////////////////////////////////////////////////////////////
+        var transparentBgSprite = new cc.Sprite(res.BP_Transparency);
+        transparentBgSprite.setPosition(centerPos);
+        transparentBgSprite.setOpacity(255);
+        var transpScaleUp = new cc.ScaleTo(0.4, 1.2);
+        var transpScaleDown = new cc.ScaleTo(0.4, 1);
+        var ScaleSequence = new cc.Sequence.create(transpScaleUp, transpScaleDown);
+        var repeatScale = new cc.Repeat(ScaleSequence, 4);
+        transparentBgSprite.runAction(repeatScale);
+        backgroundLayer.addChild(transparentBgSprite, 1690, "TransparentBg");
+        ///////////////////////////////////////////////////////////////////////
+
+
+
+        ////////////////////////////////////////////////////////////////////////
+        //THE BACKGROUND RED SPRITE
+        ////////////////////////////////////////////////////////////////////////
+        var bgRedSprite = new cc.Sprite(res.BP_RedBg);
+        bgRedSprite.setPosition(centerPos);
+        bgRedSprite.setScale(0.01);
+        var ScaleBgToNormalAction = new cc.ScaleTo(0.1, 1);
+        bgRedSprite.runAction(ScaleBgToNormalAction);
+        backgroundLayer.addChild(bgRedSprite, 1700, "BgRed");
+
+        ////////////////////////////////////////////////////////////////////////
+
+
+
+        ////////////////////////////////////////////////////////////////////////
+        //THE PLAYER BODY
+        ////////////////////////////////////////////////////////////////////////
+        var playerBody = new cc.Sprite(res.BP_PlayerBody);
+        playerBody.setPosition(cc.p(winSize.width / 2 + 8, winSize.height / 2 - 54));
+        playerBody.setScale(0.05);
+        var ScaleBodyToNormalAction = new cc.ScaleTo(0.2, 1);
+        playerBody.runAction(ScaleBodyToNormalAction);
+        backgroundLayer.addChild(playerBody, 1710, "PlayerBody");
+        ////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////
+        //THE PLAYER HAND
+        ////////////////////////////////////////////////////////////////////////
+        var playerHand = new cc.Sprite(res.BP_PlayerHand);
+        playerHand.setPosition(cc.p(winSize.width / 2 - 130, winSize.height / 2 - 45));
+        playerHand.setScale(1);
+        var HandDelay = new cc.delayTime(1.2);
+        var ScaleHandUpAction = new cc.ScaleTo(0.2, 2);
+        var ScaleHandDownAction = new cc.ScaleTo(0.2, 1);
+        var ScaleHandSequence = new cc.Sequence.create(HandDelay, ScaleHandUpAction, ScaleHandDownAction);
+        playerHand.runAction(ScaleHandSequence);
+        backgroundLayer.addChild(playerHand, 1720, "PlayerHand");
+        ////////////////////////////////////////////////////////////////////////
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+        cc.log("BIG ANIMATION SELFF");
     }
+
+
 });

@@ -155,6 +155,11 @@ var mygame = {
         var event = new cc.EventCustom("event_remove_the_pot_flag");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
+    },
+    bigAnimationSelf: function (data) {
+        var event = new cc.EventCustom("event_big_animation_one");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
     }
 };
 

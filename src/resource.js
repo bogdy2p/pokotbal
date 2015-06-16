@@ -8,7 +8,7 @@ var res = {
     //USER INTERFACE RESOURCES ================================================    
     UI_Marker: "res/userinterface/Marker.png",
     UI_BottomLeftInfo: "res/userinterface/BotLeftInfoNone.png",
-    UI_Cash: "res/userinterface/CashNull.png",
+    UI_Cash: "res/userinterface/CashGood.png",
     //=========================================================================
 
     //Player Popups ===========================================================
@@ -41,6 +41,28 @@ var res = {
     Player4_png: "res/animations/player4.png",
     Player5_plist: "res/animations/player5.plist",
     Player5_png: "res/animations/player5.png",
+    
+    
+    
+    //Big Popup Animations Components
+    BP_Transparency: "res/popups/whitetransparent.png",
+    BP_RedBg: "res/popups/redbg.png",
+    BP_Ball: "res/popups/ball.png",
+    BP_WinsText: "res/popups/wins.png",
+    BP_YouWinText: "res/popups/youwin.png",
+    BP_PlayerHand: "res/popups/playerhand.png",
+    BP_PlayerBody: "res/popups/playerbody.png",
+    BP_BlackBox: "res/popups/blackbox.png",
+    BP_Face1: "res/popups/face1.png",
+    BP_Face2: "res/popups/face2.png",
+    BP_Trophy: "res/popups/trophy.png",
+    
+    
+    
+    
+    
+    
+    
 };
 
 var g_resources = [];
