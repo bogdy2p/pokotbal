@@ -1,4 +1,4 @@
-var topLane = 505;
+var topLane = 510;
 var botLane = 190;
 var midLane = 320;
 var leftSolo = 180;
@@ -33,7 +33,7 @@ if (typeof SpriteTag == "undefined") {
     SpriteTag.player10 = 9;
 }
 
-var playerInformations = [
+var positionInformations = [
     {
         x: col1,
         y: topLane,

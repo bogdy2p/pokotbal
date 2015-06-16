@@ -8,25 +8,6 @@ var res = {
     //USER INTERFACE RESOURCES ================================================    
     UI_Marker: "res/userinterface/Marker.png",
     UI_BottomLeftInfo: "res/userinterface/BotLeftInfoNone.png",
-    //UI_BottomLeftInfo: "res/userinterface/BotLeftInfo.png",
-//    UI_BottomMenu: "res/userinterface/BottomMenu.png",
-//    UI_BottomMenuClicked: "res/userinterface/BottomMenuClicked.png",
-//    UI_BottomMenuOpened: "res/userinterface/BottomMenuOpened.png",
-//    UI_ChatBarOpened: "res/userinterface/ChatBarOpened.png",
-//    UI_BottomRight: "res/userinterface/BottomRight.png",
-//    UI_TopRight: "res/userinterface/TopRight.png",
-//    UI_MatchInfo: "res/userinterface/MatchInfo.png",
-//    UI_TimerClock: "res/userinterface/TimerClock.png",
-//    UI_SettingsMenu: "res/userinterface/SettingsMenu.png",
-//    UI_MatchFeedBar: "res/userinterface/MatchFeed.png",
-//    UI_GameEventsBar: "res/userinterface/GameEvents.png",
-//    UI_MiniGameBar: "res/userinterface/MiniGameBar.png",
-//    UI_MiniGameBarClicked: "res/userinterface/MiniGameBarClicked.png",
-//    UI_ChatBar: "res/userinterface/ChatBar.png",
-//    UI_ChatBarClicked: "res/userinterface/ChatBarClicked.png",
-    UI_Announcement: "res/userinterface/Announcement1.png",
-//    UI_TopLeftNormal: "res/userinterface/TopLeftNormal.png",
-//    UI_TopLeftPressed: "res/userinterface/TopLeftPressed.png",
     UI_Cash: "res/userinterface/CashNull.png",
     //=========================================================================
 
@@ -42,16 +23,6 @@ var res = {
 
     Start_s_png: "res/controls/start_s.png",
     Start_n_png: "res/controls/start_n.png",
-    //Players :
-//    Finale_png: "res/animations/finale.png",
-//    Finale_plist: "res/animations/finale.plist",
-    //Pedro Animation
-//    Losenew_plist: "res/new/losenew.plist",
-//    Losenew_png: "res/new/losenew.png",
-//    Losing_png: "res/pedro/textures/lose.png",
-//    Losing_plist: "res/pedro/textures/lose.plist",
-    Pedroanimation_png: "res/pedro/textures/pedroanim.png",
-    Pedroanimation_plist: "res/pedro/textures/pedroanim.plist",
 
     ///////////FONTS
     MontserratReg: "res/fonts/MontserratRegular.ttf",

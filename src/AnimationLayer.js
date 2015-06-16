@@ -200,7 +200,7 @@ var AnimationLayer = cc.Layer.extend({
         cc.log(data);
 
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var object = playerInformations[data.playerNumber];
+        var object = positionInformations[data.playerNumber];
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
@@ -213,11 +213,10 @@ var AnimationLayer = cc.Layer.extend({
         var childname = "player_" + data.playerNumber;
         var asd = new Player(thisplayer, object);
         backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
-
     },
     removePlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var object = playerInformations[data.playerNumber];
+        var object = positionInformations[data.playerNumber];
         var childname = "player_" + (data.playerNumber);
         var ThePlayer = backgroundLayer.getChildByName(childname);
         if (ThePlayer) {
@@ -238,7 +237,7 @@ var AnimationLayer = cc.Layer.extend({
     },
     updatePlayerData: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var object = playerInformations[data.playerNumber];
+        var object = positionInformations[data.playerNumber];
         var childname = "player_" + (data.playerNumber);
         var ThePlayer = backgroundLayer.getChildByName(childname);
         var children = ThePlayer._children;
@@ -285,8 +284,11 @@ var AnimationLayer = cc.Layer.extend({
         cc.log(thesprite);
         ///////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////
-        var position = playerInformations[data.playerNumber];
-        var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x - 19, position.y + 13);
+        var position = positionInformations[data.playerNumber];
+
+
+        thesprite.setPosition(position.x - 19, position.y + 13);
+//        var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x - 19, position.y + 13);
         ///////////////////////////////////////////////////////////////////////
         var animFramesWin = [];
         for (var i = 1; i < 10; i++) {
@@ -306,7 +308,7 @@ var AnimationLayer = cc.Layer.extend({
 //        animFramesWin.push(returnFrame);
         var animationWin = new cc.Animation(animFramesWin, data.animationLength / animFramesWin.length);
         var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
-        thesprite.runAction(moveSpriteToCorrectPosition, 1);
+//        thesprite.runAction(moveSpriteToCorrectPosition, 1);
         thesprite.runAction(animateWinning, 1);
         cc.log("Player " + data.playerNumber + " is now animating WIN");
 
@@ -319,10 +321,10 @@ var AnimationLayer = cc.Layer.extend({
         var thesprite = sprite._children[0];
 
         ///////////////////////////////////////////////////////////////////////
-        var position = playerInformations[data.playerNumber];
+        var position = positionInformations[data.playerNumber];
         var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x, position.y);
         ///////////////////////////////////////////////////////////////////////
-
+        thesprite.setPosition(position.x, position.y);
         var animFramesLose = [];
         for (var i = 1; i < 10; i++) {
             var str = "_000" + i + "_" + data.playerModel + "loseA" + (i + 1) + ".png.png";
@@ -338,7 +340,7 @@ var AnimationLayer = cc.Layer.extend({
         var speed = data.animationLength / animFramesLose.length;
         var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
-        thesprite.runAction(moveSpriteToCorrectPosition, 1);
+//        thesprite.runAction(moveSpriteToCorrectPosition, 1);
         thesprite.runAction(animateLosing, 1);
         cc.log("Player " + data.playerNumber + " is now animating LOSING-A");
     },
@@ -349,7 +351,8 @@ var AnimationLayer = cc.Layer.extend({
         var sprite = backgroundLayer.getChildByName(childname);
         var thesprite = sprite._children[0];
         ///////////////////////////////////////////////////////////////////////
-        var position = playerInformations[data.playerNumber];
+        var position = positionInformations[data.playerNumber];
+        thesprite.setPosition(position.x, position.y);
         var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x, position.y);
         ///////////////////////////////////////////////////////////////////////
         var animFramesLose = [];
@@ -368,7 +371,7 @@ var AnimationLayer = cc.Layer.extend({
         var speed = data.animationLength / animFramesLose.length;
         var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
-        thesprite.runAction(moveSpriteToCorrectPosition, 1);
+//        thesprite.runAction(moveSpriteToCorrectPosition, 1);
         thesprite.runAction(animateLosing, 1);
         cc.log("Player " + data.playerNumber + " is now animating LOSING-B");
     },
@@ -379,8 +382,9 @@ var AnimationLayer = cc.Layer.extend({
         var sprite = backgroundLayer.getChildByName(childname);
         var thesprite = sprite._children[0];
         ///////////////////////////////////////////////////////////////////////
-        var position = playerInformations[data.playerNumber];
-        var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x, position.y);
+        var position = positionInformations[data.playerNumber];
+        thesprite.setPosition(position.x, position.y);
+//        var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x, position.y);
         ///////////////////////////////////////////////////////////////////////
         var animFramesWait = [];
         for (var i = 1; i < 10; i++) {
@@ -397,7 +401,7 @@ var AnimationLayer = cc.Layer.extend({
         var speed = data.animationLength / animFramesWait.length;
         var animationWait = new cc.Animation(animFramesWait, data.animationLength / animFramesWait.length);
         var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 1);
-        thesprite.runAction(moveSpriteToCorrectPosition, 1);
+//        thesprite.runAction(moveSpriteToCorrectPosition, 1);
         thesprite.runAction(animateWaiting, 1);
         cc.log("Player " + data.playerNumber + " is now animating WAIT-A");
     },
@@ -407,8 +411,9 @@ var AnimationLayer = cc.Layer.extend({
         var sprite = backgroundLayer.getChildByName(childname);
         var thesprite = sprite._children[0];
         ///////////////////////////////////////////////////////////////////////
-        var position = playerInformations[data.playerNumber];
-        var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x, position.y);
+        var position = positionInformations[data.playerNumber];
+        thesprite.setPosition(position.x, position.y);
+//        var moveSpriteToCorrectPosition = new cc.MoveTo.create(0, position.x, position.y);
         ///////////////////////////////////////////////////////////////////////
         var animFramesWaitB = [];
         for (var i = 1; i < 10; i++) {
@@ -425,7 +430,7 @@ var AnimationLayer = cc.Layer.extend({
         var speed = data.animationLength / animFramesWaitB.length;
         var animationWaitB = new cc.Animation(animFramesWaitB, data.animationLength / animFramesWaitB.length);
         var animateWaitingB = new cc.Repeat(new cc.Animate(animationWaitB), 1);
-        thesprite.runAction(moveSpriteToCorrectPosition, 1);
+//        thesprite.runAction(moveSpriteToCorrectPosition, 1);
         thesprite.runAction(animateWaitingB, 1);
         cc.log("Player " + data.playerNumber + " is now animating WAIT-B");
     },
@@ -434,14 +439,14 @@ var AnimationLayer = cc.Layer.extend({
         var bet_number = this.current_bets;
 
         var winSize = cc.director.getWinSize();
-        var object = playerInformations[data.playerNumber];
+        var object = positionInformations[data.playerNumber];
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
         var cashSprite = new cc.SpriteBatchNode(res.UI_Cash);
         var cashSpriteName = "bet_player_" + data.playerNumber;
         this.cashSpriteSheet = new cc.Sprite.create(res.UI_Cash);
-        this.cashSpriteSheet.setPosition(playerInformations[data.playerNumber].x, playerInformations[data.playerNumber].y);
+        this.cashSpriteSheet.setPosition(positionInformations[data.playerNumber].x, positionInformations[data.playerNumber].y);
         this.cashSpriteSheet.setScale(0.1);
         backgroundLayer.addChild(this.cashSpriteSheet, 100, "bet" + this.current_bets);
         this.current_bets++;
@@ -464,7 +469,7 @@ var AnimationLayer = cc.Layer.extend({
         var backgroundLayer = this.backgroundLayer;
         if (this.current_bets > 0) {
             var allbets = [];
-            var object = playerInformations[data.playerNumber];
+            var object = positionInformations[data.playerNumber];
             var player_x = object.x;
             var player_y = object.y;
             var player_z = object.zIndex;
@@ -501,7 +506,7 @@ var AnimationLayer = cc.Layer.extend({
     },
     activatePlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var object = playerInformations[data.playerNumber];
+        var object = positionInformations[data.playerNumber];
         var existingPlayersWithoutSpecified = [];
         var existingSpecifiedPlayer = [];
         for (i = 0; i < 10; i++) {

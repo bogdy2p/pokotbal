@@ -34,7 +34,7 @@ var Player = cc.Layer.extend({
             this.popUp.setPosition(playerdata.x, playerdata.y + this.popUpPixelDifference);
         } else {
             this.popUp.setRotation(180);
-            this.popUp.setPosition(playerdata.x, playerdata.y - this.popUpPixelDifference);
+            this.popUp.setPosition(playerdata.x, playerdata.y - this.popUpPixelDifference - 5);
         }
         spriteSheet.addChild(this.popUp, playerdata.Zindex, playerdata.defaultName + "_popup");
         global_current_position++;
@@ -44,7 +44,7 @@ var Player = cc.Layer.extend({
         this.animateFadeIn();
     },
     animateFadeIn: function () {
-        var fadeInPlayer = cc.FadeIn.create(2 / GGS);
+        var fadeInPlayer = cc.FadeIn.create(0.8 / GGS);
         this.sprite.runAction(fadeInPlayer);
     },
     animateFadeOut: function () {
