@@ -24,9 +24,9 @@ var AnimationLayer = cc.Layer.extend({
             event: cc.EventListener.CUSTOM,
             eventName: "spawn_player_event",
             callback: function (event) {
-                var userdata = event.getUserData();
-                that.spawnPlayer(userdata);
-                that.updatePlayerData(userdata);
+                var data = event.getUserData();
+                that.spawnPlayer(data);
+                that.updatePlayerData(data);
             }
         });
         cc.eventManager.addListener(spawnPlayerEvent, 1);
@@ -171,7 +171,7 @@ var AnimationLayer = cc.Layer.extend({
             eventName: "event_deactivate_all_players",
             callback: function (event) {
                 var data = event.getUserData();
-                that.deActivateAll();
+                that.deActivateAll(data);
             }
         });
         cc.eventManager.addListener(deActivateAllPlayers, 1);
@@ -191,7 +191,7 @@ var AnimationLayer = cc.Layer.extend({
             eventName: "event_remove_the_pot_flag",
             callback: function (event) {
                 var data = event.getUserData();
-                that.removeThePotFlag();
+                that.removeThePotFlag(data);
             }
         });
         cc.eventManager.addListener(removeThePotFlag, 1);
@@ -201,7 +201,7 @@ var AnimationLayer = cc.Layer.extend({
             eventName: "event_big_animation_one",
             callback: function (event) {
                 var data = event.getUserData();
-                that.bigAnimationSelf();
+                that.bigAnimationSelf(data);
             }
         });
         cc.eventManager.addListener(bigAnimation1, 1);
@@ -628,6 +628,7 @@ var AnimationLayer = cc.Layer.extend({
         }, data.timeToDisplay * 1000);
     },
     animatePopUpWinOthers: function (data) {
+        cc.log(data);
         var winSize = cc.director.getWinSize();
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var WinSprite1AlreadyPresent = backgroundLayer.getChildByName("WinSprite1");
@@ -729,6 +730,11 @@ var AnimationLayer = cc.Layer.extend({
         }
     },
     bigAnimationSelf: function (data) {
+        //Data Object needs:
+        //  playerName: string
+        //  amount: integer / string
+        //  winner: string (true/false)      
+
         var winSize = cc.director.getWinSize();
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
@@ -793,7 +799,14 @@ var AnimationLayer = cc.Layer.extend({
         ////////////////////////////////////////////////////////////////////////
         ////WINS FLAG
         ////////////////////////////////////////////////////////////////////////
-        var winsFlag = new cc.Sprite(res.BP_WinsText);
+        
+        if (data.winner == false){
+            var winsFlag = new cc.Sprite(res.BP_WinsText);
+        } else {
+            var winsFlag = new cc.Sprite(res.BP_YouWinText);
+            data.playerName = "Congratulations!";
+        }        
+        
         winsFlag.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
         winsFlag.setScale(0.05);
         var ScaleWinsFlagAction = new cc.ScaleTo(0.1, 1);
@@ -803,6 +816,7 @@ var AnimationLayer = cc.Layer.extend({
         winsFlag.runAction(WinsFlagSequence);
         backgroundLayer.addChild(winsFlag, 1730, "WinsFlag");
         all_sprites.push(winsFlag);
+
 
         ////////////////////////////////////////////////////////////////////////
         ////BALL 1
@@ -815,7 +829,6 @@ var AnimationLayer = cc.Layer.extend({
         var Ball1Delay = new cc.DelayTime(0.5);
         var Ball1Sequence = new cc.Sequence.create(Ball1Delay, Ball1ScaleUpAction, Ball1RotateAction);
         Ball1.runAction(Ball1Sequence);
-
         backgroundLayer.addChild(Ball1, 1740, "Ball1");
         all_sprites.push(Ball1);
         ////////////////////////////////////////////////////////////////////////
@@ -831,7 +844,6 @@ var AnimationLayer = cc.Layer.extend({
         var Ball2Delay = new cc.DelayTime(0.5);
         var Ball2Sequence = new cc.Sequence.create(Ball2Delay, Ball2ScaleUpAction, Ball2RotateAction);
         Ball2.runAction(Ball2Sequence);
-
         backgroundLayer.addChild(Ball2, 1740, "Ball2");
         all_sprites.push(Ball2);
         ////////////////////////////////////////////////////////////////////////
@@ -901,27 +913,65 @@ var AnimationLayer = cc.Layer.extend({
         var BlackBox = new cc.Sprite(res.BP_BlackBox);
         BlackBox.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - 180));
         BlackBox.setOpacity(0);
-
         var BoxDelay1 = new cc.DelayTime.create(0.3);
         var BoxDelay2 = new cc.DelayTime.create(1.5);
         var FadeInBox = new cc.FadeIn.create(0.5);
         var MoveBoxDown = new cc.MoveTo.create(0.5, winSize.width / 2, winSize.height / 2 - 240);
         var MoveBoxUp = new cc.MoveTo.create(0.5, winSize.width / 2, winSize.height / 2 - 180);
-
         var animateBoxSequence = new cc.Sequence.create(FadeInBox, BoxDelay1, MoveBoxDown, BoxDelay2, MoveBoxUp);
         BlackBox.runAction(animateBoxSequence);
         backgroundLayer.addChild(BlackBox, 1711, "BlackBox");
-
         all_sprites.push(BlackBox);
         ////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////
+        ///PLAYER NAME LABEL
+        ////////////////////////////////////////////////////////////////////////
+        if (data.playerName == null) {
+            data.playerName = "UnnamedPlayer";
+        }
+        var playerNameSize = 20;
+        if (data.playerName.length <= 6) {
+            playerNameSize = 40;
+        } else if (data.playerName.length > 6 && data.playerName.length <= 11) {
+            playerNameSize = 30;
+        } else if (data.playerName.length > 11 && data.playerName.length <= 13) {
+            playerNameSize = 26;
+        } else if (data.playerName.length > 13 && data.playerName.length <= 16) {
+            playerNameSize = 22;
+        } else if (data.playerName.length > 16 && data.playerName.length <= 18) {
+            playerNameSize = 18;
+        } else {
+            playerNameSize = 16;
+        }
         
+        if (data.playerName === "Congratulations!"){
+            cc.log("size is 32");
+            playerNameSize = 32;
+        }
         
-        
-        
-        
-        
-        
-        
+        var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
+        playerNameLabel.setPosition(cc.p(winSize.width / 2, 480));
+        backgroundLayer.addChild(playerNameLabel, 1715, "PlayerNameLabel");
+        all_sprites.push(playerNameLabel);
+
+        ////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////
+        /// AMOUNT LABEL 
+        ////////////////////////////////////////////////////////////////////////
+
+        var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 38);
+        winAmountLabel.setOpacity(0);
+        winAmountLabel.setPosition(cc.p(winSize.width / 2, 80));
+        var winAmountLabelFadeIn = new cc.FadeIn.create(0);
+        var winAmountLabelFadeOut = new cc.FadeOut.create(0.2);
+        var winAmountLabelDelayStart = new cc.DelayTime(1.1);
+        var winAmountLabelDelayStay = new cc.DelayTime(1.5);
+        var winAmountLabelSequence = new cc.Sequence.create(winAmountLabelDelayStart, winAmountLabelFadeIn, winAmountLabelDelayStart, winAmountLabelFadeOut);
+        winAmountLabel.runAction(winAmountLabelSequence, 1);
+        backgroundLayer.addChild(winAmountLabel, 1760, "WinAmountLabel");
+        all_sprites.push(winAmountLabel);
         all_sprites.forEach(dissapearElement);
         function dissapearElement(element, index, array) {
             var endActionTime = cc.delayTime(3.2);
