@@ -647,10 +647,10 @@ var AnimationLayer = cc.Layer.extend({
         if (data.playerName == null) {
             data.playerName = "UnnamedPlayer";
         }
-        //If the name is less than 5 chars , use font = 36;
-        // if the name is between 6-10 chars use font = 20;
-        // if the name is between 11-15 chars use font = 14;
-        // if the name is > 15 chars , use font = 10;
+        // If the name is less than 5 chars , use font = 36;
+        // If the name is between 6-10 chars use font = 20;
+        // If the name is between 11-15 chars use font = 14;
+        // If the name is > 15 chars , use font = 10;
         var playerNameSize = 20;
         if (data.playerName.length <= 6) {
             playerNameSize = 36;
@@ -747,11 +747,8 @@ var AnimationLayer = cc.Layer.extend({
         var repeatScale = new cc.Repeat(ScaleSequence, 4);
         transparentBgSprite.runAction(repeatScale);
         backgroundLayer.addChild(transparentBgSprite, 1690, "TransparentBg");
-
         all_sprites.push(transparentBgSprite);
-
         ///////////////////////////////////////////////////////////////////////
-
 
         ////////////////////////////////////////////////////////////////////////
         //THE BACKGROUND RED SPRITE
@@ -893,25 +890,50 @@ var AnimationLayer = cc.Layer.extend({
         var Face2DisplayAction = new cc.FadeIn.create(0.05);
         var Face2Sequence = new cc.Sequence.create(Face2Delay, Face2Delay, Face2FadeInAction, Face2Delay, Face2FadeOutAction);
         Face2.runAction(Face2Sequence);
-        //////////////////////////////////////////////////////////////////////// 
         backgroundLayer.addChild(Face2, 1760, "Face2");
         all_sprites.push(Face2);
+        //////////////////////////////////////////////////////////////////////// 
+
+        ////////////////////////////////////////////////////////////////////////
+        //// BlackBox
+        ////////////////////////////////////////////////////////////////////////
+
+        var BlackBox = new cc.Sprite(res.BP_BlackBox);
+        BlackBox.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - 180));
+        BlackBox.setOpacity(0);
+
+        var BoxDelay1 = new cc.DelayTime.create(0.3);
+        var BoxDelay2 = new cc.DelayTime.create(1.5);
+        var FadeInBox = new cc.FadeIn.create(0.5);
+        var MoveBoxDown = new cc.MoveTo.create(0.5, winSize.width / 2, winSize.height / 2 - 240);
+        var MoveBoxUp = new cc.MoveTo.create(0.5, winSize.width / 2, winSize.height / 2 - 180);
+
+        var animateBoxSequence = new cc.Sequence.create(FadeInBox, BoxDelay1, MoveBoxDown, BoxDelay2, MoveBoxUp);
+        BlackBox.runAction(animateBoxSequence);
+        backgroundLayer.addChild(BlackBox, 1711, "BlackBox");
+
+        all_sprites.push(BlackBox);
+        ////////////////////////////////////////////////////////////////////////
+        
+        
+        
+        
+        
+        
+        
+        
         all_sprites.forEach(dissapearElement);
         function dissapearElement(element, index, array) {
-            var endActionTime = cc.delayTime(3);
+            var endActionTime = cc.delayTime(3.2);
             var disappear = new cc.FadeOut.create(0.5);
             var disappearSequence = new cc.Sequence.create(endActionTime, disappear);
             element.runAction(disappearSequence);
         }
-        cc.log(backgroundLayer);
-
-
         all_sprites.forEach(removeFromBackground);
         function removeFromBackground(element, index, array) {
             setTimeout(function () {
                 element.removeFromParent(1);
             }, 5000);
-//            
         }
     }
 
