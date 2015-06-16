@@ -56,13 +56,7 @@ var res = {
     BP_Face1: "res/popups/face1.png",
     BP_Face2: "res/popups/face2.png",
     BP_Trophy: "res/popups/trophy.png",
-    
-    
-    
-    
-    
-    
-    
+       
 };
 
 var g_resources = [];

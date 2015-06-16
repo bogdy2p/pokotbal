@@ -729,28 +729,28 @@ var AnimationLayer = cc.Layer.extend({
         }
     },
     bigAnimationSelf: function (data) {
-
-        var defaultConfig = {
-        };
         var winSize = cc.director.getWinSize();
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
-
+        var all_sprites = [];
 
         ////////////////////////////////////////////////////////////////////////
         //THE BACKGROUND TRANSPARENCY;
         ////////////////////////////////////////////////////////////////////////
         var transparentBgSprite = new cc.Sprite(res.BP_Transparency);
         transparentBgSprite.setPosition(centerPos);
+        transparentBgSprite.setScale(0.8);
         transparentBgSprite.setOpacity(255);
-        var transpScaleUp = new cc.ScaleTo(0.4, 1.2);
-        var transpScaleDown = new cc.ScaleTo(0.4, 1);
+        var transpScaleUp = new cc.ScaleTo(0.4, 0.9);
+        var transpScaleDown = new cc.ScaleTo(0.4, 0.7);
         var ScaleSequence = new cc.Sequence.create(transpScaleUp, transpScaleDown);
         var repeatScale = new cc.Repeat(ScaleSequence, 4);
         transparentBgSprite.runAction(repeatScale);
         backgroundLayer.addChild(transparentBgSprite, 1690, "TransparentBg");
-        ///////////////////////////////////////////////////////////////////////
 
+        all_sprites.push(transparentBgSprite);
+
+        ///////////////////////////////////////////////////////////////////////
 
 
         ////////////////////////////////////////////////////////////////////////
@@ -762,9 +762,8 @@ var AnimationLayer = cc.Layer.extend({
         var ScaleBgToNormalAction = new cc.ScaleTo(0.1, 1);
         bgRedSprite.runAction(ScaleBgToNormalAction);
         backgroundLayer.addChild(bgRedSprite, 1700, "BgRed");
-
+        all_sprites.push(bgRedSprite);
         ////////////////////////////////////////////////////////////////////////
-
 
 
         ////////////////////////////////////////////////////////////////////////
@@ -776,51 +775,144 @@ var AnimationLayer = cc.Layer.extend({
         var ScaleBodyToNormalAction = new cc.ScaleTo(0.2, 1);
         playerBody.runAction(ScaleBodyToNormalAction);
         backgroundLayer.addChild(playerBody, 1710, "PlayerBody");
+        all_sprites.push(playerBody);
         ////////////////////////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////////////////////////
         //THE PLAYER HAND
         ////////////////////////////////////////////////////////////////////////
         var playerHand = new cc.Sprite(res.BP_PlayerHand);
-        playerHand.setPosition(cc.p(winSize.width / 2 - 130, winSize.height / 2 - 45));
+        playerHand.setPosition(cc.p(winSize.width / 2 - 130, winSize.height / 2 - 60));
         playerHand.setScale(1);
         var HandDelay = new cc.delayTime(1.2);
-        var ScaleHandUpAction = new cc.ScaleTo(0.2, 2);
+        var ScaleHandUpAction = new cc.ScaleTo(0.2, 1.8);
         var ScaleHandDownAction = new cc.ScaleTo(0.2, 1);
         var ScaleHandSequence = new cc.Sequence.create(HandDelay, ScaleHandUpAction, ScaleHandDownAction);
         playerHand.runAction(ScaleHandSequence);
         backgroundLayer.addChild(playerHand, 1720, "PlayerHand");
+        all_sprites.push(playerHand);
         ////////////////////////////////////////////////////////////////////////
 
-
+        ////////////////////////////////////////////////////////////////////////
+        ////WINS FLAG
+        ////////////////////////////////////////////////////////////////////////
         var winsFlag = new cc.Sprite(res.BP_WinsText);
         winsFlag.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
         winsFlag.setScale(0.05);
-
         var ScaleWinsFlagAction = new cc.ScaleTo(0.1, 1);
         var MoveWinsFlagAction = new cc.MoveTo(0.1, cc.p(winSize.width / 2, 100));
         var FlagDelay = new cc.DelayTime(0.1);
-
-
         var WinsFlagSequence = new cc.Sequence.create(FlagDelay, ScaleWinsFlagAction, MoveWinsFlagAction);
         winsFlag.runAction(WinsFlagSequence);
-
         backgroundLayer.addChild(winsFlag, 1730, "WinsFlag");
+        all_sprites.push(winsFlag);
+
+        ////////////////////////////////////////////////////////////////////////
+        ////BALL 1
+        ////////////////////////////////////////////////////////////////////////
+        var Ball1 = new cc.Sprite(res.BP_Ball);
+        Ball1.setPosition(cc.p(winSize.width / 2 - 220, winSize.height / 2 + 70));
+        Ball1.setScale(0);
+        var Ball1RotateAction = new cc.RotateBy(2, 359);
+        var Ball1ScaleUpAction = new cc.ScaleTo(0.05, 1);
+        var Ball1Delay = new cc.DelayTime(0.5);
+        var Ball1Sequence = new cc.Sequence.create(Ball1Delay, Ball1ScaleUpAction, Ball1RotateAction);
+        Ball1.runAction(Ball1Sequence);
+
+        backgroundLayer.addChild(Ball1, 1740, "Ball1");
+        all_sprites.push(Ball1);
+        ////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////
+        ////BALL 2
+        ////////////////////////////////////////////////////////////////////////
+        var Ball2 = new cc.Sprite(res.BP_Ball);
+        Ball2.setPosition(cc.p(winSize.width / 2 + 230, winSize.height / 2 - 20));
+        Ball2.setScale(0);
+        var Ball2RotateAction = new cc.RotateBy(2, 359);
+        var Ball2ScaleUpAction = new cc.ScaleTo(0.05, 0.7);
+        var Ball2Delay = new cc.DelayTime(0.5);
+        var Ball2Sequence = new cc.Sequence.create(Ball2Delay, Ball2ScaleUpAction, Ball2RotateAction);
+        Ball2.runAction(Ball2Sequence);
+
+        backgroundLayer.addChild(Ball2, 1740, "Ball2");
+        all_sprites.push(Ball2);
+        ////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////
+        ////BALL 3
+        ////////////////////////////////////////////////////////////////////////
+        var Ball3 = new cc.Sprite(res.BP_Ball);
+        Ball3.setPosition(cc.p(winSize.width / 2 + 200, winSize.height / 2 + 130));
+        Ball3.setScale(0);
+        var Ball3RotateAction = new cc.RotateBy(2, -359);
+        var Ball3ScaleUpAction = new cc.ScaleTo(0.05, 0.6);
+        var Ball3Delay = new cc.DelayTime(0.5);
+        var Ball3Sequence = new cc.Sequence.create(Ball3Delay, Ball3ScaleUpAction, Ball3RotateAction);
+        Ball3.runAction(Ball3Sequence);
+        backgroundLayer.addChild(Ball3, 1740, "Ball3");
+        all_sprites.push(Ball3);
+        ////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////
+        ////TROPHY
+        ////////////////////////////////////////////////////////////////////////
+
+        var Trophy = new cc.Sprite(res.BP_Trophy);
+        Trophy.setPosition(cc.p(winSize.width / 2, winSize.height / 2 + 260));
+        Trophy.setScale(0);
+        var TrophyScaleUpAction = new cc.ScaleTo(0.2, 1);
+        var TrophyScaleDownAction = new cc.ScaleTo(0.1, 0.8);
+        var TrophyDelay = new cc.DelayTime(1);
+        var TrophySequence = new cc.Sequence.create(TrophyDelay, TrophyScaleUpAction, TrophyScaleDownAction);
+        Trophy.runAction(TrophySequence);
+        backgroundLayer.addChild(Trophy, 1750, "Trophy");
+        all_sprites.push(Trophy);
+        ////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////
+        //// FACE 1 AND 2
+        ////////////////////////////////////////////////////////////////////////
+        var facesDelayTime = 0.7;
+        var Face1 = new cc.Sprite(res.BP_Face1);
+        Face1.setPosition(cc.p(winSize.width / 2 + 10, winSize.height / 2 - 20));
+        Face1.setOpacity(255);
+        var Face1FadeInAction = new cc.FadeIn.create(0.01);
+        var Face1FadeOutAction = new cc.FadeOut.create(0.01);
+        var Face1Delay = new cc.DelayTime(facesDelayTime);
+        var Face1Sequence = new cc.Sequence.create(Face1Delay, Face1Delay, Face1FadeOutAction, Face1Delay, Face1FadeInAction);
+        Face1.runAction(Face1Sequence);
+        backgroundLayer.addChild(Face1, 1750, "Face1");
+        all_sprites.push(Face1);
+        var Face2 = new cc.Sprite(res.BP_Face2);
+        Face2.setPosition(cc.p(winSize.width / 2 + 10, winSize.height / 2 - 20));
+        Face2.setOpacity(0);
+        var Face2FadeInAction = new cc.FadeIn.create(0.01);
+        var Face2FadeOutAction = new cc.FadeOut.create(0.01);
+        var Face2Delay = new cc.DelayTime(facesDelayTime);
+        var Face2DisplayAction = new cc.FadeIn.create(0.05);
+        var Face2Sequence = new cc.Sequence.create(Face2Delay, Face2Delay, Face2FadeInAction, Face2Delay, Face2FadeOutAction);
+        Face2.runAction(Face2Sequence);
+        //////////////////////////////////////////////////////////////////////// 
+        backgroundLayer.addChild(Face2, 1760, "Face2");
+        all_sprites.push(Face2);
+        all_sprites.forEach(dissapearElement);
+        function dissapearElement(element, index, array) {
+            var endActionTime = cc.delayTime(3);
+            var disappear = new cc.FadeOut.create(0.5);
+            var disappearSequence = new cc.Sequence.create(endActionTime, disappear);
+            element.runAction(disappearSequence);
+        }
+        cc.log(backgroundLayer);
 
 
-
-
-
-
-
-
-
-
-
-
-
-        cc.log("BIG ANIMATION SELFF");
+        all_sprites.forEach(removeFromBackground);
+        function removeFromBackground(element, index, array) {
+            setTimeout(function () {
+                element.removeFromParent(1);
+            }, 5000);
+//            
+        }
     }
-
 
 });
