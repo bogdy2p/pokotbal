@@ -13,7 +13,6 @@ var AnimationLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         this.init();
-
     },
     init: function () {
         this._super();
@@ -532,8 +531,8 @@ var AnimationLayer = cc.Layer.extend({
             child.setOpacity(170);
             for (i = 0; i < 10; i++) {
                 var overheadName = "Player" + i + "_overHead";
-                cc.log("overheadName:");
-                cc.log(overheadName);
+//                cc.log("overheadName:");
+//                cc.log(overheadName);
                 var existingOverHeadSprite = backgroundLayer.getChildByName(overheadName);
                 if (existingOverHeadSprite) {
                     existingOverHeadSprite.removeFromParent(1);

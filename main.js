@@ -156,7 +156,58 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     }
+
+
+//    ,
+//    help: function (data) {
+//
+//        cc.log("THIS IS THE HELP FILE");
+//        if (data) {
+//
+//            switch (data) {
+//
+//                case "spawnPlayer":
+//                    cc.log("SPAWN PLAYER FUNCTION");
+//                    
+//                    break;
+//
+//
+//            }
+//
+//
+//
+//        }
+//
+//
+//
+//    }
+
+
+
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var players = [];
 for (i = 0; i < 10; i++) {
     var thename = "player" + i;
@@ -223,48 +274,56 @@ mygame.start();
 
 function playGame1(startTime) {
 
-//    var startTime = 2000;
-    console.log("Spawning Player 0.  Time:  " + startTime);
+//Set the default start Time to 2 seconds.
+    if (!startTime) {
+        var startTime = 2000;
+    }
+
+
+    console.log("Spawning Player 4.  Time:  " + startTime);
     var player1Tests = setTimeout(function () {
-        mygame.spawnPlayer({playerNumber: 0, name: 'ZERO', amount: 500});
+        mygame.spawnPlayer({playerNumber: 4, playerModel: 5, name: 'FOUR', amount: 500});
     }, startTime);
     setTimeout(function () {
-        mygame.animatePlayerWaitA({playerNumber: 0, animationLength: 2});
+        mygame.animatePlayerWaitA({playerNumber: 4, playerModel: 5, animationLength: 2});
     }, startTime);
     console.log("Waiting at " + startTime);
     startTime += 2000 * 2;
     setTimeout(function () {
-        console.log("Spawning Player 7.  Time:  " + startTime);
-        mygame.spawnPlayer({playerNumber: 7, name: 'SEVEN', amount: 700});
+        console.log("Spawning Player 8.  Time:  " + startTime);
+        mygame.spawnPlayer({playerNumber: 8, playerModel: 4, name: 'EIGHT', amount: 700});
     }, startTime);
     setTimeout(function () {
-        mygame.animatePlayerWaitB({playerNumber: 4, animationLength: 3});
+        console.log("Player 8 should animate Wait A here");
+        mygame.animatePlayerWaitA({playerNumber: 8, playerModel: 4, animationLength: 2});
+    }, startTime + 1000);
+    setTimeout(function () {
+        console.log("Player 8 should animate Wait A here");
+        mygame.animatePlayerWaitA({playerNumber: 8, playerModel: 4, animationLength: 2});
+    }, startTime + 3000);
+
+
+    setTimeout(function () {
+        mygame.animatePlayerWaitB({playerNumber: 4, playerModel: 5, animationLength: 3});
     }, startTime);
     console.log("P4 Waiting at " + startTime);
     startTime += 2000 * 3;
     setTimeout(function () {
-        mygame.animatePlayerWaitA({playerNumber: 4, animationLength: 2});
+        mygame.animatePlayerWaitA({playerNumber: 4, playerModel: 5, animationLength: 2});
     }, startTime);
     console.log("P4 Waiting at " + startTime);
     startTime += 2000 * 2;
-//
-//    setTimeout(function () {
-//        mygame.animatePlayerLoseB({playerNumber: 4, animationLength: 2});
-//    }, startTime);
-//    startTime += 2000 * 2;
-//    console.log("Losing at " + startTime);
-
     setTimeout(function () {
-        mygame.animateActivatePlayer({playerNumber: 4});
-        mygame.animateBet({playerNumber: 4});
-        mygame.updatePlayerData({playerNumber: 4, name: "FOUR", amount: 400});
+        mygame.animateActivatePlayer({playerNumber: 4, playerModel: 5});
+        mygame.animateBet({playerNumber: 4, playerModel: 5});
+        mygame.updatePlayerData({playerNumber: 4, playerModel: 5, name: "FOUR", amount: 400});
     }, startTime);
     console.log("P4 Has Bet !    @ " + startTime);
     startTime += 2000;
     setTimeout(function () {
-        mygame.animateActivatePlayer({playerNumber: 7});
-        mygame.animateBet({playerNumber: 7});
-        mygame.updatePlayerData({playerNumber: 7, name: "SEVEN", amount: 600});
+        mygame.animateActivatePlayer({playerNumber: 8, playerModel: 4});
+        mygame.animateBet({playerNumber: 8, playerModel: 4});
+        mygame.updatePlayerData({playerNumber: 8, playerModel: 4, name: "EIGHT", amount: 600});
     }, startTime);
     startTime += 2000;
     //
@@ -275,23 +334,19 @@ function playGame1(startTime) {
                     playerName: "FOUR",
                     amount: 200
                 }
-
         );
     }, startTime);
     cc.log('Win Popup Displayed @ ' + startTime);
     startTime += 3000;
     setTimeout(function () {
         mygame.animatePlayerReceiveBet(players[4]);
-        mygame.updatePlayerData({playerNumber: 4, name: "FOUR", amount: 600});
+        mygame.updatePlayerData({playerNumber: 4, playerModel: 5, name: "FOUR", amount: 600});
     }, startTime);
     cc.log('Receive bet animation @ ' + startTime);
     startTime += 3200;
-    //Player 2 joins the game
-
     setTimeout(function () {
-
         mygame.spawnPlayer(
-                {playerNumber: 2, name: 'TWO', amount: 500}
+                {playerNumber: 2, playerModel: 3, name: 'TWO', amount: 500}
         );
         cc.log("Player TWO Has joine the game");
     }, startTime);
@@ -300,22 +355,22 @@ function playGame1(startTime) {
 
     setTimeout(function () {
 
-        mygame.animateActivatePlayer({playerNumber: 4});
-        mygame.animateBet({playerNumber: 4});
-        mygame.updatePlayerData({playerNumber: 4, name: "FOUR", amount: 400});
+        mygame.animateActivatePlayer({playerNumber: 4, playerModel: 5});
+        mygame.animateBet({playerNumber: 4, playerModel: 5});
+        mygame.updatePlayerData({playerNumber: 4, playerModel: 5, name: "FOUR", amount: 400});
     }, startTime);
     startTime += 2200;
     setTimeout(function () {
-        mygame.animateActivatePlayer({playerNumber: 2});
-        mygame.animateBet({playerNumber: 2});
-        mygame.updatePlayerData({playerNumber: 2, name: "TWO", amount: 300});
+        mygame.animateActivatePlayer({playerNumber: 2, playerModel: 3});
+        mygame.animateBet({playerNumber: 2, playerModel: 3});
+        mygame.updatePlayerData({playerNumber: 2, playerModel: 3, name: "TWO", amount: 300});
     }, startTime);
     startTime += 2200;
     setTimeout(function () {
-        mygame.animateActivatePlayer({playerNumber: 7});
+        mygame.animateActivatePlayer({playerNumber: 8, playerModel: 4});
         //THIS PLAYER DOES NOT BET RIGHT NOW
 //        mygame.animateBet({playerNumber: 7});
-        mygame.updatePlayerData({playerNumber: 7, name: "SEVEN", amount: 600});
+        mygame.updatePlayerData({playerNumber: 8, playerModel: 4, name: "SEVEN", amount: 600});
     }, startTime);
     startTime += 2200;
     setTimeout(function () {
@@ -326,9 +381,9 @@ function playGame1(startTime) {
                     amount: 700
                 }
         );
-        mygame.animateActivatePlayer({playerNumber: 2});
+        mygame.animateActivatePlayer({playerNumber: 2, playerModel: 3});
         mygame.animatePlayerReceiveBet(players[2]);
-        mygame.updatePlayerData({playerNumber: 2, name: "TWO", amount: 700});
+        mygame.updatePlayerData({playerNumber: 2, playerModel: 3, name: "TWO", amount: 700});
     }, startTime);
     startTime += 1000;
     setTimeout(function () {
