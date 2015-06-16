@@ -24,6 +24,7 @@ var Player = cc.Layer.extend({
 
         this.sprite = new cc.Sprite.create(initial_sprite_string);
         this.sprite.setPosition(playerdata.x, playerdata.y);
+//        this.sprite.setAnchorPoint(1,1);
         this.sprite.setOpacity(0);
         spriteSheet.addChild(this.sprite, playerdata.Zindex, playerdata.defaultName);
         this.sprite.runAction(new cc.MoveTo(cc.p(playerdata.x, playerdata.y)));
