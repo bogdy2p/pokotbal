@@ -3,7 +3,7 @@ var res = {
     CloseNormal_png: "res/CloseNormal.png",
     CloseSelected_png: "res/CloseSelected.png",
 //    Background_none_png: "res/background/BackgroundNone.png",
-    Background_none_png: "res/background/stripes.png",
+//    Background_none_png: "res/background/stripes.png",
     Table_png: "res/background/Table14.png",
     //USER INTERFACE RESOURCES ================================================    
     UI_Marker: "res/userinterface/Marker.png",
@@ -43,32 +43,33 @@ var res = {
     Start_s_png: "res/controls/start_s.png",
     Start_n_png: "res/controls/start_n.png",
     //Players :
-    Finale_png: "res/animations/finale.png",
-    Finale_plist: "res/animations/finale.plist",
-
+//    Finale_png: "res/animations/finale.png",
+//    Finale_plist: "res/animations/finale.plist",
     //Pedro Animation
-    Losenew_plist: "res/new/losenew.plist",
-    Losenew_png: "res/new/losenew.png",
-    Losing_png: "res/pedro/textures/lose.png",
-    Losing_plist: "res/pedro/textures/lose.plist",
-    Pedrofull_png: "res/animations/pedrofull.png",
-    Pedrofull_plist: "res/animations/pedrofull.plist",
-    Pedro90_png: "res/animations/pedro90.png",
-    Pedro90_plist: "res/animations/pedro90.plist",
+//    Losenew_plist: "res/new/losenew.plist",
+//    Losenew_png: "res/new/losenew.png",
+//    Losing_png: "res/pedro/textures/lose.png",
+//    Losing_plist: "res/pedro/textures/lose.plist",
     Pedroanimation_png: "res/pedro/textures/pedroanim.png",
     Pedroanimation_plist: "res/pedro/textures/pedroanim.plist",
-    Players_png: "res/pedro/textures/players.png",
-    Players_plist: "res/pedro/textures/players.plist",
-    ThreePlayers_png: "res/pedro/textures/3players.png",
-    ThreePlayers_plist: "res/pedro/textures/3players.plist",
+
     ///////////FONTS
     MontserratReg: "res/fonts/MontserratRegular.ttf",
     MontserratBold: "res/fonts/MontserratBold.ttf",
-    
     //Game Popups ===========================================================    
     PopUpWin1: "res/popups/PopUpWin1Tiny.png",
     PopUpWin2: "res/popups/PopUpWin2Tiny.png",
     ThePotFlag: "res/userinterface/ThePot.png",
+    Player1_plist: "res/animations/player1.plist",
+    Player1_png: "res/animations/player1.png",
+    Player2_plist: "res/animations/player2.plist",
+    Player2_png: "res/animations/player2.png",
+    Player3_plist: "res/animations/player3.plist",
+    Player3_png: "res/animations/player3.png",
+    Player4_plist: "res/animations/player4.plist",
+    Player4_png: "res/animations/player4.png",
+    Player5_plist: "res/animations/player5.plist",
+    Player5_png: "res/animations/player5.png",
 };
 
 var g_resources = [];

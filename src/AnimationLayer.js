@@ -201,13 +201,25 @@ var AnimationLayer = cc.Layer.extend({
         cc.eventManager.addListener(removeThePotFlag, 1);
     },
     spawnPlayer: function (data) {
+        cc.log(data);
+
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var object = playerInformations[data.playerNumber];
         var player_x = object.x;
         var player_y = object.y;
         var player_z = object.zIndex;
-        cc.spriteFrameCache.addSpriteFrames(res.Finale_plist);
-        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Finale_png);
+
+        var spriteFramesForPlayer = "res/animations/player" + data.playerModel + ".plist";
+        cc.log(spriteFramesForPlayer);
+//        cc.spriteFrameCache.addSpriteFrames(res.Player1_plist);
+        cc.spriteFrameCache.addSpriteFrames(spriteFramesForPlayer);
+
+        var spriteBatchNodeFile = "res/animations/player" + data.playerModel + ".png";
+        cc.log(spriteBatchNodeFile);
+//        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(res.Player1_png);
+        var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(spriteBatchNodeFile);
+        
+
         var childname = "player_" + data.playerNumber;
         var asd = new Player(thisplayer, object);
         backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
@@ -325,24 +337,31 @@ var AnimationLayer = cc.Layer.extend({
         cc.log("Player " + data.playerNumber + " is now animating LOSING-A");
     },
     animatePlayerLoseB: function (data) {
+//        cc.log(data);
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var childname = "player_" + data.playerNumber;
         var sprite = backgroundLayer.getChildByName(childname);
         var thesprite = sprite._children[0];
+//        cc.log(thesprite);
         var animFramesLose = [];
         for (var i = 1; i < 10; i++) {
             var str = "_000" + i + "_" + data.playerModel + "loseB" + (i + 1) + ".png.png";
+            cc.log(str);
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             animFramesLose.push(frame);
         }
         for (var i = 10; i < 88; i++) {
+
             var str2 = "_00" + i + "_" + data.playerModel + "loseB" + (i + 1) + ".png.png";
+            cc.log(str2);
             var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
             animFramesLose.push(frame2);
         }
-
-
+        cc.log("AnimFramesLose: ");
+        cc.log(animFramesLose);
+        cc.log("speed");
         var speed = data.animationLength / animFramesLose.length;
+        cc.log(speed);
         var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
         thesprite.runAction(animateLosing, 1);

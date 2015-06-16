@@ -163,6 +163,7 @@ for (i = 0; i < 10; i++) {
     players[i] = {
         playerNumber: i,
 //        number: i,
+        playerModel: (i % 5 + 1),
         name: thename,
         amount: "0"
     };
@@ -343,12 +344,12 @@ mygame.start();
 function playGame1(startTime) {
 
 //    var startTime = 2000;
-    console.log("Spawning Player 4.  Time:  " + startTime);
+    console.log("Spawning Player 0.  Time:  " + startTime);
     var player1Tests = setTimeout(function () {
-        mygame.spawnPlayer({playerNumber: 4, name: 'FOUR', amount: 500});
+        mygame.spawnPlayer({playerNumber: 0, name: 'ZERO', amount: 500});
     }, startTime);
     setTimeout(function () {
-        mygame.animatePlayerWaitA({playerNumber: 4, animationLength: 2});
+        mygame.animatePlayerWaitA({playerNumber: 0, animationLength: 2});
     }, startTime);
     console.log("Waiting at " + startTime);
     startTime += 2000 * 2;
