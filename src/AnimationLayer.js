@@ -244,16 +244,18 @@ var AnimationLayer = cc.Layer.extend({
     },
     spawnPlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var object = positionInformations[data.playerNumber];
-        var player_x = object.x;
-        var player_y = object.y;
-        var player_z = object.zIndex;
+        var playerdata = positionInformations[data.playerNumber];
+        var player_x = playerdata.x;
+        var player_y = playerdata.y;
+        var player_z = playerdata.zIndex;
         var spriteFramesForPlayer = "res/animations/player" + data.playerModel + ".plist";
-        cc.spriteFrameCache.addSpriteFrames(spriteFramesForPlayer);
+
         var spriteBatchNodeFile = "res/animations/player" + data.playerModel + ".png";
+        cc.spriteFrameCache.addSpriteFrames(spriteFramesForPlayer);
         var thisplayer = this.loseSpriteSheet = new cc.SpriteBatchNode(spriteBatchNodeFile);
         var childname = "player_" + data.playerNumber;
-        var asd = new Player(thisplayer, object);
+
+        var asd = new Player(thisplayer, playerdata, data.playerModel);
         backgroundLayer.addChild(this.loseSpriteSheet, player_z, childname);
     },
     removePlayer: function (data) {

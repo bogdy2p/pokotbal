@@ -7,10 +7,10 @@ var Player = cc.Layer.extend({
     playerSpriteSheet: null,
     sprite: null,
     popUp: null,
-    ctor: function (spriteSheet, playerdata) {
-        this.playerNumber = global_current_position;
+    ctor: function (spriteSheet, playerdata, playerModel) {
+//        this.playerNumber = global_current_position;
         this.playerSpriteSheet = spriteSheet;
-//      
+      cc.log(playerModel);
 //=================!!!!!!!TO DO!!!!!!!=========================================
 //        //This will be the sprite of the default player.
 //        // Should be a different sprite for each player. (up-to 5 ? );
@@ -19,8 +19,8 @@ var Player = cc.Layer.extend({
 //        this.sprite = new cc.Sprite.create(initial_picture);
 //=============================================================================
 
-        var initial_sprite_string = "#_0000_" + playerdata.playerModel +"loseA1.png.png";
-//        cc.log(initial_sprite_string);
+        var initial_sprite_string = "#_0000_" + playerModel + "loseA1.png.png";
+        cc.log(initial_sprite_string);
 
         this.sprite = new cc.Sprite.create(initial_sprite_string);
         this.sprite.setPosition(playerdata.x, playerdata.y);
@@ -37,7 +37,7 @@ var Player = cc.Layer.extend({
             this.popUp.setPosition(playerdata.x, playerdata.y - this.popUpPixelDifference - 5);
         }
         spriteSheet.addChild(this.popUp, playerdata.Zindex, playerdata.defaultName + "_popup");
-        global_current_position++;
+//        global_current_position++;
         this.init();
     },
     init: function () {
