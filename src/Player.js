@@ -10,7 +10,7 @@ var Player = cc.Layer.extend({
     ctor: function (spriteSheet, playerdata, playerModel) {
 //        this.playerNumber = global_current_position;
         this.playerSpriteSheet = spriteSheet;
-      cc.log(playerModel);
+//      cc.log(playerModel);
 //=================!!!!!!!TO DO!!!!!!!=========================================
 //        //This will be the sprite of the default player.
 //        // Should be a different sprite for each player. (up-to 5 ? );
@@ -20,7 +20,7 @@ var Player = cc.Layer.extend({
 //=============================================================================
 
         var initial_sprite_string = "#_0000_" + playerModel + "loseA1.png.png";
-        cc.log(initial_sprite_string);
+//        cc.log(initial_sprite_string);
 
         this.sprite = new cc.Sprite.create(initial_sprite_string);
         this.sprite.setPosition(playerdata.x, playerdata.y);
