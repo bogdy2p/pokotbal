@@ -198,10 +198,10 @@ var AnimationLayer = cc.Layer.extend({
 
         var bigAnimation1 = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
-            eventName: "event_big_animation_one",
+            eventName: "event_big_winning_animation",
             callback: function (event) {
                 var data = event.getUserData();
-                that.bigAnimationSelf(data);
+                that.playBigWinningAnimation(data);
             }
         });
         cc.eventManager.addListener(bigAnimation1, 1);
@@ -231,7 +231,6 @@ var AnimationLayer = cc.Layer.extend({
         } else {
             cc.log("Some strange error when trying to remove player " + (data.playerNumber));
         }
-        // SHOULD ALSO REMOVE THE AMOUNT AND THE NAME FROM THE TABLE
         var nameLabel = backgroundLayer.getChildByName("player_" + data.playerNumber + "_nameLabel");
         var amountLabel = backgroundLayer.getChildByName("player_" + data.playerNumber + "_ammountLabel");
 
@@ -406,6 +405,16 @@ var AnimationLayer = cc.Layer.extend({
         var animateWaitingB = new cc.Repeat(new cc.Animate(animationWaitB), 1);
         thesprite.runAction(animateWaitingB, 1);
     },
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     animateBetting: function (data) {
         var backgroundLayer = this.backgroundLayer;
         var bet_number = this.current_bets;
@@ -515,11 +524,7 @@ var AnimationLayer = cc.Layer.extend({
                 var table = backgroundLayer.getChildByName('thegametable');
                 PlayerSprite.runAction(tintredAction);
             }
-
-
-
             //FETCH THE CURRENT PLAYER'S OVERHEADPOPUP AND MAKE IT GREEN
-
         }
 
 
@@ -561,139 +566,139 @@ var AnimationLayer = cc.Layer.extend({
             }
         }
     },
-    animatePopUpWinSelf: function (data) {
-        var winSize = cc.director.getWinSize();
-        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var WinSprite1AlreadyPresent = backgroundLayer.getChildByName("WinSprite1");
-        var WinSpritePlayerNameLabelAlreadyExists = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
-        var theWinAmountLabelAlreadyExists = backgroundLayer.getChildByName("WinAmountLabel");
-        var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
-        var bigSprite = new cc.Sprite(res.PopUpWin1);
-        bigSprite.setPosition(centerPos);
-        bigSprite.setScale(1);
-        if (!WinSprite1AlreadyPresent) {
-            backgroundLayer.addChild(bigSprite, 1000, "WinSprite1");
-        }
-        //Function to remove after certain amount of time:
-        if (data.timeToDisplay == null) {
-            data.timeToDisplay = 2;
-        }
-        if (data.playerName == null) {
-            data.playerName = "UnnamedPlayer";
-        }
-        //If the name is less than 5 chars , use font = 36;
-        // if the name is between 6-10 chars use font = 20;
-        // if the name is between 11-15 chars use font = 14;
-        // if the name is > 15 chars , use font = 10;
-        var playerNameSize = 20;
-        if (data.playerName.length <= 6) {
-            playerNameSize = 36;
-        } else if (data.playerName.length > 6 && data.playerName.length <= 11) {
-            playerNameSize = 24;
-        } else if (data.playerName.length > 11 && data.playerName.length <= 13) {
-            playerNameSize = 22;
-        } else if (data.playerName.length > 13 && data.playerName.length <= 16) {
-            playerNameSize = 18;
-        } else if (data.playerName.length > 16 && data.playerName.length <= 18) {
-            playerNameSize = 16;
-        } else {
-            playerNameSize = 14;
-        }
-        var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
-        playerNameLabel.setPosition(cc.p(winSize.width / 2, 430));
-        if (WinSpritePlayerNameLabelAlreadyExists == null) {
-            backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
-
-        }
-        var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 28);
-        winAmountLabel.setPosition(cc.p(winSize.width / 2, 140));
-        if (!theWinAmountLabelAlreadyExists) {
-            backgroundLayer.addChild(winAmountLabel, 1000, "WinAmountLabel");
-        }
-        var thePopUp = backgroundLayer.getChildByName("WinSprite1");
-        var theWinAmountLabel = backgroundLayer.getChildByName("WinAmountLabel");
-        var thePlayerNameLabel = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
-
-
-        setTimeout(function () {
-            if (thePopUp) {
-                thePopUp.removeFromParent(1);
-            }
-            if (theWinAmountLabel) {
-                theWinAmountLabel.removeFromParent(1);
-            }
-            if (thePlayerNameLabel) {
-                thePlayerNameLabel.removeFromParent(1);
-            }
-        }, data.timeToDisplay * 1000);
-    },
-    animatePopUpWinOthers: function (data) {
-        cc.log(data);
-        var winSize = cc.director.getWinSize();
-        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-        var WinSprite1AlreadyPresent = backgroundLayer.getChildByName("WinSprite1");
-        var WinSpritePlayerNameLabelAlreadyExists = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
-        var theWinAmountLabelAlreadyExists = backgroundLayer.getChildByName("WinAmountLabel");
-        var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
-        var bigSprite = new cc.Sprite(res.PopUpWin2);
-        bigSprite.setPosition(centerPos);
-        bigSprite.setScale(0.3);
-        if (!WinSprite1AlreadyPresent) {
-            backgroundLayer.addChild(bigSprite, 1000, "WinSpriteOther");
-        }
-        //Function to remove after certain amount of time:
-        if (data.timeToDisplay == null) {
-            data.timeToDisplay = 2;
-        }
-        if (data.playerName == null) {
-            data.playerName = "UnnamedPlayer";
-        }
-        // If the name is less than 5 chars , use font = 36;
-        // If the name is between 6-10 chars use font = 20;
-        // If the name is between 11-15 chars use font = 14;
-        // If the name is > 15 chars , use font = 10;
-        var playerNameSize = 20;
-        if (data.playerName.length <= 6) {
-            playerNameSize = 36;
-        } else if (data.playerName.length > 6 && data.playerName.length <= 11) {
-            playerNameSize = 24;
-        } else if (data.playerName.length > 11 && data.playerName.length <= 13) {
-            playerNameSize = 22;
-        } else if (data.playerName.length > 13 && data.playerName.length <= 16) {
-            playerNameSize = 18;
-        } else if (data.playerName.length > 16 && data.playerName.length <= 18) {
-            playerNameSize = 16;
-        } else {
-            playerNameSize = 14;
-        }
-        var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
-        playerNameLabel.setPosition(cc.p(winSize.width / 2, 430));
-        if (WinSpritePlayerNameLabelAlreadyExists == null) {
-            backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
-
-        }
-        var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 28);
-        winAmountLabel.setPosition(cc.p(winSize.width / 2, 140));
-        if (!theWinAmountLabelAlreadyExists) {
-            backgroundLayer.addChild(winAmountLabel, 1000, "WinAmountLabel");
-        }
-        var thePopUp = backgroundLayer.getChildByName("WinSpriteOther");
-        var theWinAmountLabel = backgroundLayer.getChildByName("WinAmountLabel");
-        var thePlayerNameLabel = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
-
-
-        setTimeout(function () {
-            if (thePopUp) {
-                thePopUp.removeFromParent(1);
-            }
-            if (theWinAmountLabel) {
-                theWinAmountLabel.removeFromParent(1);
-            }
-            if (thePlayerNameLabel) {
-                thePlayerNameLabel.removeFromParent(1);
-            }
-        }, data.timeToDisplay * 1000);
-    },
+//    animatePopUpWinSelf: function (data) {
+//        var winSize = cc.director.getWinSize();
+//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+//        var WinSprite1AlreadyPresent = backgroundLayer.getChildByName("WinSprite1");
+//        var WinSpritePlayerNameLabelAlreadyExists = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
+//        var theWinAmountLabelAlreadyExists = backgroundLayer.getChildByName("WinAmountLabel");
+//        var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
+//        var bigSprite = new cc.Sprite(res.PopUpWin1);
+//        bigSprite.setPosition(centerPos);
+//        bigSprite.setScale(1);
+//        if (!WinSprite1AlreadyPresent) {
+//            backgroundLayer.addChild(bigSprite, 1000, "WinSprite1");
+//        }
+//        //Function to remove after certain amount of time:
+//        if (data.timeToDisplay == null) {
+//            data.timeToDisplay = 2;
+//        }
+//        if (data.playerName == null) {
+//            data.playerName = "UnnamedPlayer";
+//        }
+//        //If the name is less than 5 chars , use font = 36;
+//        // if the name is between 6-10 chars use font = 20;
+//        // if the name is between 11-15 chars use font = 14;
+//        // if the name is > 15 chars , use font = 10;
+//        var playerNameSize = 20;
+//        if (data.playerName.length <= 6) {
+//            playerNameSize = 36;
+//        } else if (data.playerName.length > 6 && data.playerName.length <= 11) {
+//            playerNameSize = 24;
+//        } else if (data.playerName.length > 11 && data.playerName.length <= 13) {
+//            playerNameSize = 22;
+//        } else if (data.playerName.length > 13 && data.playerName.length <= 16) {
+//            playerNameSize = 18;
+//        } else if (data.playerName.length > 16 && data.playerName.length <= 18) {
+//            playerNameSize = 16;
+//        } else {
+//            playerNameSize = 14;
+//        }
+//        var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
+//        playerNameLabel.setPosition(cc.p(winSize.width / 2, 430));
+//        if (WinSpritePlayerNameLabelAlreadyExists == null) {
+//            backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
+//
+//        }
+//        var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 28);
+//        winAmountLabel.setPosition(cc.p(winSize.width / 2, 140));
+//        if (!theWinAmountLabelAlreadyExists) {
+//            backgroundLayer.addChild(winAmountLabel, 1000, "WinAmountLabel");
+//        }
+//        var thePopUp = backgroundLayer.getChildByName("WinSprite1");
+//        var theWinAmountLabel = backgroundLayer.getChildByName("WinAmountLabel");
+//        var thePlayerNameLabel = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
+//
+//
+//        setTimeout(function () {
+//            if (thePopUp) {
+//                thePopUp.removeFromParent(1);
+//            }
+//            if (theWinAmountLabel) {
+//                theWinAmountLabel.removeFromParent(1);
+//            }
+//            if (thePlayerNameLabel) {
+//                thePlayerNameLabel.removeFromParent(1);
+//            }
+//        }, data.timeToDisplay * 1000);
+//    },
+//    animatePopUpWinOthers: function (data) {
+//        cc.log(data);
+//        var winSize = cc.director.getWinSize();
+//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+//        var WinSprite1AlreadyPresent = backgroundLayer.getChildByName("WinSprite1");
+//        var WinSpritePlayerNameLabelAlreadyExists = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
+//        var theWinAmountLabelAlreadyExists = backgroundLayer.getChildByName("WinAmountLabel");
+//        var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
+//        var bigSprite = new cc.Sprite(res.PopUpWin2);
+//        bigSprite.setPosition(centerPos);
+//        bigSprite.setScale(0.3);
+//        if (!WinSprite1AlreadyPresent) {
+//            backgroundLayer.addChild(bigSprite, 1000, "WinSpriteOther");
+//        }
+//        //Function to remove after certain amount of time:
+//        if (data.timeToDisplay == null) {
+//            data.timeToDisplay = 2;
+//        }
+//        if (data.playerName == null) {
+//            data.playerName = "UnnamedPlayer";
+//        }
+//        // If the name is less than 5 chars , use font = 36;
+//        // If the name is between 6-10 chars use font = 20;
+//        // If the name is between 11-15 chars use font = 14;
+//        // If the name is > 15 chars , use font = 10;
+//        var playerNameSize = 20;
+//        if (data.playerName.length <= 6) {
+//            playerNameSize = 36;
+//        } else if (data.playerName.length > 6 && data.playerName.length <= 11) {
+//            playerNameSize = 24;
+//        } else if (data.playerName.length > 11 && data.playerName.length <= 13) {
+//            playerNameSize = 22;
+//        } else if (data.playerName.length > 13 && data.playerName.length <= 16) {
+//            playerNameSize = 18;
+//        } else if (data.playerName.length > 16 && data.playerName.length <= 18) {
+//            playerNameSize = 16;
+//        } else {
+//            playerNameSize = 14;
+//        }
+//        var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
+//        playerNameLabel.setPosition(cc.p(winSize.width / 2, 430));
+//        if (WinSpritePlayerNameLabelAlreadyExists == null) {
+//            backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
+//
+//        }
+//        var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 28);
+//        winAmountLabel.setPosition(cc.p(winSize.width / 2, 140));
+//        if (!theWinAmountLabelAlreadyExists) {
+//            backgroundLayer.addChild(winAmountLabel, 1000, "WinAmountLabel");
+//        }
+//        var thePopUp = backgroundLayer.getChildByName("WinSpriteOther");
+//        var theWinAmountLabel = backgroundLayer.getChildByName("WinAmountLabel");
+//        var thePlayerNameLabel = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
+//
+//
+//        setTimeout(function () {
+//            if (thePopUp) {
+//                thePopUp.removeFromParent(1);
+//            }
+//            if (theWinAmountLabel) {
+//                theWinAmountLabel.removeFromParent(1);
+//            }
+//            if (thePlayerNameLabel) {
+//                thePlayerNameLabel.removeFromParent(1);
+//            }
+//        }, data.timeToDisplay * 1000);
+//    },
     spawnThePotFlag: function (data) {
         //The Pot Flag Should Be Spawned Only ONCE per ROUND.
         //It Should be on TOP of the money stack.
@@ -729,7 +734,17 @@ var AnimationLayer = cc.Layer.extend({
             ThePotAmountLabelExists.removeFromParent(1);
         }
     },
-    bigAnimationSelf: function (data) {
+    playBigWinningAnimation: function (data) {
+
+        if (typeof (data) == 'undefined') {
+            cc.log("You did not provide correct details for the data object");
+            var data = {
+                playerName: "data.playerName",
+                amount: "amount_here",
+                winner: false,
+            };
+        }
+
         //Data Object needs:
         //  playerName: string
         //  amount: integer / string
@@ -799,14 +814,14 @@ var AnimationLayer = cc.Layer.extend({
         ////////////////////////////////////////////////////////////////////////
         ////WINS FLAG
         ////////////////////////////////////////////////////////////////////////
-        
-        if (data.winner == false){
+
+        if (data.winner == false) {
             var winsFlag = new cc.Sprite(res.BP_WinsText);
         } else {
             var winsFlag = new cc.Sprite(res.BP_YouWinText);
             data.playerName = "Congratulations!";
-        }        
-        
+        }
+
         winsFlag.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
         winsFlag.setScale(0.05);
         var ScaleWinsFlagAction = new cc.ScaleTo(0.1, 1);
@@ -944,12 +959,12 @@ var AnimationLayer = cc.Layer.extend({
         } else {
             playerNameSize = 16;
         }
-        
-        if (data.playerName === "Congratulations!"){
+
+        if (data.playerName === "Congratulations!") {
             cc.log("size is 32");
             playerNameSize = 32;
         }
-        
+
         var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
         playerNameLabel.setPosition(cc.p(winSize.width / 2, 480));
         backgroundLayer.addChild(playerNameLabel, 1715, "PlayerNameLabel");

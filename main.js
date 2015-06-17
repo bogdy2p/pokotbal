@@ -116,7 +116,7 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-    animatePlayerReceiveBet: function (data) {
+    animateGetThePot: function (data) {
         var event = new cc.EventCustom("event_animate_player_receiving_bets");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
@@ -126,11 +126,11 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-    animateCircleText: function (data) {
-        var event = new cc.EventCustom("event_animate_circle_label");
-        event.setUserData(data);
-        cc.eventManager.dispatchEvent(event);
-    },
+//    animateCircleText: function (data) {
+//        var event = new cc.EventCustom("event_animate_circle_label");
+//        event.setUserData(data);
+//        cc.eventManager.dispatchEvent(event);
+//    },
     displayPopUpWinSelf: function (data) {
         var event = new cc.EventCustom("event_display_popup_win_self");
         event.setUserData(data);
@@ -156,8 +156,8 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-    bigAnimationSelf: function (data) {
-        var event = new cc.EventCustom("event_big_animation_one");
+    playWinningAnimation: function (data) {
+        var event = new cc.EventCustom("event_big_winning_animation");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     }
