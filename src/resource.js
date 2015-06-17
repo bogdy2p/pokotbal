@@ -1,13 +1,8 @@
 var res = {
     HelloWorld_png: "res/HelloWorld.png",
-    CloseNormal_png: "res/CloseNormal.png",
-    CloseSelected_png: "res/CloseSelected.png",
-//    Background_none_png: "res/background/BackgroundNone.png",
-//    Background_none_png: "res/background/stripes.png",
-    Table_png: "res/background/Table14.png",
+    Table_png: "res/background/Table.png",
     //USER INTERFACE RESOURCES ================================================    
     UI_Marker: "res/userinterface/Marker.png",
-    UI_BottomLeftInfo: "res/userinterface/BotLeftInfoNone.png",
     UI_Cash: "res/userinterface/CashGood.png",
     //=========================================================================
 
@@ -18,18 +13,12 @@ var res = {
     P_popupUnderGreen: "res/userinterface/UnderPopupGreen.png",
     P_overHead: "res/userinterface/OverHead.png",
     //=========================================================================
-    Test_png: "res/test.png",
+    
     //Controls
-
-    Start_s_png: "res/controls/start_s.png",
-    Start_n_png: "res/controls/start_n.png",
-
     ///////////FONTS
     MontserratReg: "res/fonts/MontserratRegular.ttf",
     MontserratBold: "res/fonts/MontserratBold.ttf",
     //Game Popups ===========================================================    
-    PopUpWin1: "res/popups/PopUpWin1Tiny.png",
-    PopUpWin2: "res/popups/PopUpWin2Tiny.png",
     ThePotFlag: "res/userinterface/ThePot.png",
     Player1_plist: "res/animations/player1.plist",
     Player1_png: "res/animations/player1.png",

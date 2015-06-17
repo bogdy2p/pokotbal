@@ -73,7 +73,7 @@ var mygame = {
         event.setUserData(playerdata);
         cc.eventManager.dispatchEvent(event);
     },
-    removePlayer: function (playerdata) {
+    removePlayerFromTable: function (playerdata) {
         var event = new cc.EventCustom("remove_player_event");
         event.setUserData(playerdata);
         cc.eventManager.dispatchEvent(event);
@@ -88,16 +88,20 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-    animatePlayerLoseA: function (data) {
-        var event = new cc.EventCustom("event_player_losing_a");
-        event.setUserData(data);
-        cc.eventManager.dispatchEvent(event);
-    },
-    animatePlayerLoseB: function (data) {
-        var event = new cc.EventCustom("event_player_losing_b");
-        event.setUserData(data);
-        cc.eventManager.dispatchEvent(event);
-    },
+///////////////////////////////////////////////////////////////////////////////    
+//Disabled due to the random one, to enable just uncomment    
+    
+//    animatePlayerLoseA: function (data) {
+//        var event = new cc.EventCustom("event_player_losing_a");
+//        event.setUserData(data);
+//        cc.eventManager.dispatchEvent(event);
+//    },
+//    animatePlayerLoseB: function (data) {
+//        var event = new cc.EventCustom("event_player_losing_b");
+//        event.setUserData(data);
+//        cc.eventManager.dispatchEvent(event);
+//    },
+///////////////////////////////////////////////////////////////////////////////
     animatePlayerLose: function (data) {
         var event = new cc.EventCustom("event_animate_player_lose");
         event.setUserData(data);
@@ -108,16 +112,20 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-    animatePlayerWaitA: function (data) {
-        var event = new cc.EventCustom("event_player_waiting_a");
-        event.setUserData(data);
-        cc.eventManager.dispatchEvent(event);
-    },
-    animatePlayerWaitB: function (data) {
-        var event = new cc.EventCustom("event_player_waiting_b");
-        event.setUserData(data);
-        cc.eventManager.dispatchEvent(event);
-    },
+///////////////////////////////////////////////////////////////////////////////    
+//Disabled due to the random one, to enable just uncomment    
+    
+//    animatePlayerWaitA: function (data) {
+//        var event = new cc.EventCustom("event_player_waiting_a");
+//        event.setUserData(data);
+//        cc.eventManager.dispatchEvent(event);
+//    },
+//    animatePlayerWaitB: function (data) {
+//        var event = new cc.EventCustom("event_player_waiting_b");
+//        event.setUserData(data);
+//        cc.eventManager.dispatchEvent(event);
+//    },
+///////////////////////////////////////////////////////////////////////////////
     animateBet: function (data) {
         var event = new cc.EventCustom("event_animate_betting");
         event.setUserData(data);
