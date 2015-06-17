@@ -101,6 +101,16 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
+    animatePlayerLose: function (data) {
+        var event = new cc.EventCustom("event_animate_player_lose");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
+    },
+    animatePlayerWait: function (data) {
+        var event = new cc.EventCustom("event_player_waiting_random");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
+    },
     animatePlayerWaitA: function (data) {
         var event = new cc.EventCustom("event_player_waiting_a");
         event.setUserData(data);
@@ -126,21 +136,6 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-//    animateCircleText: function (data) {
-//        var event = new cc.EventCustom("event_animate_circle_label");
-//        event.setUserData(data);
-//        cc.eventManager.dispatchEvent(event);
-//    },
-    displayPopUpWinSelf: function (data) {
-        var event = new cc.EventCustom("event_display_popup_win_self");
-        event.setUserData(data);
-        cc.eventManager.dispatchEvent(event);
-    },
-    displayPopUpWinOthers: function (data) {
-        var event = new cc.EventCustom("event_display_popup_win_others");
-        event.setUserData(data);
-        cc.eventManager.dispatchEvent(event);
-    },
     deActivatePlayers: function (data) {
         var event = new cc.EventCustom("event_deactivate_all_players");
         event.setUserData(data);
@@ -163,7 +158,7 @@ var mygame = {
     }
 };
 
-
+//Hardcode informatons for Players Testing
 
 var players = [];
 for (i = 0; i < 10; i++) {
@@ -177,17 +172,13 @@ for (i = 0; i < 10; i++) {
         amount: "0"
     };
 }
-//  ACTUALLY START THE GAME HERE !
-//  ACTUALLY START THE GAME HERE !
-//  ACTUALLY START THE GAME HERE !
+
 mygame.start();
 //////////////////////////////////
 //////////////////////////////////
 //////////////////////////////////
 
 
-//new runPlayer1Stuff(2500);
-//new runPlayer2Stuff(4200);
 ///////////////////////////////////////////////
 //Spawn all players during the first 5 seconds
 ///////////////////////////////////////////////

@@ -51,6 +51,19 @@ var AnimationLayer = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(winningListener, 1);
+
+        //event_animate_player_lose
+        var losingListenerBoth = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_animate_player_lose",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.animatePlayerLoseRandom(data);
+            }
+        });
+        cc.eventManager.addListener(losingListenerBoth, 1);
+
+
         var losingListenerA = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
             eventName: "event_player_losing_a",
@@ -69,6 +82,18 @@ var AnimationLayer = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(losingListenerB, 1);
+
+
+        var waitingListenerRandom = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_player_waiting_random",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.animatePlayerWaitRandom(data);
+            }
+        });
+        cc.eventManager.addListener(waitingListenerRandom, 1);
+
         var waitingListenerA = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
             eventName: "event_player_waiting_a",
@@ -305,8 +330,7 @@ var AnimationLayer = cc.Layer.extend({
         var animateWinning = new cc.Repeat(new cc.Animate(animationWin), 1);
         thesprite.runAction(animateWinning, 1);
 
-    }
-    ,
+    },
     animatePlayerLoseA: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var childname = "player_" + data.playerNumber;
@@ -331,8 +355,56 @@ var AnimationLayer = cc.Layer.extend({
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
         thesprite.runAction(animateLosing, 1);
     },
+    animatePlayerLoseRandom: function (data) {
+
+        var version = 1;
+        var RandomNumber = Math.floor(Math.random() * 10 + 1);
+
+        if ((RandomNumber % 2) == 0) {
+            version = 2;
+        } else {
+            version = 1;
+        }
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var childname = "player_" + data.playerNumber;
+        var sprite = backgroundLayer.getChildByName(childname);
+        var thesprite = sprite._children[0];
+        ///////////////////////////////////////////////////////////////////////
+        var position = positionInformations[data.playerNumber];
+        thesprite.setPosition(position.x, position.y);
+        ///////////////////////////////////////////////////////////////////////
+        var animFramesLose = [];
+
+        if (version == 1) {
+
+            for (var i = 1; i < 10; i++) {
+                var str = "_000" + i + "_" + data.playerModel + "loseA" + (i + 1) + ".png.png";
+                var frame = cc.spriteFrameCache.getSpriteFrame(str);
+                animFramesLose.push(frame);
+            }
+            for (var i = 10; i < 60; i++) {
+                var str2 = "_00" + i + "_" + data.playerModel + "loseA" + (i + 1) + ".png.png";
+                var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
+                animFramesLose.push(frame2);
+            }
+        } else {
+            for (var i = 1; i < 10; i++) {
+                var str = "_000" + i + "_" + data.playerModel + "loseB" + (i + 1) + ".png.png";
+                var frame = cc.spriteFrameCache.getSpriteFrame(str);
+                animFramesLose.push(frame);
+            }
+            for (var i = 10; i < 88; i++) {
+                var str2 = "_00" + i + "_" + data.playerModel + "loseB" + (i + 1) + ".png.png";
+                var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
+                animFramesLose.push(frame2);
+            }
+        }
+        var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
+        var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
+        thesprite.runAction(animateLosing, 1);
+
+    },
     animatePlayerLoseB: function (data) {
-//        cc.log(data);
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var childname = "player_" + data.playerNumber;
         var sprite = backgroundLayer.getChildByName(childname);
@@ -355,6 +427,52 @@ var AnimationLayer = cc.Layer.extend({
         var animationLose = new cc.Animation(animFramesLose, data.animationLength / animFramesLose.length);
         var animateLosing = new cc.Repeat(new cc.Animate(animationLose), 1);
         thesprite.runAction(animateLosing, 1);
+    },
+    animatePlayerWaitRandom: function (data) {
+
+        var version = 1;
+        var RandomNumber = Math.floor(Math.random() * 10 + 1);
+        if ((RandomNumber % 2) == 0) {
+            version = 2;
+        } else {
+            version = 1;
+        }
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var childname = "player_" + data.playerNumber;
+        var sprite = backgroundLayer.getChildByName(childname);
+        var thesprite = sprite._children[0];
+        ///////////////////////////////////////////////////////////////////////
+        var position = positionInformations[data.playerNumber];
+        thesprite.setPosition(position.x, position.y);
+        ///////////////////////////////////////////////////////////////////////
+        var animFramesWait = [];
+        if (version == 1) {
+
+            for (var i = 1; i < 10; i++) {
+                var str = "_000" + i + "_" + data.playerModel + "waitA" + (i + 1) + ".png.png";
+                var frame = cc.spriteFrameCache.getSpriteFrame(str);
+                animFramesWait.push(frame);
+            }
+            for (var i = 10; i < 84; i++) {
+                var str2 = "_00" + i + "_" + data.playerModel + "waitA" + (i + 1) + ".png.png";
+                var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
+                animFramesWait.push(frame2);
+            }
+        } else {
+            for (var i = 1; i < 10; i++) {
+                var str = "_000" + i + "_" + data.playerModel + "waitB" + (i + 1) + ".png.png";
+                var frame = cc.spriteFrameCache.getSpriteFrame(str);
+                animFramesWait.push(frame);
+            }
+            for (var i = 10; i < 99; i++) {
+                var str2 = "_00" + i + "_" + data.playerModel + "waitB" + (i + 1) + ".png.png";
+                var frame2 = cc.spriteFrameCache.getSpriteFrame(str2);
+                animFramesWait.push(frame2);
+            }
+        }
+        var animationWait = new cc.Animation(animFramesWait, data.animationLength / animFramesWait.length);
+        var animateWaiting = new cc.Repeat(new cc.Animate(animationWait), 1);
+        thesprite.runAction(animateWaiting, 1);
     },
     animatePlayerWaitA: function (data) {
 
@@ -405,16 +523,6 @@ var AnimationLayer = cc.Layer.extend({
         var animateWaitingB = new cc.Repeat(new cc.Animate(animationWaitB), 1);
         thesprite.runAction(animateWaitingB, 1);
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     animateBetting: function (data) {
         var backgroundLayer = this.backgroundLayer;
         var bet_number = this.current_bets;
@@ -566,139 +674,6 @@ var AnimationLayer = cc.Layer.extend({
             }
         }
     },
-//    animatePopUpWinSelf: function (data) {
-//        var winSize = cc.director.getWinSize();
-//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-//        var WinSprite1AlreadyPresent = backgroundLayer.getChildByName("WinSprite1");
-//        var WinSpritePlayerNameLabelAlreadyExists = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
-//        var theWinAmountLabelAlreadyExists = backgroundLayer.getChildByName("WinAmountLabel");
-//        var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
-//        var bigSprite = new cc.Sprite(res.PopUpWin1);
-//        bigSprite.setPosition(centerPos);
-//        bigSprite.setScale(1);
-//        if (!WinSprite1AlreadyPresent) {
-//            backgroundLayer.addChild(bigSprite, 1000, "WinSprite1");
-//        }
-//        //Function to remove after certain amount of time:
-//        if (data.timeToDisplay == null) {
-//            data.timeToDisplay = 2;
-//        }
-//        if (data.playerName == null) {
-//            data.playerName = "UnnamedPlayer";
-//        }
-//        //If the name is less than 5 chars , use font = 36;
-//        // if the name is between 6-10 chars use font = 20;
-//        // if the name is between 11-15 chars use font = 14;
-//        // if the name is > 15 chars , use font = 10;
-//        var playerNameSize = 20;
-//        if (data.playerName.length <= 6) {
-//            playerNameSize = 36;
-//        } else if (data.playerName.length > 6 && data.playerName.length <= 11) {
-//            playerNameSize = 24;
-//        } else if (data.playerName.length > 11 && data.playerName.length <= 13) {
-//            playerNameSize = 22;
-//        } else if (data.playerName.length > 13 && data.playerName.length <= 16) {
-//            playerNameSize = 18;
-//        } else if (data.playerName.length > 16 && data.playerName.length <= 18) {
-//            playerNameSize = 16;
-//        } else {
-//            playerNameSize = 14;
-//        }
-//        var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
-//        playerNameLabel.setPosition(cc.p(winSize.width / 2, 430));
-//        if (WinSpritePlayerNameLabelAlreadyExists == null) {
-//            backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
-//
-//        }
-//        var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 28);
-//        winAmountLabel.setPosition(cc.p(winSize.width / 2, 140));
-//        if (!theWinAmountLabelAlreadyExists) {
-//            backgroundLayer.addChild(winAmountLabel, 1000, "WinAmountLabel");
-//        }
-//        var thePopUp = backgroundLayer.getChildByName("WinSprite1");
-//        var theWinAmountLabel = backgroundLayer.getChildByName("WinAmountLabel");
-//        var thePlayerNameLabel = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
-//
-//
-//        setTimeout(function () {
-//            if (thePopUp) {
-//                thePopUp.removeFromParent(1);
-//            }
-//            if (theWinAmountLabel) {
-//                theWinAmountLabel.removeFromParent(1);
-//            }
-//            if (thePlayerNameLabel) {
-//                thePlayerNameLabel.removeFromParent(1);
-//            }
-//        }, data.timeToDisplay * 1000);
-//    },
-//    animatePopUpWinOthers: function (data) {
-//        cc.log(data);
-//        var winSize = cc.director.getWinSize();
-//        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
-//        var WinSprite1AlreadyPresent = backgroundLayer.getChildByName("WinSprite1");
-//        var WinSpritePlayerNameLabelAlreadyExists = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
-//        var theWinAmountLabelAlreadyExists = backgroundLayer.getChildByName("WinAmountLabel");
-//        var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
-//        var bigSprite = new cc.Sprite(res.PopUpWin2);
-//        bigSprite.setPosition(centerPos);
-//        bigSprite.setScale(0.3);
-//        if (!WinSprite1AlreadyPresent) {
-//            backgroundLayer.addChild(bigSprite, 1000, "WinSpriteOther");
-//        }
-//        //Function to remove after certain amount of time:
-//        if (data.timeToDisplay == null) {
-//            data.timeToDisplay = 2;
-//        }
-//        if (data.playerName == null) {
-//            data.playerName = "UnnamedPlayer";
-//        }
-//        // If the name is less than 5 chars , use font = 36;
-//        // If the name is between 6-10 chars use font = 20;
-//        // If the name is between 11-15 chars use font = 14;
-//        // If the name is > 15 chars , use font = 10;
-//        var playerNameSize = 20;
-//        if (data.playerName.length <= 6) {
-//            playerNameSize = 36;
-//        } else if (data.playerName.length > 6 && data.playerName.length <= 11) {
-//            playerNameSize = 24;
-//        } else if (data.playerName.length > 11 && data.playerName.length <= 13) {
-//            playerNameSize = 22;
-//        } else if (data.playerName.length > 13 && data.playerName.length <= 16) {
-//            playerNameSize = 18;
-//        } else if (data.playerName.length > 16 && data.playerName.length <= 18) {
-//            playerNameSize = 16;
-//        } else {
-//            playerNameSize = 14;
-//        }
-//        var playerNameLabel = new cc.LabelTTF.create(data.playerName, "MontserratBold", playerNameSize);
-//        playerNameLabel.setPosition(cc.p(winSize.width / 2, 430));
-//        if (WinSpritePlayerNameLabelAlreadyExists == null) {
-//            backgroundLayer.addChild(playerNameLabel, 1000, "WinSpritePlayerNameLabel");
-//
-//        }
-//        var winAmountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratBold", 28);
-//        winAmountLabel.setPosition(cc.p(winSize.width / 2, 140));
-//        if (!theWinAmountLabelAlreadyExists) {
-//            backgroundLayer.addChild(winAmountLabel, 1000, "WinAmountLabel");
-//        }
-//        var thePopUp = backgroundLayer.getChildByName("WinSpriteOther");
-//        var theWinAmountLabel = backgroundLayer.getChildByName("WinAmountLabel");
-//        var thePlayerNameLabel = backgroundLayer.getChildByName("WinSpritePlayerNameLabel");
-//
-//
-//        setTimeout(function () {
-//            if (thePopUp) {
-//                thePopUp.removeFromParent(1);
-//            }
-//            if (theWinAmountLabel) {
-//                theWinAmountLabel.removeFromParent(1);
-//            }
-//            if (thePlayerNameLabel) {
-//                thePlayerNameLabel.removeFromParent(1);
-//            }
-//        }, data.timeToDisplay * 1000);
-//    },
     spawnThePotFlag: function (data) {
         //The Pot Flag Should Be Spawned Only ONCE per ROUND.
         //It Should be on TOP of the money stack.
