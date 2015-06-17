@@ -628,6 +628,7 @@ var AnimationLayer = cc.Layer.extend({
 
 
         function activatePlayer(element, index, array) {
+//            cc.log(element);
             var unTint = new cc.TintTo.create(1, 85, 250, 250);
             child = element._children[0];
             child.setOpacity(255);
@@ -644,6 +645,18 @@ var AnimationLayer = cc.Layer.extend({
                 var table = backgroundLayer.getChildByName('thegametable');
                 PlayerSprite.runAction(tintredAction);
             }
+            
+            var bubble = element._children[1];
+            cc.log(bubble);
+            var oldBubblePosition = bubble.getPosition();
+            cc.log(oldBubblePosition)
+            var newBubble = new cc.Sprite.create(res.P_popupOverGreen);
+            newBubble.setPosition(oldBubblePosition);
+//            bubble.removeFromParent(1);
+            var playerdata = positionInformations[data.playerNumber];
+//            element.addChild(newBubble,)
+//            element.addChild(newBubble, playerdata.Zindex, playerdata.defaultName + "_popup");
+            
             //FETCH THE CURRENT PLAYER'S OVERHEADPOPUP AND MAKE IT GREEN
         }
 
