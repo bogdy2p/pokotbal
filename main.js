@@ -90,7 +90,7 @@ var mygame = {
     },
 ///////////////////////////////////////////////////////////////////////////////    
 //Disabled due to the random one, to enable just uncomment    
-    
+
 //    animatePlayerLoseA: function (data) {
 //        var event = new cc.EventCustom("event_player_losing_a");
 //        event.setUserData(data);
@@ -114,7 +114,7 @@ var mygame = {
     },
 ///////////////////////////////////////////////////////////////////////////////    
 //Disabled due to the random one, to enable just uncomment    
-    
+
 //    animatePlayerWaitA: function (data) {
 //        var event = new cc.EventCustom("event_player_waiting_a");
 //        event.setUserData(data);
@@ -158,6 +158,11 @@ var mygame = {
     },
     playWinningAnimation: function (data) {
         var event = new cc.EventCustom("event_big_winning_animation");
+        event.setUserData(data);
+        cc.eventManager.dispatchEvent(event);
+    },
+    playGenericAnimation: function (data) {
+        var event = new cc.EventCustom("event_generic_animation_referee");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     }

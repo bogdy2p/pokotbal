@@ -45,6 +45,17 @@ var res = {
     BP_Face1: "res/popups/face1.png",
     BP_Face2: "res/popups/face2.png",
     BP_Trophy: "res/popups/trophy.png",
+    
+    
+    //Generic PopUp Animation Components
+    
+    //
+    GP_Background: "res/userinterface/GenericBackground.png",
+    GP_Referee1: "res/userinterface/Referee1.png",
+    GP_Referee2: "res/userinterface/Referee2.png",
+    
+    
+    
        
 };
 

@@ -231,6 +231,16 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(bigAnimation1, 1);
 
+        var genericAnimation1 = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: "event_generic_animation_referee",
+            callback: function (event) {
+                var data = event.getUserData();
+                that.playGenericAnimation(data);
+            }
+        });
+        cc.eventManager.addListener(genericAnimation1, 1);
+
     },
     spawnPlayer: function (data) {
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
@@ -544,9 +554,9 @@ var AnimationLayer = cc.Layer.extend({
         var scaleto = new cc.ScaleTo.create(1.5, 1);
 
         if (this.betPosition <= 10) {
-            var moveToCenter = new cc.MoveTo.create(1.5, cc.p(winSize.width / 2, winSize.height / 2 + this.betPosition * 2));
+            var moveToCenter = new cc.MoveTo.create(1.5, cc.p(winSize.width / 2, winSize.height / 2 + 14 + this.betPosition * 2));
         } else {
-            var moveToCenter = new cc.MoveTo.create(1.5, cc.p(winSize.width / 2, winSize.height / 2 + 20));
+            var moveToCenter = new cc.MoveTo.create(1.5, cc.p(winSize.width / 2, winSize.height / 2 + 34));
         }
         this.betPosition++;
         this.cashSpriteSheet.runAction(scaleto, 1);
@@ -688,7 +698,7 @@ var AnimationLayer = cc.Layer.extend({
         var checkThePotExists = backgroundLayer.getChildByName("ThePotSprite");
         if (!checkThePotExists) {
             var thePotSprite = new cc.Sprite(res.ThePotFlag);
-            thePotSprite.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - thePotSprite.height));
+            thePotSprite.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - thePotSprite.height / 2));
             thePotSprite.setOpacity(0);
             backgroundLayer.addChild(thePotSprite, 1560, "ThePotSprite");
             var fadeInPot = new cc.FadeIn.create(1);
@@ -982,5 +992,112 @@ var AnimationLayer = cc.Layer.extend({
             }, 5000);
         }
     }
+    ,
+    playGenericAnimation: function (data) {
 
+        if (typeof (data) == 'undefined') {
+            cc.log("You did not provide correct details for the data object");
+            var data = {
+                messageTitle: "data.messageTitle",
+                messageLine1: "line 1 content",
+                messageLine2: "line 2 content",
+                referee: 1,
+            };
+        }
+
+        var winSize = cc.director.getWinSize();
+        var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
+        var centerPos = cc.p(winSize.width / 2, winSize.height / 2);
+        var all_sprites = [];
+
+        ////////////////////////////////////////////////////////////////////////
+        //THE WHITE BACKGROUND SPRITE;
+        ////////////////////////////////////////////////////////////////////////
+        var BackgroundSprite = new cc.Sprite(res.GP_Background);
+        BackgroundSprite.setPosition(centerPos);
+        BackgroundSprite.setScale(1);
+
+        var BgDelay = new cc.delayTime(0.2);
+        var ScaleBGUpAction = new cc.ScaleTo(0.2, 1.1);
+        var ScaleBGDownAction = new cc.ScaleTo(0.2, 1);
+        var ScaleBGSequence = new cc.Sequence.create(BgDelay, ScaleBGUpAction, ScaleBGDownAction);
+        BackgroundSprite.runAction(ScaleBGSequence);
+        BackgroundSprite.setOpacity(255);
+        backgroundLayer.addChild(BackgroundSprite, 1690, "GenericBackgroundSprite");
+        all_sprites.push(BackgroundSprite);
+        ///////////////////////////////////////////////////////////////////////
+
+
+        ////////////////////////////////////////////////////////////////////////
+        //THE REFEREE
+        ////////////////////////////////////////////////////////////////////////
+
+        if (data.referee == 1) {
+            var referee = new cc.Sprite(res.GP_Referee1);
+        } else {
+            var referee = new cc.Sprite(res.GP_Referee2);
+        }
+        referee.setPosition(cc.p(winSize.width / 2 + 200, winSize.height / 2 + 40));
+        referee.setScale(0.01);
+        var ScaleBodyToNormalAction = new cc.ScaleTo(0.2, 1);
+
+        var RefereeDelay = new cc.DelayTime(0.5);
+        var RefereeSequence = new cc.Sequence.create(RefereeDelay, ScaleBodyToNormalAction);
+
+
+        referee.runAction(RefereeSequence, 1);
+        backgroundLayer.addChild(referee, 1710, "Referee");
+        all_sprites.push(referee);
+        ////////////////////////////////////////////////////////////////////////
+
+        var messageTitleLabel = new cc.LabelTTF.create(data.messageTitle, "MontserratBold", 46);
+        messageTitleLabel.setColor(cc.color.RED);
+        messageTitleLabel.setPosition(cc.p(winSize.width / 2 - 120, 320));
+        messageTitleLabel.setOpacity(0);
+        var TitleDelay = new cc.delayTime(1);
+        var messageTitleLabelFadeIn = new cc.FadeIn.create(0.01);
+        var fadeInTitle = new cc.Sequence.create(TitleDelay, messageTitleLabelFadeIn);
+        messageTitleLabel.runAction(fadeInTitle);
+
+
+        backgroundLayer.addChild(messageTitleLabel, 1715, "MessageTitleLabel");
+        all_sprites.push(messageTitleLabel);
+
+
+        var actualMessageLabel1 = new cc.LabelTTF.create(data.messageLine1, "MontserratBold", 44);
+        actualMessageLabel1.setColor(cc.color.BLACK);
+        actualMessageLabel1.setPosition(cc.p(winSize.width / 2 - 120, 260));
+        actualMessageLabel1.setOpacity(0);
+        var Line1Delay = new cc.delayTime(1.4);
+        var Line1LabelFadeIn = new cc.FadeIn.create(0.01);
+        var fadeInLine1 = new cc.Sequence.create(Line1Delay, Line1LabelFadeIn);
+        actualMessageLabel1.runAction(fadeInLine1);
+
+        backgroundLayer.addChild(actualMessageLabel1, 1715, "actualMessageLabel1");
+        all_sprites.push(actualMessageLabel1);
+        var actualMessageLabel2 = new cc.LabelTTF.create(data.messageLine2, "MontserratBold", 44);
+        actualMessageLabel2.setColor(cc.color.BLACK);
+        actualMessageLabel2.setPosition(cc.p(winSize.width / 2 - 120, 200));
+        actualMessageLabel2.setOpacity(0);
+        var Line2Delay = new cc.delayTime(1.4);
+        var Line2LabelFadeIn = new cc.FadeIn.create(0.01);
+        var fadeInLine2 = new cc.Sequence.create(Line2Delay, Line2LabelFadeIn);
+        actualMessageLabel2.runAction(fadeInLine2);
+        backgroundLayer.addChild(actualMessageLabel2, 1715, "actualMessageLabel2");
+        all_sprites.push(actualMessageLabel2);
+
+        all_sprites.forEach(dissapearElement);
+        function dissapearElement(element, index, array) {
+            var endActionTime = cc.delayTime(3.2);
+            var disappear = new cc.FadeOut.create(0.5);
+            var disappearSequence = new cc.Sequence.create(endActionTime, disappear);
+            element.runAction(disappearSequence);
+        }
+        all_sprites.forEach(removeFromBackground);
+        function removeFromBackground(element, index, array) {
+            setTimeout(function () {
+                element.removeFromParent(1);
+            }, 5000);
+        }
+    }
 });
