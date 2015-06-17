@@ -44,11 +44,11 @@ var Player = cc.Layer.extend({
         this.animateFadeIn();
     },
     animateFadeIn: function () {
-        var fadeInPlayer = cc.FadeIn.create(0.8 / GGS);
+        var fadeInPlayer = cc.FadeIn.create(0.8);
         this.sprite.runAction(fadeInPlayer);
     },
     animateFadeOut: function () {
-        var fadeOutPlayer = cc.FadeOut.create(1 / GGS);
+        var fadeOutPlayer = cc.FadeOut.create(1);
         this.sprite.runAction(fadeOutPlayer);
     },
 });

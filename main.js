@@ -1,6 +1,3 @@
-//Global game speed,  increase to run faster for testing  [up-to 4 for a ok result]
-var SHOWALL = false;
-var GGS = 1;
 /**
  * A brief explanation for "project.json":
  * Here is the content of project.json file, this is the global configuration for your game, you can modify it to customize some behavior.
@@ -66,7 +63,7 @@ var mygame = {
             cc.view.resizeWithBrowserSize(true);
             //load resources
             cc.LoaderScene.preload(g_resources, function () {
-                cc.director.runScene(new MenuScene());
+                cc.director.runScene(new PlayScene());
             }, this);
         };
         cc.game.run();
@@ -141,8 +138,8 @@ var mygame = {
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
-    spawnThePotFlag: function (data) {
-        var event = new cc.EventCustom("event_spawn_the_pot_flag");
+    spawnAndUpdateThePotFlag: function (data) {
+        var event = new cc.EventCustom("event_spawn_and_update_the_pot_flag");
         event.setUserData(data);
         cc.eventManager.dispatchEvent(event);
     },
@@ -157,9 +154,7 @@ var mygame = {
         cc.eventManager.dispatchEvent(event);
     }
 };
-
 //Hardcode informatons for Players Testing
-
 var players = [];
 for (i = 0; i < 10; i++) {
     var thename = "player" + i;
@@ -172,63 +167,18 @@ for (i = 0; i < 10; i++) {
         amount: "0"
     };
 }
-
 mygame.start();
 //////////////////////////////////
 //////////////////////////////////
 //////////////////////////////////
 
 
-///////////////////////////////////////////////
-//Spawn all players during the first 5 seconds
-///////////////////////////////////////////////
-//
-//
-//setTimeout(function () {
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[0]);
-//    }, 200 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[1]);
-//    }, 500 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[2]);
-//    }, 800 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[3]);
-//    }, 1100 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[4]);
-//    }, 1400 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[5]);
-//    }, 1700 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[6]);
-//    }, 2000 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[7]);
-//    }, 2300 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[8]);
-//    }, 2600 / GGS);
-//    setTimeout(function () {
-//        mygame.spawnPlayer(players[9]);
-//    }, 2900 / GGS);
-//}, 4000);
-//END OF SPAWNING==============================================================
-//END OF SPAWNING==============================================================
-
-
 
 function playGame1(startTime) {
 
-//Set the default start Time to 2 seconds.
     if (!startTime) {
         var startTime = 2000;
     }
-
-
     console.log("Spawning Player 4.  Time:  " + startTime);
     var player1Tests = setTimeout(function () {
         mygame.spawnPlayer({playerNumber: 4, playerModel: 5, name: 'FOUR', amount: 500});
@@ -303,7 +253,6 @@ function playGame1(startTime) {
 //===============================================================================//
 
     setTimeout(function () {
-
         mygame.animateActivatePlayer({playerNumber: 4, playerModel: 5});
         mygame.animateBet({playerNumber: 4, playerModel: 5});
         mygame.updatePlayerData({playerNumber: 4, playerModel: 5, name: "FOUR", amount: 400});
@@ -339,7 +288,6 @@ function playGame1(startTime) {
         mygame.deActivatePlayers();
     }, startTime);
 }
-
 setTimeout(function () {
 //    playGame1(500);
 }, 2000);

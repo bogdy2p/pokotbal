@@ -201,15 +201,15 @@ var AnimationLayer = cc.Layer.extend({
         });
         cc.eventManager.addListener(deActivateAllPlayers, 1);
 
-        var spawnThePotFlag = cc.EventListener.create({
+        var spawnAndUpdateThePotFlag = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
-            eventName: "event_spawn_the_pot_flag",
+            eventName: "event_spawn_and_update_the_pot_flag",
             callback: function (event) {
                 var data = event.getUserData();
-                that.spawnThePotFlag(data);
+                that.spawnAndUpdateThePotFlag(data);
             }
         });
-        cc.eventManager.addListener(spawnThePotFlag, 1);
+        cc.eventManager.addListener(spawnAndUpdateThePotFlag, 1);
 
         var removeThePotFlag = cc.EventListener.create({
             event: cc.EventListener.CUSTOM,
@@ -665,7 +665,7 @@ var AnimationLayer = cc.Layer.extend({
             var sprite_action = new cc.TintTo.create(1, 85, 85, 85);
             child = element._children[0];
             child.setOpacity(255);
-            for (i = 1; i < 10; i++) {
+            for (i = 0; i < 10; i++) {
                 var overheadName = "Player" + i + "_overHead";
                 var existingOverHeadSprite = backgroundLayer.getChildByName(overheadName);
                 if (existingOverHeadSprite) {
@@ -674,7 +674,13 @@ var AnimationLayer = cc.Layer.extend({
             }
         }
     },
-    spawnThePotFlag: function (data) {
+    spawnAndUpdateThePotFlag: function (data) {
+
+        if (typeof (data) == 'undefined') {
+            data = {
+                potAmount: "potAmount",
+            }
+        }
         //The Pot Flag Should Be Spawned Only ONCE per ROUND.
         //It Should be on TOP of the money stack.
         var winSize = cc.director.getWinSize();
