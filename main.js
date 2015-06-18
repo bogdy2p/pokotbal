@@ -342,19 +342,42 @@ function DEBUG_playActivations() {
 
 }
 function DEBUG_animateEachBet() {
-    var time_increase = 750;
-
+    var time_increase = 900;
     for (i = 0; i < 10; i++) {
         var player = players[i];
         var time = time_increase * i;
         bet(player, time);
     }
+
+
     function bet(player, time) {
         setTimeout(function () {
             mygame.animateBet(player);
         }, time);
+
+    }
+
+
+
+}
+
+function DEBUG_animatePotIncrease() {
+    var time_increase = 900;
+    var pots = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500];
+    for (i = 0; i < 10; i++) {
+
+        var time = time_increase * i;
+        var pot = pots[i];
+        asd(pot, time);
+    }
+
+    function  asd(pot, time) {
+        setTimeout(function () {
+            mygame.spawnAndUpdateThePotFlag({potAmount: pot * 2});
+        }, time);
     }
 }
+
 function playDemo() {
 
     DEBUG_spawn10fast();
@@ -364,5 +387,7 @@ function playDemo() {
     setTimeout(function () {
         DEBUG_animateEachBet();
     }, 10000);
-    
+    setTimeout(function () {
+        DEBUG_animatePotIncrease();
+    }, 10400);
 }

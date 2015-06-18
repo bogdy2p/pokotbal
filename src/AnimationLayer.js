@@ -638,17 +638,10 @@ var AnimationLayer = cc.Layer.extend({
             if (!playerAlreadyActive) {
                 backgroundLayer.addChild(OverHead, 1000, "Player" + data.playerNumber + "_overHead");
                 var PlayerSprite = backgroundLayer.getChildByName("player_" + data.playerNumber);
-//                var PlayerSpritePopUp = PlayerSprite._children[1];
-//                var asd = PlayerSprite._children[0];
-//                var tintredAction = cc.TintTo.create(1, 255, 0, 0);
-//                var table = backgroundLayer.getChildByName('thegametable');
-//                PlayerSprite.runAction(tintredAction);
             }
 
             var bubble = element._children[1];
             var oldBubblePosition = bubble.getPosition();
-//            cc.log("oldBubblePosition:");
-//            cc.log(oldBubblePosition);
             var newBubble = new cc.Sprite.create(res.P_popupOverGreen);
             if (data.playerNumber < 4) {
                 newBubble.setPosition(oldBubblePosition);
@@ -770,8 +763,8 @@ var AnimationLayer = cc.Layer.extend({
         var ThePotAmountLabelExists = backgroundLayer.getChildByName("ThePotAmountLabel");
         if (!ThePotAmountLabelExists) {
             var thePotAmountLabel = new cc.LabelTTF.create("£" + data.potAmount, "MontserratBold", 40);
-            thePotAmountLabel.setColor(new cc.Color(200, 200, 0, 255));
-            thePotAmountLabel.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - thePotSprite.height - 24));
+            thePotAmountLabel.setColor(new cc.Color(255, 255, 0, 255));
+            thePotAmountLabel.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - thePotSprite.height));
             backgroundLayer.addChild(thePotAmountLabel, 1560, "ThePotAmountLabel");
         } else {
             ThePotAmountLabelExists.setString("£" + data.potAmount);
