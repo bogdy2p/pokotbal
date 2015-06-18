@@ -691,23 +691,19 @@ var AnimationLayer = cc.Layer.extend({
                 var asd = element.getChildByName(ele);
                 if (asd) {
                     if (bubble._name == ele) {
-
                         var greenBubblePosition = bubble.getPosition();
                         var the_parent = bubble.getParent();
                         bubble.removeFromParent(1);
                         var grayBubble = new cc.Sprite.create(res.P_popupOverGrey);
-                        if(greenBubblePosition.y < 500){
+                        if (greenBubblePosition.y < 500) {
                             grayBubble.setRotation(180);
                         }
                         grayBubble.setPosition(greenBubblePosition);
                         the_parent.addChild(grayBubble, 1600, "asdfds");
-//                        cc.log(grayBubble.getPosition());
                     }
                 }
             }
         }
-        //Check for garbage collection
-//        cc.log(backgroundLayer.getChildren().length);
     },
     //===========================================================================================
     deActivateAll: function (data) {
@@ -730,6 +726,23 @@ var AnimationLayer = cc.Layer.extend({
                 var existingOverHeadSprite = backgroundLayer.getChildByName(overheadName);
                 if (existingOverHeadSprite) {
                     existingOverHeadSprite.removeFromParent(1);
+                }
+
+                var greenBubbleName = "Player" + i + "_popupGreen";
+                var existingGreenBubbleonPlayer = element.getChildByName(greenBubbleName);
+                if (existingGreenBubbleonPlayer) {
+//                    cc.log(existingGreenBubbleonPlayer);
+//                    cc.log(element);
+                    var position = existingGreenBubbleonPlayer.getPosition();
+                    var the_parent = existingGreenBubbleonPlayer.getParent();
+                    existingGreenBubbleonPlayer.removeFromParent(1);
+                    var grayBubble = new cc.Sprite.create(res.P_popupOverGrey);
+                    if (position.y < 500) {
+                        grayBubble.setRotation(180);
+                    }
+                    var grayBubbleName = "Player"+ i+ "_popup";
+                    grayBubble.setPosition(position);
+                    the_parent.addChild(grayBubble, 1600, grayBubbleName);
                 }
             }
         }
