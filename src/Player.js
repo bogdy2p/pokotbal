@@ -37,6 +37,7 @@ var Player = cc.Layer.extend({
             this.popUp.setPosition(playerdata.x, playerdata.y - this.popUpPixelDifference - 5);
         }
         spriteSheet.addChild(this.popUp, playerdata.Zindex, playerdata.defaultName + "_popup");
+        cc.log(this.popUp.getPosition());
 //        global_current_position++;
         this.init();
     },

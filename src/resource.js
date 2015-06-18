@@ -9,8 +9,6 @@ var res = {
     //Player Popups ===========================================================
     P_popupOverGrey: "res/userinterface/OverPopupGrey.png",
     P_popupOverGreen: "res/userinterface/OverPopupGreen.png",
-    P_popupUnderGrey: "res/userinterface/UnderPopupGrey.png",
-    P_popupUnderGreen: "res/userinterface/UnderPopupGreen.png",
     P_overHead: "res/userinterface/OverHead.png",
     //=========================================================================
     

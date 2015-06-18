@@ -628,7 +628,6 @@ var AnimationLayer = cc.Layer.extend({
 
 
         function activatePlayer(element, index, array) {
-//            cc.log(element);
             var unTint = new cc.TintTo.create(1, 85, 250, 250);
             child = element._children[0];
             child.setOpacity(255);
@@ -639,24 +638,28 @@ var AnimationLayer = cc.Layer.extend({
             if (!playerAlreadyActive) {
                 backgroundLayer.addChild(OverHead, 1000, "Player" + data.playerNumber + "_overHead");
                 var PlayerSprite = backgroundLayer.getChildByName("player_" + data.playerNumber);
-                var PlayerSpritePopUp = PlayerSprite._children[1];
-                var asd = PlayerSprite._children[0];
-                var tintredAction = cc.TintTo.create(1, 255, 0, 0);
-                var table = backgroundLayer.getChildByName('thegametable');
-                PlayerSprite.runAction(tintredAction);
+//                var PlayerSpritePopUp = PlayerSprite._children[1];
+//                var asd = PlayerSprite._children[0];
+//                var tintredAction = cc.TintTo.create(1, 255, 0, 0);
+//                var table = backgroundLayer.getChildByName('thegametable');
+//                PlayerSprite.runAction(tintredAction);
             }
 
             var bubble = element._children[1];
-//            cc.log(bubble);
             var oldBubblePosition = bubble.getPosition();
-//            cc.log(oldBubblePosition)
-            var newBubble = new cc.Sprite.create(res.P_popupUnderGreen);
-            newBubble.setPosition(oldBubblePosition);
+//            cc.log("oldBubblePosition:");
+//            cc.log(oldBubblePosition);
+            var newBubble = new cc.Sprite.create(res.P_popupOverGreen);
+            if (data.playerNumber < 4) {
+                newBubble.setPosition(oldBubblePosition);
+            } else {
+                newBubble.setRotation(180);
+                newBubble.setPosition(oldBubblePosition.x, oldBubblePosition.y);
+            }
             bubble.removeFromParent(1);
             var playerdata = positionInformations[data.playerNumber];
             element.addChild(newBubble, playerdata.Zindex, playerdata.defaultName + "_popupGreen");
 
-            //FETCH THE CURRENT PLAYER'S OVERHEADPOPUP AND MAKE IT GREEN
         }
 
 
@@ -684,22 +687,27 @@ var AnimationLayer = cc.Layer.extend({
             array_of_greens_to_remove.forEach(tryRemove);
 
             function tryRemove(ele, ind, arra) {
-                
+
                 var asd = element.getChildByName(ele);
                 if (asd) {
                     if (bubble._name == ele) {
-                        
+
                         var greenBubblePosition = bubble.getPosition();
                         var the_parent = bubble.getParent();
                         bubble.removeFromParent(1);
-                        var grayBubble = new cc.Sprite.create(res.P_popupUnderGrey);
+                        var grayBubble = new cc.Sprite.create(res.P_popupOverGrey);
+                        if(greenBubblePosition.y < 500){
+                            grayBubble.setRotation(180);
+                        }
                         grayBubble.setPosition(greenBubblePosition);
-                        the_parent.addChild(grayBubble,1600,"asdfds");
-                        
+                        the_parent.addChild(grayBubble, 1600, "asdfds");
+//                        cc.log(grayBubble.getPosition());
                     }
                 }
             }
         }
+        //Check for garbage collection
+//        cc.log(backgroundLayer.getChildren().length);
     },
     //===========================================================================================
     deActivateAll: function (data) {
