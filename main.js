@@ -390,4 +390,9 @@ function playDemo() {
     setTimeout(function () {
         DEBUG_animatePotIncrease();
     }, 10400);
+    
+    setTimeout(function() {
+        mygame.deActivatePlayers();
+    }, 20000);
+    
 }

@@ -721,11 +721,9 @@ var AnimationLayer = cc.Layer.extend({
                     existingOverHeadSprite.removeFromParent(1);
                 }
 
-                var greenBubbleName = "Player" + i + "_popupGreen";
+                var greenBubbleName = "Player" + (i + 1) + "_popupGreen";
                 var existingGreenBubbleonPlayer = element.getChildByName(greenBubbleName);
                 if (existingGreenBubbleonPlayer) {
-//                    cc.log(existingGreenBubbleonPlayer);
-//                    cc.log(element);
                     var position = existingGreenBubbleonPlayer.getPosition();
                     var the_parent = existingGreenBubbleonPlayer.getParent();
                     existingGreenBubbleonPlayer.removeFromParent(1);
@@ -733,7 +731,7 @@ var AnimationLayer = cc.Layer.extend({
                     if (position.y < 500) {
                         grayBubble.setRotation(180);
                     }
-                    var grayBubbleName = "Player"+ i+ "_popup";
+                    var grayBubbleName = "Player" + (i + 1) + "_popup";
                     grayBubble.setPosition(position);
                     the_parent.addChild(grayBubble, 1600, grayBubbleName);
                 }
@@ -747,8 +745,6 @@ var AnimationLayer = cc.Layer.extend({
                 potAmount: "potAmount",
             }
         }
-        //The Pot Flag Should Be Spawned Only ONCE per ROUND.
-        //It Should be on TOP of the money stack.
         var winSize = cc.director.getWinSize();
         var backgroundLayer = cc.director.getRunningScene().getChildByTag(TagOfLayer.background);
         var checkThePotExists = backgroundLayer.getChildByName("ThePotSprite");
