@@ -296,7 +296,7 @@ var AnimationLayer = cc.Layer.extend({
         } else {
             var popUpX = popUp.getPosition().x;
             var popUpY = popUp.getPosition().y;
-            var nameLabel = new cc.LabelTTF.create(data.name, "MontserratRegular", 14);
+            var nameLabel = new cc.LabelTTF.create(data.name, "MontserratBold", 16);
             nameLabel.setColor(cc.color(255, 255, 255));
             nameLabel.setAnchorPoint(0.5, 0.5);
             if (popUpY < 400) {
@@ -305,14 +305,14 @@ var AnimationLayer = cc.Layer.extend({
                 nameLabel.setPosition(cc.p(popUpX, popUpY + 10));
             }
             backgroundLayer.addChild(nameLabel, 500, "player_" + data.playerNumber + "_nameLabel");
-            var amountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratRegular", 14);
+            var amountLabel = new cc.LabelTTF.create("£ " + data.amount, "MontserratRegular", 16);
             amountLabel.setColor(cc.color(255, 255, 255));
             amountLabel.setAnchorPoint(0.5, 0.5);
 
             if (popUpY < 400) {
-                amountLabel.setPosition(cc.p(popUpX, popUpY - 5));
+                amountLabel.setPosition(cc.p(popUpX, popUpY - 8));
             } else {
-                amountLabel.setPosition(cc.p(popUpX, popUpY - 5));
+                amountLabel.setPosition(cc.p(popUpX, popUpY - 8));
             }
             backgroundLayer.addChild(amountLabel, 500, "player_" + data.playerNumber + "_ammountLabel");
         }
@@ -661,7 +661,7 @@ var AnimationLayer = cc.Layer.extend({
             var playerdata = positionInformations[data.playerNumber];
             var active_player = object;
             child = element._children[0];
-            child.setOpacity(170);
+            child.setOpacity(200);
             for (i = 0; i < 10; i++) {
                 var overheadName = "Player" + i + "_overHead";
                 var existingOverHeadSprite = backgroundLayer.getChildByName(overheadName);
@@ -672,7 +672,7 @@ var AnimationLayer = cc.Layer.extend({
             var bubble = element._children[1];
             var nameToRemove = active_player.defaultName + "_popupGreen";
             var array_of_greens = [];
-            for (i = 0; i < 10; i++) {
+            for (i = 1; i <= 10; i++) {
                 var greenName = "Player" + i + "_popupGreen";
                 array_of_greens.push(greenName);
             }
@@ -750,7 +750,7 @@ var AnimationLayer = cc.Layer.extend({
         var checkThePotExists = backgroundLayer.getChildByName("ThePotSprite");
         if (!checkThePotExists) {
             var thePotSprite = new cc.Sprite(res.ThePotFlag);
-            thePotSprite.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - thePotSprite.height / 2));
+            thePotSprite.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - thePotSprite.height / 2 + 5));
             thePotSprite.setOpacity(0);
             backgroundLayer.addChild(thePotSprite, 1560, "ThePotSprite");
             var fadeInPot = new cc.FadeIn.create(1);
