@@ -51,6 +51,7 @@ var res = {
     GP_Background: "res/userinterface/GenericBackground.png",
     GP_Referee1: "res/userinterface/Referee1.png",
     GP_Referee2: "res/userinterface/Referee2.png",
+    GP_Referee3: "res/userinterface/Referee3.png",
     
     
     

@@ -1047,6 +1047,9 @@ var AnimationLayer = cc.Layer.extend({
     ,
     playGenericAnimation: function (data) {
 
+
+
+
         if (typeof (data) == 'undefined') {
             cc.log("You did not provide correct details for the data object");
             var data = {
@@ -1055,6 +1058,11 @@ var AnimationLayer = cc.Layer.extend({
                 messageLine2: "line 2 content",
                 referee: 1,
             };
+        }
+
+        if (data.referee == null) {
+            var RandomNumber = Math.floor(Math.random() * 3 + 1);
+            data.referee = RandomNumber;
         }
 
         var winSize = cc.director.getWinSize();
@@ -1086,8 +1094,10 @@ var AnimationLayer = cc.Layer.extend({
 
         if (data.referee == 1) {
             var referee = new cc.Sprite(res.GP_Referee1);
-        } else {
+        } else if (data.referee == 2) {
             var referee = new cc.Sprite(res.GP_Referee2);
+        } else {
+            var referee = new cc.Sprite(res.GP_Referee3);
         }
         referee.setPosition(cc.p(winSize.width / 2 + 200, winSize.height / 2 + 40));
         referee.setScale(0.01);
